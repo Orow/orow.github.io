@@ -5,17 +5,33 @@ tags:
     - bootstrap
 category: test
 ---
+## Demo
+切版練習-LoopLAB - [Demo](https://orow.github.io/MyProjects/BootstrapWith5Projects/LoopLab-Practice/index.html)
 
-# Note - LoopLAB - from 2019/02/13(one day)
+## Introduction
+1. 網頁概觀
+    * 此版面是social media - Landing page
+    * Navbar
+    * 主要的showcase section
+    * head-section與info-section各三組帶資訊
+    * 最後Footer有包含一個Contact Us的button
+2. Navbar有用collapse
+3. Layout有簡單註冊表單的form
+4. Footer使用到Modal的功能
+5. 版面
+    * navbar用fixed-top
+    * 主要shoecase的section中background-image的位置用fixed讓捲動時不會跟著移動
+    * 背景overlay用黑色加上opacity背景圖看起來覆蓋透明黑
 
-###### tags: `Udemy` `bootstrap`
-#### Bootstrap練習-Project1
 
-## Navbar
+## Layout Notes
+### Navbar
 1. Navbar背景為淺灰（bg-dark),搭配文字顯示（navbar-dark)
 ![](https://i.imgur.com/0Yxddwr.png)
+
 2. 此處要border-bottom
-## Home-Section
+
+### Home-Section
 1. 包法
     =>home-section
     =>overlay(背景圖覆蓋透明黑)
@@ -43,7 +59,7 @@ category: test
     b. overlay:
     position:absolute;給width:100%,再給高度與透明度
 
-## Explore head section
+### Explore head section
 1. 包法
     =>section
     =>container
@@ -51,7 +67,7 @@ category: test
     =>col,text-center,py-5
     =>h1(display-4),p(lead),a(btn,btn-outline-secondary)
 
-## Explore section
+### Explore section
 1. 包法
     =>section(bg-light,text-muted,py-5)
     =>container
@@ -65,10 +81,10 @@ category: test
 
 2. 右邊font-awesome顏色跟底色不同記得要修改
 
-## Create & Share section
+### Create & Share section
 都是從explore section複製過來再改顏色或換位置
 
-## Footer
+### Footer
 1. 包法
     =>footer(bg-dark)
     =>container
@@ -79,7 +95,7 @@ category: test
     button class="btn btn-primary" data-toogle="modal" data-target="#contactModal"
     `data-target為後續要呼叫的ID名稱`
 
-## Contact Us Modal
+### Contact Us Modal
 1. 包法
     =>div class="modal fade text-dark show"
     =>div class=modal-dialog
@@ -100,7 +116,6 @@ category: test
     ref:https://bootstrap.hexschool.com/docs/4.0/components/carousel/
 
 ---
-## Question
+### Question
 1. Navbar的menu如何點選後字體顯示不同顏色？
-2. submit要用button or input type=submit?
-3. 這裏overlay用position:absolute他的父元素看例子沒有用position:relative;原因是什麼？
+    Q. 用:hover

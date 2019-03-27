@@ -98,4 +98,8 @@ ref: https://gogojimmy.net/2012/01/17/how-to-use-git-1-git-basic/
     * 指令為`git branch gh-pages`
 
 2. push上github
-3. 
+    * 指令`git push -u origin gh-pages`
+    * 之後只要`git push`即可
+
+3. 到[github_name].github.io/[repository_name]/查看，即可看到網頁
+    **首頁必須要命名為index.html**
