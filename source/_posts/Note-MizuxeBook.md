@@ -1,175 +1,71 @@
 ---
 title: 切版練習-Mizuxe - Bootstrap
 date: 2019-02-12 14:18:43
-tags: 
-    - bootstrap
+tags:
+  - bootstrap
 category: test
 toc: true
 ---
+
 ## Demo
+
 切版練習-MixuzeBook - [Demo](https://orow.github.io/MyProjects/BootstrapWith5Projects/MizuxeBook-Practice/index.html)
 
-## Introduction
-1. 網頁概觀
-    * 此版面是介紹一本書
-    * Navbar有用logo圖片
-    * 主要的showcase section
-    * 版面有inline-form可以輸入並且subsribe
-    * boxes section
-    * About section - accordion
-    * Author section - hover author, img above the card
-    * contact form - 這裡用input-group
-    * Footer
-2. Navbar有collapse
-3. 有inline-block跟input-group的form
-4. About secction中有accordion
-5. icon用font awesome
-6. 版面
-    * navbar用sticky - 像是relative  + fixed的效果
-    * 背景overlay用綠色加上opacity
+## 1. Introduction 網頁介紹
 
+這是第一次嘗試用 bootstrap 來刻網頁，針對 RWD 的部分先不刻意進行。
+這個書本網頁中 navbar 是固定在視窗最上面並且帶有透明度，主要區域（showcase）有背景圖片並且有 overlay 覆蓋，內容則是一半是文字敘述，另一半則是圖片。
+接下來則是 newsletter 區塊，是橫向排列的 input 與 button。
+Boxes 區分為四個區塊有兩種不同的顯示
+About 的這部分用到 accordion 的效果
+Authors 則是用 card 來秀出不同 author 的介紹與 icon 連結
+最後則是 contact form
 
-## Layout Notes
-### Navbar
-1. logo新增圖片,給高度,margin-right與文字不要靠太近
-2. container字體加大,但logo用h3字體（因為比li的字體大）
-3. container上下padding
-4. title跟logo要都是在a裡面,inline排列
-5. 有透明度後續再設定
+## 2. Layout - Notes
 
+Navbar 固定在最上層，用`position:sitcky`來達到這個效果，透明度則是用`opacity:0.9`。
 
-### Showcase
-1. 包法
-    section(含背景img)
-    => div.overlay
-    => div.container
-    => div.row
-    => div.col-6(grid) - 左右各半
-    
-2. 左邊
-    先h1=>往下p=>再往下button(包含font awesome)
-    
-3. 右邊
-    一張背景圖,需要給寬與高
-    
-4. 修飾左邊
-    a. col-6 => text center置中
-    b. h1顯示字體要再大=>選擇display-2;需要mt;下方需往上,這裡用pt(mt最多5)
-    c. button => btn(為一個button);btn-outline-secondary（secondary為灰底白字,加上outline後為相反-白底灰字;btn-lg（按鈕加大）;滑鼠未移過去時字要白色-text-white
-    
-5. 修飾背景
-    a. 最外層（背景圖）需設定position:relative(給下一層overlay-absolute做參考用)
-    b. 最外層（背景圖）需設定min-height(Ｑ-底部question區)
-    c. 第二層（overlay)設定absolute的position,從top/left(=0),height/width（100%)都要充滿上一個容器
+Shocase 區域的 overlay 用的是`background: rgba(50, 146, 166, 0.8)`的效果。
+這邊要注意的是 overlay 需要用`position:absolute; top:0; left:0`，上一層的元素則是需要用`position:relative`，這樣才會將 overlay 的位置才能夠固定。
 
-6. 修飾右邊
-    a. img-fulid=>max:width=100%, height=auto
+Newsletter 三個部分則是分別都用 grid systems`col-4`這個 class 來劃分，input 的部分加上了`form-control, form-control-lg`;button 的部分也是加上了`btn, btn-lg`，還加上了`btn-block`讓 button 變成區塊元素來使用 grid。
+![](https://i.imgur.com/ltej3tH.png)
 
-### Newsletter
-1. 包法
-    section（背景顏色）
-    =>container-上下padding(py-5)
-    =>row
-    =>col-4（3部分平均）
-    
-2. 前兩個input類似（name & email)
-    用form-control, 大一點用form-control-lg
-    ref:![](https://i.imgur.com/4CdBF9k.png)
-    
-3. 後一個為button
-    用btn,btn-lg,btn-block
-    ref:
-    ![](https://i.imgur.com/z847M4c.png)
-    沒有用primary or secondary,因為底色不同
+Boxes 這邊就單純用了四個`col-3`，並且用`class='card'`來表達。
+![](https://i.imgur.com/JYyHGjL.png)
 
-### Boxes
-1. 包法
-    section上下padding(py-5)
-    =>container
-    =>row
-    =>col-3（4部分平均）
-    =>每一部分都用card
-    
-2. card => card-body =>(內容)title用h3,敘述用p 
-3. 背景與文字顏色,置中要調整
-ref: https://getbootstrap.com/docs/4.2/components/card/
+About 用了 Accordion，點擊會有下拉與收起的效果。這是用 header 中的 a 連結來指導個別要下拉的區塊（給 id），需要`data-toggle='collapse'`等，相關內容從 bootstrap 官方文件可以找到。
+裡面的 icon 則是用 font awesome 的方式。
 
-### About/Why section
-1. 包法
-    section-一樣上下padding(py-5),底色淺灰bg-light
-    =>container
-    =>row
-    =>col - 這邊不需要分幾部分,就only one
-    下面內容主要分上下兩大部分
-    =>info-header
-    內容h1(mb-5,這邊用mb是因為有個底線)->p(pb-3)
-    =>accordion
-    內容accordion => card(3個都各用一個card)
-    card中兩部份
-    =>card-header
-    內容用h5（mb-0,因h5有mb)包,a連結加上font-awesome
-    =>collapse
-    內容card-body
-for instance:
-![](https://i.imgur.com/b9d9KTE.png)
+點擊第一個 `id=collapse1`
+![](https://i.imgur.com/XfQJ6ci.png)
+點擊第二個 `id=collapse2`
+![](https://i.imgur.com/xXGapiF.png)
 
-### Authors
-1. 包法
-    section-一樣上下padding(py-5)
-    =>container
-    =>上下兩個row
-    =>上row單一col
-    =>下面row的col分4部分,所以用col-3
-    
-2. 上面row單一col
-    =>info-header(mb-5)
-    =>h1(pb-3),p
-    
-3. 下面row,4個col-3
-    =>col-3
-    =>card
-    =>card-body
-    =>img(img-fuild,rounded-circle, w-50, mb-3)
-    =>h3,h5(text-muted),p
-    =>有3個font-awesome,用d-flex(justify-content-center)包
-    =>個別font-awesome用個別div包(有a)
-![](https://i.imgur.com/ZO8RwTy.png)
-### Contact
-1. 包法
-    section(淺色bg-light,py-5)
-    =>container
-    =>row
-    =>col-9,col-3（左邊col-9,右邊col-3)
-    =>col-9與col-3的部分下面分別說明
-    
-2. col-9
-    h3,p(.lead),form(裡面有3個div,1個button)
-    *div部分
-    =>div(input-group,input-group-lg,mb-3)
-    =>input-group-prepend(要在input中加font-awesome)
-    =>有icon也有input所以要有“input-group-text”
-    =>第三個div,input要改成textarea(form-control, style="height:187px;")
-    *button的部分
-    =>button(btn,btn-block,btn-lg)
-    
-3. col-3
-    div(col-3,align-self-center)要垂直置中
-![](https://i.imgur.com/TUTIVVq.png)
-    
+Authors 用了跟 boxes 一樣的四個`col-3`，特別注意到圖片使用`margin-top:-50px`達到超出上緣的效果。
+hover 的時候下方有三個用`<a></a>`連結包起來的 font awesome 的 icon。
+![](https://i.imgur.com/1vWJ6sW.png)
 
-### Footer
-1. 包法
-    section
-    =>container
-    =>row
-    =>col-6(這裡看起來文字在右邊的中間,左邊是空白所以除了col-6還要ml-auto)
-    =>p(lead)
-![](https://i.imgur.com/4Z3ySTw.png)
+這個 form 的表單中每個`input-group`的開頭，也就是左邊有個 icon，右邊則是一般的 input。
+需要用`class='input-group-prepend`包起來，裡面再用`span class='input-group-text'`去包icon。
+以下圖紅框處說明：
+![](https://i.imgur.com/TpGlD8i.png)
 
+code:
 
- 
-### Question 
-1. Accordion的包法要多多練習-collapse
-2. Collapse如果有多個,如何寫出個別點開,不會同時只能有一個collapse出現?
-    Q. 找範例
-3. Navbar固定在網頁最上面,fixed要加一個相同長寬的div(尚未試過) or 用margin-top處理(在下一個div);目前用sticky
+```html
+<div class="input-group input-group-lg mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="fas fa-user"></i></span>
+  </div>
+  <input class="form-control" type="text" placeholder="Name" />
+</div>
+```
+
+## Question
+
+1. Accordion 的包法要多多練習-collapse
+2. Collapse 如果有多個,如何寫出個別點開,不會同時只能有一個 collapse 出現?
+   Q. 找範例
+3. Navbar 固定在網頁最上面,fixed 要加一個相同長寬的 div(尚未試過) or 用 margin-top 處理(在下一個 div);目前用 sticky
+
