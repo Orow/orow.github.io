@@ -7,7 +7,7 @@ tags:
 ---
 
 
-# Github / iTerm2 / SourceTree - macOS
+## Github / iTerm2 / SourceTree - macOS
 
 ### Installation steps
 1. Git
@@ -52,7 +52,7 @@ ref: https://gogojimmy.net/2012/01/17/how-to-use-git-1-git-basic/
 ![](https://i.imgur.com/kRS20RW.png)
 
 
-### Git 基礎指令
+## Git 基礎指令
 1. 建立新專案
         * 在github上新建立repository
 2. 初始化git專案
@@ -91,7 +91,7 @@ ref: https://gogojimmy.net/2012/01/17/how-to-use-git-1-git-basic/
         `git checkout branch_name`
         * 可以切換目前位置到哪一個branch
         
-### 使用github展示靜態網頁
+## 使用github展示靜態網頁
 
 1. 建立branch
     * 名稱需為gh-pages

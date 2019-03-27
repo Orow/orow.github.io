@@ -18,10 +18,12 @@ category: test
 2. Navbar有用collapse
 3. Layout有簡單註冊表單的form
 4. Footer使用到Modal的功能
-5. 版面
+5. icon用font awesome
+6. 版面
     * navbar用fixed-top
     * 主要shoecase的section中background-image的位置用fixed讓捲動時不會跟著移動
     * 背景overlay用黑色加上opacity背景圖看起來覆蓋透明黑
+
 
 
 ## Layout Notes
