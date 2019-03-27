@@ -1,44 +1,60 @@
 ---
 title: 切版練習-Glozzom Multi Page- Bootstrap
 date: 2019-03-03 14:18:43
-tags: 
+tags:
     - bootstrap
 category: test
 ---
 ## Demo
 切版練習-Glozzom Multi Page - [Demo](https://orow.github.io/MyProjects/BootstrapWith5Projects/Glozzom-Practice/index.html)
 
-## Introduction
-1. 網頁概觀
+## 1. Introduction 網頁概觀
     * 此版面有五個頁面： Home, About, Services, Blog, Contact
-    1. Home
-        - Navba含collapse
-        - Showcase - Carousel slider，是整個背景圖片slide，還有indicator, arrow加上h1, p, button
-            - arrow要加上slide prev & next的功能
-        - Home-icon section: font awesome icon and title & p
-        - Home-header section: 捲動的時候背景圖片會固定，這邊背景圖片用fixed、位置用relative，overlay位置用absolute再給透明度
-        - Video-section: 這邊用到modal(video)跟iframe，背景圖片也是fixed，也有overlay
-        - Photo-gallery section: 用到lightbox，照片我用unsplash隨機的照片
-        - Newsletter section: inline-block的form
-        - Footer
-    2. About
-        - Navbar: 相同，只有移動active class到該頁面的區塊
-        - Page header: 背景圖片仍是fixed
-        - Icon boxes: 含有font awesome的box，用card呈現
-        - Testimonial: 文字需要slider，文字後面要加上blockquote-footer
-    3. Services
-        - 與About頁面類似
-        - Services section: 用card呈現 => card-header + card-body + card-footer
-        - Accordion: 要分成兩邊，一邊各有三個collapse，每個collapse需要有自己的名稱並用a herf來連結
-    4. Blog
-        - Blog section: 用card-columns，這裡使用了6個card  
-        這裡的card有兩種
-            1. 中有加img, h4, small, p等等
-            2. blockquote: p, footer(small > cite)
-    5. Contact
-        - Contact section: 左邊為information，右邊為form-group表單
-        - Staff section: 四個staff，附上照片
-    
+### 1.1 Home
+
+(下面說明皆截圖，並去掉 - 號)
+- Navba含collapse
+- Showcase - Carousel slider，是整個背景圖片slide，還有indicator, arrow加上h1, p, button
+    - arrow要加上slide prev & next的功能
+- Home-icon section: font awesome icon and title & p
+- Home-header section: 捲動的時候背景圖片會固定，這邊背景圖片用fixed、位置用relative，overlay位置用absolute再給透明度
+- Video-section: 這邊用到modal(video)跟iframe，背景圖片也是fixed，也有overlay
+- Photo-gallery section: 用到lightbox，照片我用unsplash隨機的照片
+- Newsletter section: inline-block的form
+- Footer
+
+### 1.2 About
+
+- Navbar: 相同，只有移動active class到該頁面的區塊
+- Page header: 背景圖片仍是fixed
+- Icon boxes: 含有font awesome的box，用card呈現
+- Testimonial: 文字需要slider，文字後面要加上blockquote-footer
+
+### 1.3 Services
+
+與About頁面類似，Services section: 用card呈現
+(這邊截圖)
+使用的是 Card 元件，方法很簡單，加上以下三個 class 即可，`.card-header.card-body.card-footer`
+
+Accordion: 要分成兩邊，一邊各有三個collapse，每個collapse需要有自己的名稱並用`a herf`來連結
+
+### 1.4 Blog
+Blog section:
+(這邊截圖顯示)
+
+用card-columns，這裡使用了6個card
+這裡的card有兩種
+    1. 中有加img, h4, small, p等等
+    2. blockquote: p, footer(small > cite)
+
+(這邊也須截圖說明d)
+
+### 1. 5 Contact
+Contact section: 左邊為information，右邊為form-group表單
+
+taff section: 四個staff，附上照片
+
+
 2. icon用font awesome
 3. 功能
     * Carousel slider
@@ -66,14 +82,14 @@ category: test
     =>li class="nav-item"
     =>li再包a class="nav-link"
     *li共五個,在Home那個的li class多加active來初始化
-    
+
 
 ### Showcase slide
 `此範例從sandbox複製過來修改`
 1. 包法
     =>section id="showcase"
     =>div id="myCarousel" class="carousel slide" data-ride="carousel"
-    =>ol class="carousel-indicators", 
+    =>ol class="carousel-indicators",
     div class="carousel-inner,
     a href="#myCarousel" class="carousel-control-prev" data-slide="prev",
     a href="#myCarousel" class="carousel-control-next" data-slide="next"
@@ -157,7 +173,7 @@ category: test
             2. iframe
                 a. allowfullscreen是讓他可以全螢幕
                 b. 需增加js menthod
-                
+
         ```js
         <script>
                 // Video Play
@@ -176,7 +192,7 @@ category: test
                 });
             </script>
         ```
-        
+
 ### Photos gallery
 1. 包法
     =>section
@@ -218,7 +234,7 @@ category: test
          // Get the current year for the copyright
                 $('#year').text(new Date().getFullYear());
         ```
-        
+
 ## About.html
 
 ### 前置作業
@@ -280,7 +296,7 @@ category: test
     =>每個div下包blockquote
     =>blockquote下包p, footer
     =>footer要包cite
-2. 描述 
+2. 描述
     1. section(text-white text-center py-4 bg-dark)
     2. h2在row之前,可能這次slide的不包含h2
     3. col下要有div class="slider"包住
@@ -294,8 +310,8 @@ category: test
 
 ### 前置作業
 1. Copy all about.html content to services.html
-2. Remove slick & slick-theme link tag, slick 
-3. Keep content navbar & Page-header & footer 
+2. Remove slick & slick-theme link tag, slick
+3. Keep content navbar & Page-header & footer
 
 ### Service section
 1. 包法
@@ -339,7 +355,7 @@ category: test
 
 ### 前置作業
 1. Copy all services.html content to blog.html
-2. Keep content navbar & Page-header & footer 
+2. Keep content navbar & Page-header & footer
 
 ### blog section
 1. 包法
@@ -382,7 +398,7 @@ category: test
         b. card-body
         c. h4, p, h4, p, h4, p, h4, p
     2. col-8
-        A. Orow's Way 
+        A. Orow's Way
         1. card(p-4)
         2. card-body
         3. h3(text-center)
@@ -392,7 +408,7 @@ category: test
         7. 每個col-6 => form-group => input * 2
         8. 下row包col => form-group
         9. 包textarea, button
-         
+
         B. Brad's Way
         1. card(p-4)
         2. card-body
