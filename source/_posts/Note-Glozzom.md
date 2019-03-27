@@ -12,6 +12,9 @@ category: test
     * 此版面有五個頁面： Home, About, Services, Blog, Contact
 ### 1.1 Home
 
+
+![](https://i.imgur.com/W3vWLxv.png)
+
 (下面說明皆截圖，並去掉 - 號)
 - Navba含collapse
 - Showcase - Carousel slider，是整個背景圖片slide，還有indicator, arrow加上h1, p, button
