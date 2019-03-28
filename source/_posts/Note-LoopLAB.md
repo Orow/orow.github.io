@@ -1,124 +1,95 @@
 ---
 title: 切版練習-LoopLAB - Bootstrap
 date: 2019-02-13 14:18:43
-tags: 
-    - bootstrap
+tags:
+  - bootstrap
 category: test
 toc: true
 ---
+
 ## Demo
+
 切版練習-LoopLAB - [Demo](https://orow.github.io/MyProjects/BootstrapWith5Projects/LoopLab-Practice/index.html)
 
 ## Introduction
-1. 網頁概觀
-    * 此版面是social media - Landing page
-    * Navbar
-    * 主要的showcase section
-    * head-section與info-section各三組帶資訊
-    * 最後Footer有包含一個Contact Us的button
-2. Navbar有用collapse
-3. Layout有簡單註冊表單的form
-4. Footer使用到Modal的功能
-5. icon用font awesome
-6. 版面
-    * navbar用fixed-top
-    * 主要shoecase的section中background-image的位置用fixed讓捲動時不會跟著移動
-    * 背景overlay用黑色加上opacity背景圖看起來覆蓋透明黑
 
+## 1. Introduction 網頁介紹
 
+這個網頁跟上一篇 MixuzeBook 類似， navbar 也是置頂視窗帶有透明度，也有 collapse。
+主要區域有背景圖、overlay 覆蓋，但背景圖片不會隨著捲動跟著移動，內容則是一半是文字敘述，另一半則變為簡單註冊 form 表單。
+接下來幾個區塊都是差不多的，一半文字敘述另一半是圖片，左右內容對調等等。
+最後的 Footer 則是有一個 button，點擊會有 modal（彈出視窗）的效果。
 
-## Layout Notes
-### Navbar
-1. Navbar背景為淺灰（bg-dark),搭配文字顯示（navbar-dark)
-![](https://i.imgur.com/0Yxddwr.png)
+## 2. Layout - Notes
 
-2. 此處要border-bottom
+Navbar 固定在最上層，這次使用`class='fixed-top'`來達到這個效果，加上`border-bottom: #008ed6 3px solid`進行底線的修飾，透明度則是用`opacity:0.8`。
+collapse 則是與上一篇相同，網路上官方文件都可以搜尋的到。
+ref:https://getbootstrap.com/docs/4.0/components/navbar/
+![](https://i.imgur.com/dBY12AX.png)
 
-### Home-Section
-1. 包法
-    =>home-section
-    =>overlay(背景圖覆蓋透明黑)
-    =>container
-    =>row
-    =>col-8;col-4
-    a. col-8的部分(用display-4)
-    1. 分為h1,跟3個div
-    2. 每個div都用d-flex,因為每個div中左邊有font-awesome,右邊有文字
-    3. 左(align-self-start);右(align-self-end)
-![](https://i.imgur.com/HJwDCOD.png)
+Showcase 區域的 overlay 用的是`background: rgba(0, 0, 0, 0.7)`。
+位置用`position:absolute; top:0; left:0`來固定。
+內容紅框處用到了 flex 的效果，左邊 icon 用`class='align-self-start'`，右邊敘述則用`class='align-self-end'`
+![](https://i.imgur.com/7pQvS29.png)
+code:
 
-    b. col-4的部分
-    1. 用card(bg-primary)包=>card-body
-    2. h3,p,form
-    3. form中4個form-group
-    4. 最後一個不用form-group只用input（因為form-group有mb)
-    5. input用submit(class=btn,btn-block,btn-outline-light)
-=>*這裡用light是因為card本身選了bg-primary
-![](https://i.imgur.com/MCuXmUh.png)
+```html
+<div class="d-flex">
+  <div class="align-self-start p-4">
+    <i class="fas fa-check fa-2x"></i>
+  </div>
+  <div class="align-self-end p-4">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut cupiditate et,
+    error neque quasi aspernatur.
+  </div>
+</div>
+```
 
-2. 背景圖片與overlay
-    a. 背景圖片：
-    background: no-repeat, center/cover, fixed(這個是會固定圖片不會隨滑鼠scrolling)
-    b. overlay:
-    position:absolute;給width:100%,再給高度與透明度
+下面重複的區塊中圖片用了`class='rounded-circle'`來將圖片改變爲圓形。
+效果等同 CSS 用`border-radius:50%`。
+![](https://i.imgur.com/vyiCo56.png)
 
-### Explore head section
-1. 包法
-    =>section
-    =>container
-    =>row
-    =>col,text-center,py-5
-    =>h1(display-4),p(lead),a(btn,btn-outline-secondary)
+Footer 中的 button 用了`data-toggle="modal" data-target="#contactModal"`，target 是要呼叫內容的 id 名稱。
+要顯示的內容用了`class='fade'`讓彈出與收起有fadeIn跟fadeOut的效果，用`display:none`讓他一開始不顯示。
+相關套件在bootstrap的官方文件也可以找到資料。
+ref: https://getbootstrap.com/docs/4.0/components/modal/
+![](https://i.imgur.com/svzqigv.png)
 
-### Explore section
-1. 包法
-    =>section(bg-light,text-muted,py-5)
-    =>container
-    =>row
-    =>col-6,col-6
-    a. 左邊col-6
-    1. 背景圖（img-fulid,rounded-circle)
-    b. 右邊col-6
-    1. h3,p,div*2
-    2. div(d-flex),裡面跟上面home-section差不多;每個div中左邊有font-awesome,右邊有文字=>左(align-self-start);右(align-self-end)
+modal code:
 
-2. 右邊font-awesome顏色跟底色不同記得要修改
+```html
+<div class="modal fade text-dark" id="contactModal" style="display: none; padding-right: 14px;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Contact Us</h5>
+        <button class="close" data-dismiss="modal">×</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-block">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
-### Create & Share section
-都是從explore section複製過來再改顏色或換位置
+## Question
 
-### Footer
-1. 包法
-    =>footer(bg-dark)
-    =>container
-    =>row
-    =>col,text-white.py-4
-2. Contact Us button "Modal"
-    =>這裡用modal(javascript)
-    button class="btn btn-primary" data-toogle="modal" data-target="#contactModal"
-    `data-target為後續要呼叫的ID名稱`
-
-### Contact Us Modal
-1. 包法
-    =>div class="modal fade text-dark show"
-    =>div class=modal-dialog
-    =>div class=modal-content
-    =>content中分三層
-    ![](https://i.imgur.com/lnLaxIf.png)
-    1. div class=modal-header
-        a. h5 class=modal-title
-        b. button class="close" data-dismiss="modal" 
-        `data-dismiss會關閉這個的彈出視窗`
-    2. div class=modal-body
-        a. 用form包 =>form-group*3
-        b. 前兩個form-group中包label & input
-        c. 第三個form-group中用label & textarea
-        d. label for , input type class="form-control, textarea class="form-control"
-    3. div class=moadl-footer
-        button class="btn btn-primary btn-block"
-    ref:https://bootstrap.hexschool.com/docs/4.0/components/carousel/
-
----
-### Question
-1. Navbar的menu如何點選後字體顯示不同顏色？
-    Q. 用:hover
+1. Navbar 的 menu 如何點選後字體顯示不同顏色？
+   Q. 用:hover
