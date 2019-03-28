@@ -3,7 +3,8 @@ title: Google Map API使用
 date: 2019-01-31 14:18:43
 tags:
   - Google Map API
-category: test
+category: 
+- API
 toc: true
 ---
 
@@ -23,7 +24,7 @@ ref : https://console.cloud.google.com/?hl=zh-TW
     ![](https://i.imgur.com/dFsPaCl.png)
 
 3. 新增憑證
-    * 啟用後進入到Maps Javascript的管理(Manage)頁面=> 選取憑證(credentials)
+    * 啟用後進入到Maps Javascript的管理(Manage)頁面並選取憑證(credentials)
     ![](https://i.imgur.com/GgMab9B.png)
 
     * API管理員中的「憑證」頁面(Credentials in the API Manager)
@@ -53,9 +54,9 @@ script code 如下：
     上面的document.getElementById('map')，代表在html中需要有個div class="map"。
 
 2. Latitude & Longitude 緯度與經度取得
-    1. 可以從網站上獲得
+    * 可以從網站上獲得
         => https://www.latlong.net/
-    2. google map上點擊位置後,從網址中可以撈到
+    * google map上點擊位置後,從網址中可以撈到
     
 ## 常見應用
 
