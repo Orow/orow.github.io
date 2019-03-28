@@ -1,13 +1,11 @@
 ---
-title: Start to learn HTML & CSS
+title: Learn HTML & CSS(新手村)
 date: 2019-01-10 14:18:43
 tags:
 - html
 - css
 category: test
 ---
-
-# HTML & CSS - 新手村木人樁
 
 ## 1. 從零開始 From Scratch
 
