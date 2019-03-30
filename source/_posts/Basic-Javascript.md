@@ -3,7 +3,6 @@ title: Basic - JavaScript（新手村）
 date: 2019-02-28 20:00:00
 tags:
   - javascript
-  - css
 categories:
   - javascript
 ---
@@ -166,7 +165,125 @@ splice(pos, index)：移除從 pos 起的幾個項目(注意是用 index 計算)
 var removeItem = arr.splice(2, 2); // arr = ['Watermelon', 2];
 ```
 
-### 作用域(Scope)
+## Function
+
+Function 是 JavaScript 的一級物件(first class object)，組成依次為：
+
+- 函式的名稱。
+- 包圍在括號()中，並由逗號區隔的一個函式參數(argement)列表。
+- 包圍在大括號{}中，內含需要重複執行的內容，是函式功能的主要區塊。
+
+### Function 定義
+
+1. 函式宣告（Function Declaration）
+   宣告方式:
+
+   - 宣告式（具名,匿名）
+
+   ```js
+   var add = function add(a,b); // 具名
+   var add = function (a,b); // 匿名
+   ```
+
+2. 函式運算式（Function Expressions）
+   宣告方式:
+
+   - 表示式（具名,匿名）
+
+   ```js
+   function add(a,b); // 具名
+   function (a,b); // 匿名
+   ```
+
+3. 透過 new Function 關鍵字建立函式
+   直接使用 Function 這個關鍵字來建立函式物件。
+   這裡要注意的是，如果使用這樣的方式建立函數，不會建立任何的 closure，而在這個函數中只能存取全域（global）的變數或是存在於該函數內部的變數。
+
+   ```js
+   var add = new Function("a", "b", "return a + b");
+
+   add(1, 2);
+   // 輸出 3
+
+   var glbFoo = "global";
+   function scope() {
+     var scpFoo = "scoped",
+       scop = Function("console.log(typeof scpFoo)"),
+       glob = Function("console.log(typeof glbFoo)");
+
+     scop(); // 只能讀到全域變數，函式本身沒有變數
+     glob(); // glbFoo是全域變數，在執行scope()後是可以得到glbFoo的type
+   }
+
+   scope();
+   // 輸出 undefined
+   // 輸出 string
+   ```
+
+### 提升(Hoisting)
+
+函式宣告(Function Declaration)與函式運算式(Function Expressions)的差異。
+函式宣告建立的函數，會被提升（hoisting）到該作用域（scope）最頂端，讓整個作用域都可以呼叫它。
+
+```js
+declared();
+// 輸出 declared
+// 函式宣告function declaration
+function declared() {
+  console.log("declared");
+}
+
+expressed();
+// TypeError: undefined is not a function
+// 函式運算式function expressions
+var expressed = function() {
+  console.log("expressed");
+};
+expressed();
+// 輸出 expressed
+```
+
+### IIFE
+
+Immediately Invoked Functions Expressions 指的是可以立即執行的 Functions Expressions 函式表示式，中文多譯為立即(執行)函式。
+
+下面是一個範例
+
+```js
+var hello = function(name) {
+  console.log("Hello, " + name + "how are you?");
+  // consolo.log會印出 Hello, undefined how are you?
+};
+```
+
+這是一個 function expressions
+呼叫他會寫成`hello();`。
+
+```js
+hello();
+```
+
+如果改成並把`hello();`拿掉
+
+```js
+var hello = (function(name) {
+  console.log("Hello, " + name + "how are you?");
+  // consolo.log會印出 Hello, undefined how are you?
+})();
+```
+
+結果會是一樣的，因為在讀到函式運算是後面的`()`，就會立刻呼叫這個 function 去執行，這就是 IIFE。
+
+
+
+### Function 參考資料
+
+- [MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions)
+- https://ithelp.ithome.com.tw/articles/10191549
+- https://blog.gtwang.org/programming/defining-javascript-functions/
+
+
+## 作用域(Scope)
 
 全域變數(global)，在瀏覽器下也就是 window 物件，function 外的變數
 區域變數，function 中的變數
@@ -218,121 +335,3 @@ var removeItem = arr.splice(2, 2); // arr = ['Watermelon', 2];
   ```
 
 - [參考來源](https://ithelp.ithome.com.tw/articles/10206604?sc=iThelpR)
-
-## Function
-
-Function 是 JavaScript 的一級物件(first class object)，組成依次為：
-
-- 函式的名稱。
-- 包圍在括號()中，並由逗號區隔的一個函式參數(argement)列表。
-- 包圍在大括號{}中，內含需要重複執行的內容，是函式功能的主要區塊。
-
-### Function 定義
-
-1. 函式宣告（Function Declaration）
-    宣告方式:
-
-    - 宣告式（具名,匿名）
-
-    ```js
-    var add = function add(a,b); // 具名
-    var add = function (a,b); // 匿名
-    ```
-
-2. 函式運算式（Function Expressions）
-    宣告方式:
-
-    - 表示式（具名,匿名）
-
-    ```js
-    function add(a,b); // 具名
-    function (a,b); // 匿名
-    ```
-
-3. 透過 new Function 關鍵字建立函式
-    直接使用 Function 這個關鍵字來建立函式物件。
-    這裡要注意的是，如果使用這樣的方式建立函數，不會建立任何的 closure，而在這個函數中只能存取全域（global）的變數或是存在於該函數內部的變數。
-
-    ```js
-    var add = new Function("a", "b", "return a + b");
-
-    add(1, 2);
-    // 輸出 3
-
-    var glbFoo = "global";
-    function scope() {
-    var scpFoo = "scoped",
-        scop = Function("console.log(typeof scpFoo)"),
-        glob = Function("console.log(typeof glbFoo)");
-
-    scop(); // 只能讀到全域變數，函式本身沒有變數
-    glob(); // glbFoo是全域變數，在執行scope()後是可以得到glbFoo的type
-    }
-
-    scope();
-    // 輸出 undefined
-    // 輸出 string
-    ```
-
-### 提升(Hoisting)
-函式宣告(Function Declaration)與函式運算式(Function Expressions)的差異。
-函式宣告建立的函數，會被提升（hoisting）到該作用域（scope）最頂端，讓整個作用域都可以呼叫它。
-
-```js
-declared();
-// 輸出 declared
-// 函式宣告function declaration
-function declared () {
-  console.log('declared');
-}
-
-expressed();
-// TypeError: undefined is not a function
-// 函式運算式function expressions
-var expressed = function () {
-  console.log('expressed');
-}
-expressed();
-// 輸出 expressed
-```
-
-### IIFE
-Immediately Invoked Functions Expressions指的是可以立即執行的Functions Expressions函式表示式，中文多譯為立即(執行)函式。
-
-下面是一個範例
-
-```js
-var hello = function(name){
-    console.log('Hello, ' + name + 'how are you?');
-    // consolo.log會印出 Hello, undefined how are you?
-}
-```
-
-這是一個function expressions
-呼叫他會寫成`hello();`。
-
-```js
-hello();
-```
-
-如果改成並把`hello();`拿掉
-
-```js
-var hello = function(name){
-    console.log('Hello, ' + name + 'how are you?');
-    // consolo.log會印出 Hello, undefined how are you?
-}();
-```
-
-結果會是一樣的，因為在讀到函式運算是後面的`()`，就會立刻呼叫這個function去執行，這就是IIFE。
-
-### Closure(閉包)
-閉包是 JavaScript 最強大的特性之一。JavaScript 允許巢狀函式（nesting of functions）並給予內部函式完全訪問（full access）所有變數、與外部函式定義的函式（還有所有外部函式內的變數與函式）不過，外部函式並不能訪問內部函式的變數與函式。這保障了內部函式的變數安全。另外，由於內部函式能訪問外部函式定義的變數與函式，將存活得比外部函式還久。
-來自[MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions)
-
-### Recursion
-
-### Function參考資料
- - [MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions)
- - https://ithelp.ithome.com.tw/articles/10191549
- - https://blog.gtwang.org/programming/defining-javascript-functions/
