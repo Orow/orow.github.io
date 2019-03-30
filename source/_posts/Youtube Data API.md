@@ -73,52 +73,52 @@ get的url需要為https://www.googleapis.com/youtube/v3/search。
 part的部分是針對使用者需要用到的部分去發出request。
 ### 2.3 function中data的sample(search Resource)
 
-    ```js
-    {
-      "kind": "youtube#searchListResponse",
-      "etag": etag,
-      "nextPageToken": string,
-      "prevPageToken": string,
-      "regionCode": string,
-      "pageInfo": {
-        "totalResults": integer,
-        "resultsPerPage": integer
-      },
-      "items": [
-        search Resource
-      ]
-    }
+  ```js
+  {
+    "kind": "youtube#searchListResponse",
+    "etag": etag,
+    "nextPageToken": string,
+    "prevPageToken": string,
+    "regionCode": string,
+    "pageInfo": {
+      "totalResults": integer,
+      "resultsPerPage": integer
+    },
+    "items": [
+      search Resource
+    ]
+  }
 
-    // 以下為上面 "items": [
-    //    search Resource
-    //  ]裡面的search resource
-    {
-      "kind": "youtube#searchResult",
-      "etag": etag,
-      "id": {
-        "kind": string,
-        "videoId": string,
-        "channelId": string,
-        "playlistId": string
+  // 以下為上面 "items": [
+  //    search Resource
+  //  ]裡面的search resource
+  {
+    "kind": "youtube#searchResult",
+    "etag": etag,
+    "id": {
+      "kind": string,
+      "videoId": string,
+      "channelId": string,
+      "playlistId": string
+    },
+    "snippet": {
+      "publishedAt": datetime,
+      "channelId": string,
+      "title": string,
+      "description": string,
+      "thumbnails": {
+        (key): {
+          "url": string,
+          "width": unsigned integer,
+          "height": unsigned integer
+        }
       },
-      "snippet": {
-        "publishedAt": datetime,
-        "channelId": string,
-        "title": string,
-        "description": string,
-        "thumbnails": {
-          (key): {
-            "url": string,
-            "width": unsigned integer,
-            "height": unsigned integer
-          }
-        },
-        "channelTitle": string,
-        "liveBroadcastContent": string
-      }
+      "channelTitle": string,
+      "liveBroadcastContent": string
     }
+  }
 
-    ```
+  ```
 
 ### 2.4 prevPage & nextPage
 可以在$.get裡面的物件加上`{pageToken: token}`

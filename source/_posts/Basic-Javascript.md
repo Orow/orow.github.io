@@ -107,6 +107,7 @@ var foo = true; // foo目前是boolean
 
 - 條件運算子
   (condition ? statement-if-true : statement-if-false;)
+  也就是：條件式 ? 成立傳回值 : 失敗傳回值
 
 運算子眾多，詳細請參考[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)
 
