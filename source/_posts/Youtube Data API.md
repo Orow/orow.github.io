@@ -37,7 +37,7 @@ ref : https://console.cloud.google.com/?hl=zh-TW
 **如果有錯請不吝嗇的告知小弟**
 下面是這次的例子:
 ### 2.1 Project Link: Youtube Search Engine
-Seacrch Result code: 
+Search Result code: 
 
 ```js
 $.get(

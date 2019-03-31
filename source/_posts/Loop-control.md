@@ -188,3 +188,46 @@ for (let i = 1; i <= 10; i++) {
 
 * [參考來源 1](https://tigercosmos.xyz/master-js-in-30-days/PART1/loop.html)
 * [參考來源 2](https://ithelp.ithome.com.tw/articles/10191453)
+
+
+## 迴圈應用 - 99乘法表
+利用迴圈來印出九九乘法表的結果
+這是用到nesting for loops的方式
+
+### for 迴圈
+
+```js
+for (var i=1; i < 10; i++) {
+    for (var j=1; j < 10; j++) {
+        console.log(i + "x" + j + " = " +  i * j)
+    }
+}
+```
+
+### while 迴圈
+
+```js
+var i = 1;
+while (i < 10) {
+    var j = 1;
+    while (j < 10) {
+        console.log(i + " x " + j + " = " + i * j);
+        j++;
+    }
+    i++;
+}
+```
+
+### do...while 迴圈
+
+```js
+var i = 1;
+do {
+    var j = 1;
+    do {
+        console.log(i + " x " + j + " = " + i * j);
+        j++;
+    }while (j < 10);
+    i++;
+}while (i < 10);
+```
