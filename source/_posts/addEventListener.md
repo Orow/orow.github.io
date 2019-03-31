@@ -91,7 +91,7 @@ el.onclick = function(e) {
 ```
 
 結果如下圖：
-![](https://i.imgur.com/C5EsQjR.png)
+![](https://i.imgur.com/iK0h00X.png)
 
 ### preventDefault
 
