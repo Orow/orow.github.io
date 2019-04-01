@@ -1,5 +1,5 @@
 ---
-title: event-addEventListener - JavaScript
+title: "[JavaScript] - event-addEventListener"
 date: 2019-03-10 13:00:00
 tags:
   - javascript

@@ -1,5 +1,5 @@
 ---
-title: localstorage(side project) - JavaScript
+title: "[JavaScript] - localstorage(side project)"
 date: 2019-03-10 23:50:00
 tags:
   - javascript

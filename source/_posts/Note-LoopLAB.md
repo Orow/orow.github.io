@@ -1,5 +1,5 @@
 ---
-title: 切版練習-LoopLAB - Bootstrap
+title: "[Bootstrap] - 切版練習-LoopLAB"
 date: 2019-02-13 14:18:43
 tags:
   - bootstrap

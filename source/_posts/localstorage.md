@@ -1,5 +1,5 @@
 ---
-title: localstorage - JavaScript
+title: "[JavaScript] - localstorage"
 date: 2019-03-10 23:00:00
 tags:
   - javascript

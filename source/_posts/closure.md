@@ -1,5 +1,5 @@
 ---
-title: Closure(閉包) - JavaScript
+title: "[JavaScript] - Closure(閉包)"
 date: 2019-03-06 20:00:00
 tags:
   - javascript

@@ -1,5 +1,5 @@
 ---
-title: DOM - JavaScript
+title: "[JavaScript] - DOM"
 date: 2019-03-09 20:00:00
 tags:
   - javascript

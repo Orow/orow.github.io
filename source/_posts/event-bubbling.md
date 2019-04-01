@@ -1,5 +1,5 @@
 ---
-title: event bubbling & capturing(事件冒泡與捕獲) - JavaScript
+title: "[JavaScript] - event bubbling & capturing(事件冒泡與捕獲)"
 date: 2019-03-10 21:00:00
 tags:
   - javascript

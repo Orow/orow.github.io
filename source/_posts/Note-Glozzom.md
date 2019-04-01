@@ -1,5 +1,5 @@
 ---
-title: 切版練習-Glozzom Multi Page- Bootstrap
+title: "[Bootstrap] - 切版練習-Glozzom Multi Page"
 date: 2019-03-03 14:18:43
 tags:
   - bootstrap

@@ -1,5 +1,5 @@
 ---
-title: Recursion(遞迴) - JavaScript
+title: "[JavaScript] - Recursion(遞迴)"
 date: 2019-03-07 20:00:00
 tags:
   - javascript

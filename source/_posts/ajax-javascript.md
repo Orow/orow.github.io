@@ -1,5 +1,5 @@
 ---
-title: AJAX - JavaScript
+title: "[Javascript] - AJAX"
 date: 2019-03-11 21:00:00
 tags:
   - javascript
@@ -93,7 +93,7 @@ console.log(xhr.responseText); // 沒有印出東西
 舉一個非同步也能夠處理的例子
 
 - url 這邊是高雄市 opendata-電動機車充電站的資訊
-- 用 foor 迴圈把種類是公共充電站加上位置名稱後，新增到清單中
+- 用 for 迴圈把種類是公共充電站加上位置名稱後，新增到清單中
 
 ```html
 <ul class="list"></div>

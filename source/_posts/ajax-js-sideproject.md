@@ -1,5 +1,5 @@
 ---
-title: AJAX(side project) - JavaScript
+title: "[JavaScript] - AJAX(side project)"
 date: 2019-03-11 23:00:00
 tags:
   - javascript

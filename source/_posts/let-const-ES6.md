@@ -1,5 +1,5 @@
 ---
-title: let & const(ES6) - JavaScript
+title: "[JavaScript] - let & const(ES6)"
 date: 2019-03-12 21:00:00
 tags:
   - javascript

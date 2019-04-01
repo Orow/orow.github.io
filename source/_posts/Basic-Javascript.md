@@ -1,5 +1,5 @@
 ---
-title: Basic - JavaScript（新手村）
+title: "[JavaScript] - Basic（新手村）"
 date: 2019-02-28 20:00:00
 tags:
   - javascript
