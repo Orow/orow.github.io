@@ -2,11 +2,11 @@
 title: 切版練習-Glozzom Multi Page- Bootstrap
 date: 2019-03-03 14:18:43
 tags:
-    - bootstrap
+  - bootstrap
 category:
   - project
-  - bootstrap
 ---
+
 ## Demo
 切版練習-Glozzom Multi Page - [Demo](https://orow.github.io/MyProjects/BootstrapWith5Projects/Glozzom-Practice/index.html)
 

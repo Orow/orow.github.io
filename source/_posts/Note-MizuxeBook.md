@@ -5,7 +5,6 @@ tags:
   - bootstrap
 category:
   - project
-  - bootstrap
 toc: true
 ---
 

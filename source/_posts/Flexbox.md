@@ -4,8 +4,6 @@ date: 2019-01-30 20:00:00
 tags:
   - html
   - css
-categories:
-  - basic
 ---
 
 ## Flexbox 模型概念
