@@ -6,6 +6,7 @@ tags:
 categories:
   - javascript
 ---
+本篇主要是透過線上課程：`udemy`、`w3school`及網路上搜尋資源所學習的。
 
 ## localstorage
 

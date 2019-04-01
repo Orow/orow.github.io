@@ -7,8 +7,7 @@ categories:
   - javascript
 ---
 
-本篇主要是透過線上課程：六角學院的`JavaScript 入門篇 - 學徒的試煉`，及網路上搜尋資源所學習的。
-
+本篇主要是透過線上課程：`udemy`、`w3school`及網路上搜尋資源所學習的。
 ## event bubbling & capturing
 
 事件傳遞順序為：先捕獲，再冒泡。但是當事件傳到 target 本身後，是沒有分捕獲跟冒泡的。

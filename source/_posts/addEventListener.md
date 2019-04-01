@@ -7,7 +7,7 @@ categories:
   - javascript
 ---
 
-本篇主要是透過線上課程：六角學院的`JavaScript 入門篇 - 學徒的試煉`、`w3school`及網路上搜尋資源所學習的。
+本篇主要是透過線上課程：`udemy`、`w3school`及網路上搜尋資源所學習的。
 
 ## Event
 
