@@ -8,9 +8,19 @@ categories:
 ---
 
 ## AJAX side project
-
 這個 side project，有註冊跟登入表單輸入。
 ![](https://i.imgur.com/hJWuLOG.png)
+
+概略流程：
+1. addEventListener監聽
+2. function中用來取到輸入的帳號密碼的value，並將取得的帳號密碼的值塞回object中。
+3. var xhr = new XMLHttpRequest()
+4. xhr.open()
+5. xhr.setRequestHeader()
+6. xhr.send() - 內容要轉為字串
+7. 用xhr.onload function (){} / 確保資料都跑完再執行function
+8. 因為要判斷資料後再去執行所需的alert,在獲取資料前要先將json內格式從字串轉為陣列
+9. 再利用物件中的"message"來判斷執行哪種alert
 
 註冊表單
 
@@ -51,7 +61,8 @@ categories:
 <input type="submit" value="SignIn" class="signIn" />
 ```
 
-在下面 js 中，從伺服器中比對送出的資料後，判斷格式中的 message 內容作出下一步的行為
+在下面 js 中，從伺服器中比對送出的資料後，判斷格式中的 message 內容作出下一步的行為。
+
 JSON 格式
 註冊：
 
