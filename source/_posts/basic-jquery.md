@@ -45,7 +45,7 @@ DOM 的操作上相比 JavaScript 的`getElementById()`、`querySelector()`等�
 
 ### Traversing
 
-上面提到的 selector 是從根元素去尋找其下面的紫元素，`traversing`則是用篩選的方式來做這些過濾、查訪元素。
+上面提到的 selector 是從根元素去尋找其下面的子元素，`traversing`則是用篩選的方式來做這些過濾、查訪元素。
 舉幾個例子說明：
 
 - `eq()` - 取得第 index 個元素（index 從 0 開始算）。

@@ -10,10 +10,11 @@ categories:
 ## AJAX
 
 概論
-
+Asynchronous JavaScript And XML = AJAX
 AJAX 並非是一個技術（Technology），而是一種網站設計的架構（Architecture），雖然主要以 JavaScript 與 XML 為主，但還包括其它成員，也就是 CSS、DOM（Document Object Model）與 HTML 等，特別是 XMLHttpRequest 元件，使 AJAX 能達到非同步資料交換的目的。
-
 `非同步資料交換（asynchronous）`： 瀏覽器不需重新整理就可以跟後端程式或是資料庫傳送接收資料
+
+![](https://i.imgur.com/38uu0Fw.png)
 
 在 Jesse Garrett 的文章中，對 AJAX 的定義如下：
 ● 使用 XHTML 與 CSS 作為展現標準

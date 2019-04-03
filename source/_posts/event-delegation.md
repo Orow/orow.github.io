@@ -1,5 +1,5 @@
 ---
-title: "[javascript] - event delegation"
+title: "[Javascript] - event delegation（事件委派）"
 date: 2019-03-20 14:00:00
 tags:
   - jQuery
@@ -13,7 +13,7 @@ categories:
 
 這是用來減少監聽的數目，但可以利用 bubbling 的方式來傳遞給實際想取得的元素的方式。
 在 javascript 與 jQuery 中都各有方式可以使用。
-利用 delegation 的概念可以針對動態新增的元素去執行綁定事件。
+利用 delegation 的概念可以針對一開始載入頁面不存在的元素，後來透過事件去動態新增的元素執行綁定事件。
 
  舉例來說：
 
@@ -51,6 +51,7 @@ $(".parent").on("click", ".child", function() {
 });
 ```
 
+[delegate-jQuery官方文件](http://api.jquery.com/delegate/)
 [jQuery參考](https://harttle.land/2015/06/26/jquery-event.html)
 [delegate與binding比較](https://ithelp.ithome.com.tw/articles/10120565)
 [Event delegation tutorial](http://javascript.info/event-delegation)
