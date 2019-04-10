@@ -58,12 +58,7 @@ function updateList(items) {
   str = "";
   var len = items.length;
   for (var i = 0; i < len; i++) {
-    str +=
-      '<li><a href="#" data-index=' +
-      i +
-      ">刪除</a> <span>" +
-      items[i].content +
-      "</span></li>";
+    str += '<li><a href="#" data-index=' + i + ">刪除</a> <span>" + items[i].content + "</span></li>";
   }
   list.innerHTML = str;
 }

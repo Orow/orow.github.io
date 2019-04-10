@@ -68,7 +68,7 @@ JSON 格式
 
     Data:
     {
-        email: 'lovef2e@hexschool.com',
+        email: 'lovef2e@test.com',
         password: '12345678'
     }
     Success Response:
@@ -88,7 +88,7 @@ JSON 格式
 
     Data:
     {
-        email: 'lovef2e@hexschool.com',
+        email: 'lovef2e@test.com',
         password: '12345678'
     }
     Success Response:
