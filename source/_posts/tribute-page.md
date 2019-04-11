@@ -8,7 +8,7 @@ category:
   - project
 ---
 
-這是剛開始透過freeCodeCamp學習html，css差不多過10天的時候得一個案例，透過修改一些內容來感受html與css的實際效果，是第一次修改網頁上看到的東西。
+這是剛開始透過freeCodeCamp學習html，css差不多過10天的時候的一個案例，透過修改一些內容來感受html與css的實際效果，是第一次修改網頁上看到的東西。
 
 ## Demo
 
