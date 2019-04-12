@@ -9,7 +9,7 @@ category:
 
 ## Demo
 
-jQuery 練習-jQuery Content Slider- [Demo](http://127.0.0.1:5500/MyProjects/ProjectsInJS&jQuery/jQueryContentSlider/ContentSlider/index.html)
+jQuery 練習-jQuery Content Slider- [Demo](https://orow.github.io/MyProjects/ProjectsInJS&jQuery/jQueryContentSlider/ContentSlider/index.html)
 
 ## 1. Introduction 介紹
 
