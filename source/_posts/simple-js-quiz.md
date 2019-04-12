@@ -13,7 +13,7 @@ JavaScript 練習-Simple JS Quiz- [Demo](https://orow.github.io/MyProjects/Proje
 
 ## 1. Introduction 介紹
 
-這是一個測驗的表單，利用 radio 的方式來選擇答案，會判斷每一題都要選擇，否則會 alert 提示訊息。
+這是在Udemy上課程的一個測驗的表單，利用 radio 的方式來選擇答案，會判斷每一題都要選擇，否則會 alert 提示訊息。
 比對選取的答案後會有分數計算後，塞回原本 form 表單的上面顯示得分數。
 這邊form用了`onsubmit="return submitAnswers()"`，代表submit送出後會回傳執行`submitAnswer()`後的結果。
 ![](https://i.imgur.com/UybpcEn.png)
