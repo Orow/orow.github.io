@@ -1,5 +1,5 @@
 ---
-title: "[JavaScript] - event-addEventListener（事件監聽）"
+title: "[JavaScript] - Event-addEventListener（事件監聽）"
 date: 2019-03-10 13:00:00
 tags:
   - javascript

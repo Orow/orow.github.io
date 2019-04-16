@@ -1,8 +1,9 @@
 ---
-title: "[JavaScript] - AJAX(side project)"
+title: "[JavaScript] - AJAX：註冊與登入驗證"
 date: 2019-03-11 23:00:00
 tags:
   - javascript
+  - ajax
 categories:
   - project
 ---

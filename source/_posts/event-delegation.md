@@ -1,5 +1,5 @@
 ---
-title: "[Javascript] - event delegation（事件委派）"
+title: "[JavaScript] - Event delegation（事件委派）"
 date: 2019-03-20 14:00:00
 tags:
   - jQuery

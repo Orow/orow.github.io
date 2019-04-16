@@ -1,12 +1,13 @@
 ---
-title: "[JavaScript] - localstorage(side project)"
+title: "[JavaScript] - Localstorage: ToDoList"
 date: 2019-03-10 23:50:00
 tags:
   - javascript
+  - localstorage
 categories:
   - project
 ---
-## localstorage side project
+## Localstorage side project
 簡單說明一下這個side project：
 - 輸入內容
 - 點擊加入待辦事項
