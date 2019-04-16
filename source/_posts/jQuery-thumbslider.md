@@ -13,7 +13,8 @@ jQuery 練習-jQuery Thumbslider- [Demo](https://orow.github.io/MyProjects/Proje
 
 ## 1. Introduction 介紹
 
-這個 slider 跟之前的 jQuery Content Slider 練習的效果是不一樣的，content slider 是利用 show 跟 hide 來隱藏與顯示，這個 slider 則是 carousel，把所有圖片都用水平排版，利用 float 的方式並將全部照片寬度加總來製造左右滑動的效果，在 bootstrap 切版練習中也有套件可以直接使用。
+這個 slider 跟之前的 jQuery Content Slider 練習的效果是不一樣的，content slider 是利用 show 跟 hide 來隱藏與顯示，再用fadeOut、fadeIn等基本方式來完成圖片更換效果。
+這個 slider 則是 carousel，把所有圖片都用水平排版，利用 float 的方式並將全部照片寬度加總來製造左右滑動的效果，在 bootstrap 切版練習中也有套件可以直接使用。
 
 排版的部分，從外觀上來說由上而下為：標題、照片區塊、indicator 區塊。
 網頁功能中最上層與最下層的淺灰色則是用背景圖、加上背景位置來呈現。
@@ -113,7 +114,7 @@ $("#slides").width(totalWidth);
 
 先前已經把 position 陣列取出`position=[0, 900, 1800, 2700]`，這邊要使用點擊 a 連結"之前"的父元素 li 的長度，再帶入 position 陣列中等於 index 的概念，以此為概念並搭配 margin-left，用負值的 margin-left 才會使區塊往右移動，用上 animate 效果移動到 position index 的 px 寬度位置。
 
-因為是透過點擊來捲動圖片，所以要透過clearInterval來清除自動播放的間隔時間。
+因為是透過點擊來滑動圖片，所以要透過clearInterval來清除自動播放的間隔時間。
 
 ```js
 // Menu item click handler

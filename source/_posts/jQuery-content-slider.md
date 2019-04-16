@@ -14,6 +14,8 @@ jQuery 練習-jQuery Content Slider- [Demo](https://orow.github.io/MyProjects/Pr
 ## 1. Introduction 介紹
 
 這是在 Udemy 上課程的一個 slider 功能，網路上有很多這個功能的套件與框架，但還是把這個練習記錄下來。
+用jQuery操作fadeOut、fadeIn等基本方式來完成圖片更換效果。
+
 整個 html 先用 div 包住 header 加上 prev 的圖片，再來是全部的 slide 資訊，最後才是 next 的圖片。Slide的圖片則是用了unsplash的隨機圖片，prev 跟 next 會用 float 來排版。
 主要有 prev、next 還有隔一段時間就執行下一個 slide 的功能。
 ![](https://i.imgur.com/IeArKC4.png)
