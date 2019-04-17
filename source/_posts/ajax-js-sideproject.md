@@ -120,7 +120,7 @@ function signup() {
   account.password = passwordStr;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("post", "不方便公開的url-註冊", true);
+  xhr.open("post", "註冊url", true);
   xhr.setRequestHeader("Content-type", "application/json");
   var data = JSON.stringify(account);
   xhr.send(data);
@@ -152,7 +152,7 @@ function signin() {
   account.password = passwordStr;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("post", "不方便公開的url－登入", true);
+  xhr.open("post", "登入url", true);
   xhr.setRequestHeader("Content-type", "application/json");
   var data = JSON.stringify(account);
   xhr.send(data);

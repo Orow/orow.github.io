@@ -7,6 +7,10 @@ tags:
 categories:
   - project
 ---
+## Demo
+
+JS-Localstorage - ToDoList- [Demo](https://orow.github.io/MyProjects/AJAX-Localsotrage/localstorage/todolist/index.html)
+
 ## Localstorage side project
 簡單說明一下這個side project：
 - 輸入內容
@@ -21,7 +25,7 @@ categories:
 <ul class="list"></ul>
 ```
 
-要特別注意幾點>
+要特別注意幾點
 - 一開始要給待辦事項清單一個空陣列
 - 一開始就需要更新一次清單
 - 儲存與刪除清單時都要先將陣列轉為字串再setItem進localstorage
