@@ -9,8 +9,11 @@ categories:
 ---
 
 ## AJAX side project
-這個 side project，有註冊跟登入表單輸入。
+這個是網路課程中學習的 side project，有註冊跟登入表單輸入。
 ![](https://i.imgur.com/hJWuLOG.png)
+
+這邊有後來參考github資源，用exprees建立此功能的資料庫來實現。
+文章連結：[Express-註冊與登入驗證](https://orow.github.io/2019/04/10/nodejs-ajax_practice/)
 
 概略流程：
 1. addEventListener監聽
