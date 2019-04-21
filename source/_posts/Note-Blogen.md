@@ -16,7 +16,7 @@ category:
 此版面是 blog 擁有者的管理後台，主要是用 table 來顯示。
 不過網頁是用來切版練習，大多數功能是沒有的。
 
-有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profsile、setting 等操作頁面。Posts, Categories, Users 都是用不同 title 來顯示 blog 文章，這三個頁面也新增了 serach bar。
+有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profile、setting 等操作頁面。Posts, Categories, Users 都是用不同 title 來顯示 blog 文章，這三個頁面也新增了 serach bar。
 
 Dashborad 中則有`Add Post`，裡面有用`select`、`coustom file`來選則上傳檔案、`CKEditor`所見即所得套件。
 Profile 設定中與 add post 類似，也有用到所見即所得套件
@@ -158,8 +158,8 @@ Posts 頁面中大致上沒有太大差別，navbar 相同，Search section 中�
 
 ### 2.4 Setting
 
-整個內容主要部分用 card 呈現，這邊的 form 用了`fieldset`搭配`legend`，讓無障礙能夠友善的閱圖。
-主要用`radio button`呈現，注意 name 的屬性內容要一致，才不能複選。
+整個內容主要部分用 card 呈現，這邊的 form 用了`fieldset`搭配`legend`，讓無障礙能夠友善的閱讀。
+主要用`radio` button呈現，注意 name 的屬性內容要一致，才不能複選。
 ![](https://i.imgur.com/Iyi07hM.png)
 
 其中一個fieldset的程式碼：

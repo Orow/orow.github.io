@@ -124,8 +124,8 @@ order 這個屬性直接可以指定一個數值來進行從小到大的排列�
   background: #077;
 }
 ```
+![](https://i.imgur.com/X8ueHa3.png)
 
-![](https://i.imgur.com/QsPw9GS.png)
 
 ### flex
 

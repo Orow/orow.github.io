@@ -46,7 +46,7 @@ Chrome 瀏覽器中 dev tool 中的 console：
     4 - (request finished and response is ready)撈到資料，數據完全接收到了。
 
 要用`open()`指令來初始設定，
-其中第一個參數是發出 request 的格式，第二個是讀取的網址，第三個是同步(false)與非同步(true) 。
+其中第一個參數是發出 request 的方式，第二個是讀取的網址，第三個是同步(false)與非同步(true) 。
 
 格式則有`get`(讀取)，`post`(傳送資料到伺服器)。
 如下面程式碼：
@@ -56,7 +56,7 @@ var xhr = new XMLHttpRequest();
 // 格式,要讀取的網址,同步與非同步
 // 格式: get(讀取), post(傳送資料到伺服器)
 xhr.open("get", "這裡放網址", true);
-// 空值，單純geta，沒有要傳資料，括號中用null
+// 空值，單純get，沒有要傳資料，括號中用null
 xhr.send(null);
 ```
 

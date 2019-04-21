@@ -32,7 +32,7 @@ jQuery 練習-Photos Gallery View- [Demo](https://orow.github.io/MyProjects/Proj
 
 navbar 的 item 用來篩選照片，每一張照片的 class 要先設定好名稱，再用 jQuery 來判斷 class 名稱來顯示。
 
-點擊 navbar item 中的 a 連結後，直接取用 navbar item 名稱來篩選每一張圖片的 class 名稱，這邊用了`toLowerCase()`把文字轉為小寫、`replace`把空格轉為`-`。點擊`All Projects`會把所有 hiddena class 的 li 全部 fadeIn 顯示、並把 hidden class 移除。
+點擊 navbar item 中的 a 連結後，直接取用 navbar item 名稱來篩選每一張圖片的 class 名稱，這邊用了`toLowerCase()`把文字轉為小寫、`replace`把空格轉為`-`。點擊`All Projects`會把所有 hidden class 的 li 全部 fadeIn 顯示、並把 hidden class 移除。
 
 如果點擊的是其他的項目則會把全部 li 的陣列用 each 來判斷是不是符合點擊項目的名稱後再去操作`hide`與`fadeIn`
 ![](https://i.imgur.com/mZduSwt.png)

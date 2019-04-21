@@ -16,7 +16,7 @@ jQuery 練習-Youtube Search Engine- [Demo](https://orow.github.io/MyProjects/Pr
 利用 youtube 提供的 api 來達到搜尋後列出 list 的功能。
 此功能是從 Udemy 的課程學習，現階段不是全部能了解，但還是先記錄下來，以後能夠 review 與修正。
 
-頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，search bary 在 focus 與 blur（離開焦點）會有拉長與縮短的效果。
+頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，search bar 在 focus 與 blur（離開焦點）會有拉長與縮短的效果。
 輸入關鍵字搜尋後會多出結果顯示：
 
 - 搜尋結果清單：每頁五筆資料、左邊是縮圖、右邊是名稱，名稱下則包含上傳者、日期、敘述等。
@@ -96,12 +96,7 @@ part 設定的內容則是 resonpse 中的 items 裡面的陣列（search Resour
 ```html
 <form id="search-form" name="search-form" onsubmit="return search()">
   <div class="fieldcontainer">
-    <input
-      type="search"
-      id="query"
-      class="search-field"
-      placeholder="Search YouTube..."
-    />
+    <input type="search" id="query" class="search-field" placeholder="Search YouTube..."/>
     <input type="submit" name="search-btn" id="search-btn" value="" />
   </div>
 </form>

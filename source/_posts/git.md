@@ -59,7 +59,7 @@ ref: https://gogojimmy.net/2012/01/17/how-to-use-git-1-git-basic/
         在github上新建立repository
 2. 初始化git專案
 
-    先把路徑只到該專案資料夾`cd your_project_name`
+    先把路徑指到該專案資料夾`cd your_project_name`
     初始化`git init`
 
 3. 第一次要remote這個repository需要輸入以下指令

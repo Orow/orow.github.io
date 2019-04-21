@@ -117,7 +117,7 @@ el.addEventListener(
 ```
 
 或者選取到 form 表單裡面`submit`的按鈕，不想要點擊後馬上送出資料到後端，想要先在 local 端先進行基礎驗證的時候就可以使用這個`preventDefault`的方式。
-取消預設行為後，javascript 中會用 post 的方式來傳送資料到後端。
+取消預設行為後，要再傳送資料到後端的話，javascript 中會用 post 的方式來傳送。
 
 ### target - 目前在網頁上的位置
 舉一個例子來說，想要知道滑鼠現在是點擊到哪一個位置的時候，就會用`.target`的方式。

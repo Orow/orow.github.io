@@ -9,7 +9,7 @@ categories:
 
 ## Closure(閉包)
 
-JavaScript 允許巢狀函式（nesting of functions）並給予內部函式完全訪問（full access）所有變數、與外部函式定義的函式（還有所有外部函式內的變數與函式。
+JavaScript 允許巢狀函式（nesting of functions）並給予內部函式完全訪問（full access）所有變數、與外部函式定義的函式（還有所有外部函式內的變數與函式）。
 不過，外部函式並不能訪問內部函式的變數與函式。這保障了內部函式的變數安全。
 來自[MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions)
 

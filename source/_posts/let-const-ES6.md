@@ -11,7 +11,7 @@ categories:
 
 ## ES6 入門: let & const - JavaScript
 
-ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼 容性的問題。
+ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。
 這邊可以使用[Babel](https://babeljs.io/)來轉換成舊的瀏覽器也可以支援的內容，`babel`是一種 js 得 compiler，不過還要搭配一些工具例如`Gulp`。不過我個人尚未用到，先把他紀錄下來。
 
 
@@ -122,7 +122,7 @@ console.log(obj); // obj = {url: "http://www.x.com"}
 ```
 
 ### let, const注意事項
-- 用let與const在宣告變數的時候，再哪一行宣告就是建立在哪一行。
+- 用let與const在宣告變數的時候，在哪一行宣告就是建立在哪一行。
     如果是用var的話則會提升（hoisting)，但是只有提升宣告變數，而不包含賦予值的部分
 
     ```js

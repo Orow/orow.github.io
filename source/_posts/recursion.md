@@ -49,13 +49,13 @@ console.log(power(2, 3));
 ```
 
 console.log(power(2,3))會變成以下方式
-1. power(2,3) = return 2 * power(2, 2)
-2. power(2,2) = return 2 * power(2, 1)
-3. power(2,1) = return 2 * power(2, 0)
+1. power(2,3) = return 2 x power(2, 2)
+2. power(2,2) = return 2 x power(2, 1)
+3. power(2,1) = return 2 x power(2, 0)
 4. power(2,0) = return 1
 再把得到的值往回推
-8. power(2,0) = 1
-7. power(2,1) = 2 * power(2, 0) = 2 * 1 = 2
-6. power(2,2) = 2 * power(2, 1) = 2 * 2 = 4
-5. power(2,3) = 2 * power(2, 2) = 2 * 4 = 8
+5. power(2,0) = 1
+6. power(2,1) = 2 x power(2, 0) = 2 x 1 = 2
+7. power(2,2) = 2 x power(2, 1) = 2 x 2 = 4
+8. power(2,3) = 2 x power(2, 2) = 2 x 4 = 8
 

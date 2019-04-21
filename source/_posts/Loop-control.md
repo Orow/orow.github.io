@@ -142,7 +142,6 @@ while (i < 5) {
 ### do...while
 
 do...while 則是跟 while 幾乎一樣，只是 do...while 可以確保迴圈的第一次行為被執行。
-下面例子結果與上述 for、while 方式會多一次，因為到了 i=4 這次之後用 console.log 印出後，最後還有執行一次 while (i < 5);所以還是會再執行一次 do 的行為。
 
 ```js
 // do...while
