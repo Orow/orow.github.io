@@ -3,6 +3,7 @@ title: "[JavaScript] - let & const(ES6)"
 date: 2019-03-12 21:00:00
 tags:
   - javascript
+  - ES6
 categories:
   - javascript
 ---
@@ -12,7 +13,7 @@ categories:
 ## ES6 入門: let & const - JavaScript
 
 ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。
-這邊可以使用[Babel](https://babeljs.io/)來轉換成舊的瀏覽器也可以支援的內容，`babel`是一種 js 得 compiler，不過還要搭配一些工具例如`Gulp`。不過我個人尚未用到，先把他紀錄下來。
+這邊可以使用[Babel](https://babeljs.io/)來轉換成舊的瀏覽器也可以支援的內容，`babel`是一種 js 的 compiler，不過還要搭配一些工具例如`Gulp`。不過我個人尚未用到，先把他紀錄下來。
 
 
 ### window var 的特性
