@@ -11,7 +11,7 @@ categories:
 
 ## 實例 View Model
 
-- 元素掛載（\$mount）、模板（template）
+- 元素掛載（$mount）、模板（template）
 - 狀態（data）
 - 方法（methoda）
 - 計算屬性（computed）
@@ -303,10 +303,10 @@ a 與 b 在 watch 要分開偵聽，實效能差，且不符合聲明，實務�
   資料變更後會跑 updated 函式
 
 - beforeDestroy
-  呼叫 vm.\$destroy 摧毀前會先執行
+  呼叫 vm.$destroy 摧毀前會先執行
 
 - destroyed
-  呼叫 vm.\$destroy，全部 vue 摧毀
+  呼叫 vm.$destroy，全部 vue 摧毀
   取消偵聽等等
 
 ![](https://i.imgur.com/GuRQpSr.png)
