@@ -1,5 +1,5 @@
 ---
-title: "[Vue] - （二）實例View Model"
+title: "[Vue] - （二）實例 Instance"
 date: 2019-04-25 15:00:00
 tags:
   - Vue
@@ -9,7 +9,7 @@ categories:
 
 本篇主要是透過線上課程：`HiSKIO`、`w3school`及網路上搜尋資源所學習的。
 
-## 實例 View Model
+## 實例 Instance
 
 - 元素掛載（$mount）、模板（template）
 - 狀態（data）
@@ -309,9 +309,7 @@ a 與 b 在 watch 要分開偵聽，實效能差，且不符合聲明，實務�
   呼叫 vm.$destroy，全部 vue 摧毀
   取消偵聽等等
 
-![](https://i.imgur.com/GuRQpSr.png)
-![](https://i.imgur.com/z3mwPfj.png)
-![](https://i.imgur.com/WxdvMl0.png)
+![](https://i.imgur.com/2D6SMYQ.png)
 
 ## 實作-密碼強度檢查
 
@@ -348,5 +346,96 @@ a 與 b 在 watch 要分開偵聽，實效能差，且不符合聲明，實務�
       }
     }
   });
+</script>
+```
+
+## 補充
+
+### Single source of truth
+
+資料來源只能有一個
+1. html中用`:checked`跟`@change`測試，vue中的data中包含selected:空陣列`[]`，搭配methods:select()來判斷index後，進行push或是splice
+
+2. 延續第一點，data中seleted空陣列改在computed中，methods中則以簡單一行處理
+
+3. 實務上html中會用v-model，computed中用簡短一行，filter處裡，methods則全部不用
+
+附上程式碼：
+
+```html
+<div id="app">
+    <!-- <label>
+        <input type="checkbox" :checked="a" @change="select('a')">
+        <span>a</span>
+    </label>
+    <label>
+        <input type="checkbox" :checked="b" @change="select('b')">
+        <span>b</span>
+    </label>
+    <label>
+        <input type="checkbox" :checked="c" @change="select('c')">
+        <span>c</span>
+    </label> -->
+
+    <!-- 土法2、實務 -->
+    <label>
+        <input type="checkbox" v-model="a">
+        <span>a</span>
+    </label>
+    <label>
+        <input type="checkbox" v-model="b">
+        <span>b</span>
+    </label>
+    <label>
+        <input type="checkbox" v-model="c">
+        <span>c</span>
+    </label>
+    <br>
+    <span>{{selected}}</span>
+</div>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            a:false,
+            b:false,
+            c:false,
+            // selected: [], // 土法 1 用computed來達成single source of truth
+        },
+        computed:{
+            // 土法 2
+            // selected(){
+            //     const result = [];
+            //     if(this.a) result.push('a');
+            //     if(this.b) result.push('b');
+            //     if(this.c) result.push('c');
+            //     return result;
+            // },
+
+            // 實務上用法 v-model
+            selected(){
+                return ['a', 'b', 'c'].filter(item => this[item]);
+            },
+        },
+        // methods:{
+        //     // 土法 1
+        //     // select(item){
+        //     //     const idx = this.selected.indexOf(item);
+        //     //     // 找不到就會回傳index = -1
+        //     //     if(idx === -1){
+        //     //         this.selected.push(item);
+        //     //         // this[item]=true; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾
+        //     //     } else {
+        //     //         this.selected.splice(idx, 1);
+        //     //         // this[item]=false; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾
+        //     //     }
+        //     // },
+        //     // 土法 2
+        //     // select(item){
+        //     //     this[item] = !this[item];
+        //     // },
+        // },
+    });
 </script>
 ```

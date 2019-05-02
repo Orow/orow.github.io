@@ -104,7 +104,7 @@ const [first, second, third = 30] = nums;
 ```
 
 忽略元素
-只想曲陣列中某一個元素
+只想取陣列中某一個元素
 
 ```js
 const nums = [1, 2, 3, 4];
