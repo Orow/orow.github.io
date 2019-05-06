@@ -283,7 +283,7 @@ a 與 b 在 watch 要分開偵聽，實效能差，且不符合聲明，實務�
   server side rendering
   創立實例，一開始初始化後就執行
 
-- create
+- created
   server side rendering
   data、computed 等屬性放到實例裡面
 

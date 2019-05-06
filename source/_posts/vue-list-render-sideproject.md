@@ -10,7 +10,7 @@ categories:
 
 Lists Render - [Demo](https://orow.github.io/MyProjects/myVue/v-for-json-sideproject/index.html)
 
-## 實作-json 資料渲染課程列表
+## 實作-json 資料渲染作品列表
 
 從 data.json(用陣列包住)中用 ajax 方式獲取資料來渲染成列表。
 ![](https://i.imgur.com/NnYQ3ta.png)
