@@ -62,7 +62,7 @@ todoMVC-vue 的應用- [Demo](https://orow.github.io/todoMVC-vue/index.html)
 
 #### 編輯已存在的項目
 
-double click 後會進入編輯狀態，這部分一開始只有分析出，雙擊後會帶入 class 來產生顯示編輯狀態，按 enter 會送出，esc 會離開不修改。
+click 後會進入編輯狀態，這部分一開始只有分析出，點擊後會帶入 class 來產生顯示編輯狀態，按 enter 會送出，esc 會離開不修改。
 
 ![](https://i.imgur.com/86dawq4.png)
 
@@ -273,13 +273,13 @@ completed，判斷是已選取的 task
 
 - [參考來源](https://www.zmrenwu.com/courses/vue2x-todo-tutorial/materials/44/)
 
-用 doublce click 來觸發編輯模式。
+用 click 來觸發編輯模式，double click在mobile上不支援。
 
 #### v-if 判斷顯示編輯模式
 
 另外還需要 v-if 來判斷顯示，在 vue instance 的 data 新增一個`editedItem: null`，這是用來暫存編輯項目的原本內容，還用來判斷顯示編輯模式會取用的值。
 
-如果 editedItem 不是 null，就會顯示編輯模式，所以在 double click 執行的函式中，會把原本項目的內容存到這裏來，這樣編輯模式也會顯示。原本的待辦項目顯示用 v-else 則不會渲染出來。
+如果 editedItem 不是 null，就會顯示編輯模式，所以在 click 執行的函式中，會把原本項目的內容存到這裏來，這樣編輯模式也會顯示。原本的待辦項目顯示用 v-else 則不會渲染出來。
 
 註：這邊 v-if 也需要判斷暫存資料（editedItem）中的 index 跟目前選取的項目 index 是否相同，這樣編輯模式才會一次顯示一個。
 
@@ -315,11 +315,11 @@ html：
 
 #### 編輯的部分需要三個功能
 
-- 在原本項目上 double click 後執行
+- 在原本項目上 click 後執行
 - 編輯完成後 keyup.enter 執行函式
 - 取消編輯，keyup.esc 執行函式
 
-**Double click 後執行函式**
+**Click 後執行函式**
 
 觸發事件後執行`editItem(item, index)`。
 把 data 中要當作暫存的 editedItem 指定為目前項目的內容、狀態，index 也加起來是為了判斷編輯模式只會顯示在正確的項目。
@@ -358,7 +358,7 @@ data: {
 
 **取消編輯，按下 esc 後執行函式**
 
-double click 後進入編輯模式後，尚未編輯或者是編輯到一半，因為 v-model 綁定輸入值，所以按下 esc 後要從暫存的地方取回資料後再去清空改為 null。
+Click 後進入編輯模式後，尚未編輯或者是編輯到一半，因為 v-model 綁定輸入值，所以按下 esc 後要從暫存的地方取回資料後再去清空改為 null。
 
 ```js
   methods:{
@@ -374,7 +374,7 @@ double click 後進入編輯模式後，尚未編輯或者是編輯到一半，�
 **補充：進入編輯模式後，自動 focus 在 input 上**
 
 在 html 的 input 中加上`v-focus="true"`。
-這樣在 double click 顯示編輯模式的時候也會直接 focus 在 input 上。
+這樣在 click 顯示編輯模式的時候也會直接 focus 在 input 上。
 
 ```js
 // auto focus，下方寫完後，在html中需要自動focus的元素加上v-focus="true"
