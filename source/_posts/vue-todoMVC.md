@@ -1,5 +1,5 @@
 ---
-title: "[Vue] - todoMVC-實作"
+title: "[Vue] - todoMVC-待辦事項功能實作"
 date: 2019-05-06 18:00:00
 tags:
   - Vue
@@ -20,7 +20,7 @@ todoMVC-vue 的應用- [Demo](https://orow.github.io/todoMVC-vue/index.html)
 先分析有哪些功能，怎麼觸發功能，再思考怎麼去執行。
 主要有七個功能：
 
-- 新增代辦項目
+- 新增待辦項目
 - 刪除項目功能
 - 修改項目狀態
 - 選取（取消選取）全部
@@ -28,13 +28,13 @@ todoMVC-vue 的應用- [Demo](https://orow.github.io/todoMVC-vue/index.html)
 - 編輯已存在的項目
 - 篩選狀態後顯示項目
 
-#### 新增代辦項目
+#### 新增待辦項目
 
 輸入後按下 enter 即可新增，綁定`keyup.enter`事件。
 
 ![](https://i.imgur.com/astvRxJ.png)
 
-#### 刪除代辦項目
+#### 刪除待辦項目
 
 移動到已存在的項目後，右方會有 x 按鈕，點擊會刪除該項目。
 預計用`splice`來刪除選取到的陣列中該 index 的項目。
@@ -56,7 +56,7 @@ todoMVC-vue 的應用- [Demo](https://orow.github.io/todoMVC-vue/index.html)
 
 #### 清除已完成項目
 
-刪除是狀態已完成的項目，分析用 for 迴圈來執行全部代辦事項的陣列，判斷狀態是已完成就刪除。
+刪除是狀態已完成的項目，分析用 for 迴圈來執行全部待辦事項的陣列，判斷狀態是已完成就刪除。
 
 ![](https://i.imgur.com/nqfTzWe.png)
 
@@ -81,7 +81,7 @@ completed，判斷是已選取的 task
 
 ## 功能
 
-### 新增代辦項目
+### 新增待辦項目
 
 保留原 html 內容，`v-model`綁定`inputValue`，`v-on:keyup.enter="add"` 綁定 keyup 事件執行新增項目的 function。
 
@@ -116,15 +116,15 @@ completed，判斷是已選取的 task
 </script>
 ```
 
-### 刪除代辦項目
+### 刪除待辦項目
 
-顯示的代辦項目中，button 綁定 click 事件來執行刪除項目的函式。
+顯示的待辦項目中，button 綁定 click 事件來執行刪除項目的函式。
 數量的部分，自己分析是在 vue 實例中給一個長度 0，新增項目就+1，切換狀態到已完成或是刪除就-1。
 
 ```html
 <ul class="todo-list">
   <template v-for="(item, index) in items">
-    <!-- 顯示代辦項目 -->
+    <!-- 顯示待辦項目 -->
     <li :class="{completed: item.completed}">
       <div class="view">
         <input class="toggle" type="checkbox" />
@@ -233,12 +233,12 @@ completed，判斷是已選取的 task
 
 ### 清除已完成項目
 
-刪除是狀態已完成的項目，用 for 迴圈來執行全部代辦事項的陣列，判斷狀態是已完成就刪除。
+刪除是狀態已完成的項目，用 for 迴圈來執行全部待辦事項的陣列，判斷狀態是已完成就刪除。
 在實作的時候發現，執行時會有異常，狀態有些項目突然變成已完成等等。
 原因是 splice 執行時會改變陣列長度，所以只有在不刪除元素狀況下才會去執行行 i++。
 
 ```html
-<!-- 這邊v-if判斷如果項目陣列中有代辦項目就會顯示 -->
+<!-- 這邊v-if判斷如果項目陣列中有待辦項目就會顯示 -->
 <footer class="footer" v-if="items != ''">
   <span class="todo-count"><strong>{{todoLen}}</strong> item left</span>
   <ul class="filters">
@@ -279,7 +279,7 @@ completed，判斷是已選取的 task
 
 另外還需要 v-if 來判斷顯示，在 vue instance 的 data 新增一個`editedItem: null`，這是用來暫存編輯項目的原本內容，還用來判斷顯示編輯模式會取用的值。
 
-如果 editedItem 不是 null，就會顯示編輯模式，所以在 double click 執行的函式中，會把原本項目的內容存到這裏來，這樣編輯模式也會顯示。原本的代辦項目顯示用 v-else 則不會渲染出來。
+如果 editedItem 不是 null，就會顯示編輯模式，所以在 double click 執行的函式中，會把原本項目的內容存到這裏來，這樣編輯模式也會顯示。原本的待辦項目顯示用 v-else 則不會渲染出來。
 
 註：這邊 v-if 也需要判斷暫存資料（editedItem）中的 index 跟目前選取的項目 index 是否相同，這樣編輯模式才會一次顯示一個。
 
@@ -301,7 +301,7 @@ html：
         v-focus="true"
       />
     </li>
-    <!-- 代辦項目顯示 -->
+    <!-- 待辦項目顯示 -->
     <li :class="{completed: item.completed}" v-else>
       <div class="view">
         <input .... />
@@ -398,9 +398,9 @@ directives: {
 computed 的 filterItems，在判斷 data 中 filterTask 的值後再用 filter 來 return 值。
 如果是`'active'`，return 的則會是只有 item.completed = false 的 item。
 如果是`'completed'`，return 的則會是只有 item.completed = true 的 item。
-其餘的（也就是`'all'`），就會 return 在 vue instance 中的代辦項目陣列。
+其餘的（也就是`'all'`），就會 return 在 vue instance 中的待辦項目陣列。
 
-用 v-for 來顯示代辦項目中的陣列也改為 computed 中的 filterItems 來渲染。
+用 v-for 來顯示待辦項目中的陣列也改為 computed 中的 filterItems 來渲染。
 
 另外每一個篩選的按鈕要綁定 class，用三元判斷式來判斷 filterTask 的內容，如果符合=true，就回傳`selected`。
 
@@ -468,7 +468,7 @@ computed 的 filterItems，在判斷 data 中 filterTask 的值後再用 filter 
 
 ### 資料存進 localsotrage
 
-做完上面這些功能，可以說是完成了，但只要網頁一重新整理，全部的代辦事項都會清空了，所以這時候就需要使用瀏覽器中的 localstorage 來存取。
+做完上面這些功能，可以說是完成了，但只要網頁一重新整理，全部的待辦事項都會清空了，所以這時候就需要使用瀏覽器中的 localstorage 來存取。
 
 使用 js 語法，把儲存與獲取的兩個 function 指定在一個物件裡面，方便取用。
 要注意，存進 localstorage 時要轉為字串，取用時要用 parse 把字串解析回來。
@@ -488,7 +488,7 @@ let todoStorage = {
 ```
 
 在設定好 localstorage 存取的函式後，就可以來設定什麼時候存取了。
-vue instance data 中的 itmes 代辦項目陣列，直接指定執行獲取 localstorage 的函式。
+vue instance data 中的 itmes 待辦項目陣列，直接指定執行獲取 localstorage 的函式。
 watch 偵聽 items 陣列，只要 items 中有資料變更，就會存到 localstorage 中。
 
 ```js
@@ -509,7 +509,7 @@ watch: {
 ### mounted 執行未完成項目數量的初始化
 
  在左下角會顯示剩餘未完成項目的數量，在更新網頁時會歸零，因為在 vue data 中預設值是 0。
-為了處理這個狀況，在 methods 中寫了一個初始化數量的函式，用 for 迴圈來判斷整個代辦項目陣列的長度後，再來判斷狀態為 false 的話，數量參數 todoLen 就要+1。
+為了處理這個狀況，在 methods 中寫了一個初始化數量的函式，用 for 迴圈來判斷整個待辦項目陣列的長度後，再來判斷狀態為 false 的話，數量參數 todoLen 就要+1。
 
 並在 vue 中的 mounted 中去執行這個函式，這樣才每次網頁重新整理建立 vue 的時候就會執行。
 
