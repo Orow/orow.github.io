@@ -43,7 +43,7 @@ todoMVC-vue 的應用- [Demo](https://orow.github.io/todoMVC-vue/index.html)
 
 #### 修改項目狀態
 
-點擊該按鈕，狀態會在執行中跟以完成切換，下方的未完成的數量會根據狀態來計算。
+點擊該按鈕，狀態會在執行中跟已完成切換，下方的未完成的數量會根據狀態來計算。
 數量的部分，自己分析是在 vue 實例中給一個長度 0，新增項目就+1，切換狀態到已完成或是刪除就-1。
 
 ![](https://i.imgur.com/Fh03D93.png)
@@ -152,7 +152,7 @@ completed，判斷是已選取的 task
 
 ### 修改項目狀態
 
-點擊該按鈕，狀態會在執行中跟以完成切換。用 v-model 綁定項目狀態，再綁定 change 事件來執行函式。
+點擊該按鈕，狀態會在執行中跟已完成切換。用 v-model 綁定項目狀態，再綁定 change 事件來執行函式。
 這邊要注意的是，如果項目原本是未完成的，點擊時會因為 v-model 綁定狀態，會把項目的狀態改回 true 也就是已完成。這時候 change 事件執行的函式，就需要判斷如果是改變後的狀態是 true，計算未完成的數量要減一。
 反之原本是已完成的項目，點擊後，狀態改為未完成、數量加一。
 
@@ -305,7 +305,7 @@ html：
     <li :class="{completed: item.completed}" v-else>
       <div class="view">
         <input .... />
-        <label @dblclick="editItem(item, index)">{{item.text}}</label>
+        <label @click="editItem(item, index)">{{item.text}}</label>
         <button ...></button>
       </div>
     </li>
