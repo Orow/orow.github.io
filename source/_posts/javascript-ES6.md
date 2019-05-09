@@ -227,7 +227,7 @@ var double = function(x) {
   return x * 2;
 };
 // 箭頭函數
-const double = x => {
+const double = (x) => {
   return x * 2;
 };
 // 參數如果只有一個可以省略小括號

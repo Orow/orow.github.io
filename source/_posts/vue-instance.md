@@ -13,7 +13,7 @@ categories:
 
 - 元素掛載（$mount）、模板（template）
 - 狀態（data）
-- 方法（methoda）
+- 方法（method）
 - 計算屬性（computed）
 - 偵聽（watch）
 - 生命週期（life cycle hooks）

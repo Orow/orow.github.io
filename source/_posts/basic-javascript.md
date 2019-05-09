@@ -176,7 +176,7 @@ Function 是 JavaScript 的一級物件(first class object)，組成依次為：
 
 ### Function 定義
 
-1. 函式宣告（Function Declaration）
+1. 函式宣告式、函式陳述式（Function Declaration）
    宣告方式:
 
    - 宣告式（具名,匿名）
@@ -186,7 +186,7 @@ Function 是 JavaScript 的一級物件(first class object)，組成依次為：
    var add = function (a,b); // 匿名
    ```
 
-2. 函式運算式（Function Expressions）
+2. 函式運算式、 函式表達式（Function Expressions）
    宣告方式:
 
    - 表示式（具名,匿名）
@@ -223,20 +223,20 @@ Function 是 JavaScript 的一級物件(first class object)，組成依次為：
 
 ### 提升(Hoisting)
 
-函式宣告(Function Declaration)與函式運算式(Function Expressions)的差異。
+函式陳述式(Function Declaration)與函式表達式（Function Expressions)的差異。
 函式宣告建立的函數，會被提升（hoisting）到該作用域（scope）最頂端，讓整個作用域都可以呼叫它。
 
 ```js
 declared();
 // 輸出 declared
-// 函式宣告function declaration
+// 函式陳述式 function declaration
 function declared() {
   console.log("declared");
 }
 
 expressed();
 // TypeError: undefined is not a function
-// 函式運算式function expressions
+// 函式表達式 function expressions
 var expressed = function() {
   console.log("expressed");
 };

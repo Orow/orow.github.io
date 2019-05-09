@@ -11,7 +11,7 @@ categories:
 ## localstorage
 
 `localstorage`是瀏覽器裡面的資料庫，比如說瀏覽商城的時候，會有欄位顯示瀏覽過的商品，這就是透過 localstorage 的方式紀錄下來的。要注意到，localstorgae 儲存資料的方式是以`string`的方式，也就是`字串`。
-在 chromea 瀏覽器可以透過`application`中去查詢`localstorage`
+在 chrome 瀏覽器可以透過`application`中去查詢`localstorage`
 下面會介紹幾個操控 localstorage 的方式。
 
 ### setItem & getItem
