@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="AJAX side project這個是網路課程中學習的 side project，有註冊跟登入表單輸入。 這邊有後來參考github資源，用exprees建立此功能的資料庫來實現。文章連結：Express-註冊與登入驗證 概略流程：  addEventListener監聽 function中用來取到輸入的帳號密碼的value，並將取得的帳號密碼的值塞回object中。 var xhr = new">
+<meta name="keywords" content="javascript,ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - AJAX：註冊與登入驗證">
+<meta property="og:url" content="https://orow.github.io/2019/03/11/ajax-js-sideproject/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="AJAX side project這個是網路課程中學習的 side project，有註冊跟登入表單輸入。 這邊有後來參考github資源，用exprees建立此功能的資料庫來實現。文章連結：Express-註冊與登入驗證 概略流程：  addEventListener監聽 function中用來取到輸入的帳號密碼的value，並將取得的帳號密碼的值塞回object中。 var xhr = new">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/hJWuLOG.png">
+<meta property="og:image" content="https://i.imgur.com/Yv8NvjM.png">
+<meta property="og:image" content="https://i.imgur.com/NxOK4zw.png">
+<meta property="og:image" content="https://i.imgur.com/OVnjZLP.png">
+<meta property="og:image" content="https://i.imgur.com/XAvfAgy.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - AJAX：註冊與登入驗證">
+<meta name="twitter:description" content="AJAX side project這個是網路課程中學習的 side project，有註冊跟登入表單輸入。 這邊有後來參考github資源，用exprees建立此功能的資料庫來實現。文章連結：Express-註冊與登入驗證 概略流程：  addEventListener監聽 function中用來取到輸入的帳號密碼的value，並將取得的帳號密碼的值塞回object中。 var xhr = new">
+<meta name="twitter:image" content="https://i.imgur.com/hJWuLOG.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - AJAX：註冊與登入驗證</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/12/let-const-ES6/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/11/ajax-javascript/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/11/ajax-js-sideproject/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&text=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&is_video=false&description=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX：註冊與登入驗證&body=Check out this article: https://orow.github.io/2019/03/11/ajax-js-sideproject/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&name=[JavaScript] - AJAX：註冊與登入驗證&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-side-project"><span class="toc-number">1.</span> <span class="toc-text">AJAX side project</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - AJAX：註冊與登入驗證
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-11T15:00:00.000Z" itemprop="datePublished">2019-03-11</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ajax/">ajax</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="AJAX-side-project"><a href="#AJAX-side-project" class="headerlink" title="AJAX side project"></a>AJAX side project</h2><p>這個是網路課程中學習的 side project，有註冊跟登入表單輸入。<br><img src="https://i.imgur.com/hJWuLOG.png" alt></p>
+<p>這邊有後來參考github資源，用exprees建立此功能的資料庫來實現。<br>文章連結：<a href="https://orow.github.io/2019/04/10/nodejs-ajax_practice/">Express-註冊與登入驗證</a></p>
+<p>概略流程：</p>
+<ol>
+<li>addEventListener監聽</li>
+<li>function中用來取到輸入的帳號密碼的value，並將取得的帳號密碼的值塞回object中。</li>
+<li>var xhr = new XMLHttpRequest()</li>
+<li>xhr.open()</li>
+<li>xhr.setRequestHeader()</li>
+<li>xhr.send() - 內容要轉為字串</li>
+<li>用xhr.onload function (){} / 確保資料都跑完再執行function</li>
+<li>因為要判斷資料後再去執行所需的alert,在獲取資料前要先將json內格式從字串轉為陣列</li>
+<li>再利用物件中的”message”來判斷執行哪種alert</li>
+</ol>
+<p>註冊表單</p>
+<ul>
+<li><p>註冊成功<br><img src="https://i.imgur.com/Yv8NvjM.png" alt></p>
+</li>
+<li><p>已被使用得帳號<br><img src="https://i.imgur.com/NxOK4zw.png" alt></p>
+</li>
+</ul>
+<p>登入表單</p>
+<ul>
+<li><p>登入成功<br><img src="https://i.imgur.com/OVnjZLP.png" alt></p>
+</li>
+<li><p>不存在或帳號已被使用<br><img src="https://i.imgur.com/XAvfAgy.png" alt></p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>註冊<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">帳號：</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"account"</span> <span class="attr">class</span>=<span class="string">"account"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">密碼：</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">class</span>=<span class="string">"password"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Register"</span> <span class="attr">class</span>=<span class="string">"send"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>登入<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">帳號：</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"account"</span> <span class="attr">class</span>=<span class="string">"accountLogin"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">密碼：</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">class</span>=<span class="string">"passwordLogin"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"SignIn"</span> <span class="attr">class</span>=<span class="string">"signIn"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在下面 js 中，從伺服器中比對送出的資料後，判斷格式中的 message 內容作出下一步的行為。</p>
+<p>JSON 格式<br>註冊：</p>
+<pre><code>Data:
+{
+    email: &apos;lovef2e@test.com&apos;,
+    password: &apos;12345678&apos;
+}
+Success Response:
+{
+    &quot;success&quot;: true,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;帳號註冊成功&quot;
+}
+Error Response:
+{
+    &quot;success&quot;: false,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;此帳號已被使用&quot;
+}
+</code></pre><p>登入：</p>
+<pre><code>Data:
+{
+    email: &apos;lovef2e@test.com&apos;,
+    password: &apos;12345678&apos;
+}
+Success Response:
+{
+    &quot;success&quot;: true,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;登入成功&quot;
+}
+Error Response:
+{
+    &quot;success&quot;: false,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;此帳號不存在或帳號密碼錯誤&quot;
+}
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----AJAX sample registration----</span></span><br><span class="line"><span class="keyword">var</span> send = <span class="built_in">document</span>.querySelector(<span class="string">".send"</span>);</span><br><span class="line">send.addEventListener(<span class="string">"click"</span>, signup, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">signup</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> emailStr = <span class="built_in">document</span>.querySelector(<span class="string">".account"</span>).value;</span><br><span class="line">  <span class="keyword">var</span> passwordStr = <span class="built_in">document</span>.querySelector(<span class="string">".password"</span>).value;</span><br><span class="line">  <span class="comment">//把要送到伺服器的data設成物件，並將輸入的值帶進去</span></span><br><span class="line">  <span class="keyword">var</span> account = &#123;&#125;;</span><br><span class="line">  account.email = emailStr;</span><br><span class="line">  account.password = passwordStr;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  xhr.open(<span class="string">"post"</span>, <span class="string">"註冊url"</span>, <span class="literal">true</span>);</span><br><span class="line">  xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/json"</span>);</span><br><span class="line">  <span class="keyword">var</span> data = <span class="built_in">JSON</span>.stringify(account);</span><br><span class="line">  xhr.send(data);</span><br><span class="line">  </span><br><span class="line">  xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> callBackData = <span class="built_in">JSON</span>.parse(xhr.responseText);</span><br><span class="line">    <span class="built_in">console</span>.log(callBackData);</span><br><span class="line">    <span class="keyword">var</span> verifyStr = callBackData.message;</span><br><span class="line">    <span class="keyword">if</span> (verifyStr == <span class="string">"帳號註冊成功"</span>) &#123;</span><br><span class="line">      alert(<span class="string">"帳號註冊成功!!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (verifyStr == <span class="string">"此帳號已被使用"</span>) &#123;</span><br><span class="line">      alert(<span class="string">"此帳號已被使用!!\n請更換帳號名稱並重新註冊"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      alert(<span class="string">"帳號註冊失敗!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----AJAX sample login----</span></span><br><span class="line"><span class="keyword">var</span> signIn = <span class="built_in">document</span>.querySelector(<span class="string">".signIn"</span>);</span><br><span class="line">signIn.addEventListener(<span class="string">"click"</span>, signin, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">signin</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> emailStr = <span class="built_in">document</span>.querySelector(<span class="string">".accountLogin"</span>).value;</span><br><span class="line">  <span class="keyword">var</span> passwordStr = <span class="built_in">document</span>.querySelector(<span class="string">".passwordLogin"</span>).value;</span><br><span class="line">  <span class="comment">//把要送到伺服器的data設成物件，並將輸入的值帶進去</span></span><br><span class="line">  <span class="keyword">var</span> account = &#123;&#125;;</span><br><span class="line">  account.email = emailStr;</span><br><span class="line">  account.password = passwordStr;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  xhr.open(<span class="string">"post"</span>, <span class="string">"登入url"</span>, <span class="literal">true</span>);</span><br><span class="line">  xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/json"</span>);</span><br><span class="line">  <span class="keyword">var</span> data = <span class="built_in">JSON</span>.stringify(account);</span><br><span class="line">  xhr.send(data);</span><br><span class="line"></span><br><span class="line">  xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> callBackData = <span class="built_in">JSON</span>.parse(xhr.responseText);</span><br><span class="line">    <span class="built_in">console</span>.log(callBackData);</span><br><span class="line">    <span class="keyword">var</span> verifyStr = callBackData.message;</span><br><span class="line">    <span class="keyword">if</span> (verifyStr == <span class="string">"登入成功"</span>) &#123;</span><br><span class="line">      alert(<span class="string">"帳號登入成功!!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      alert(<span class="string">"此帳號不存或帳號密碼錯誤!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-side-project"><span class="toc-number">1.</span> <span class="toc-text">AJAX side project</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/11/ajax-js-sideproject/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&text=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&is_video=false&description=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX：註冊與登入驗證&body=Check out this article: https://orow.github.io/2019/03/11/ajax-js-sideproject/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&title=[JavaScript] - AJAX：註冊與登入驗證"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/11/ajax-js-sideproject/&name=[JavaScript] - AJAX：註冊與登入驗證&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

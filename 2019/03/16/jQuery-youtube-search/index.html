@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="DemojQuery 練習-Youtube Search Engine- Demo 1. Introduction 介紹利用 youtube 提供的 api 來達到搜尋後列出 list 的功能。此功能是從 Udemy 的課程學習，現階段不是全部能了解，但還是先記錄下來，以後能夠 review 與修正。 頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，se">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[jQuery] - 練習-Youtube Search Engine">
+<meta property="og:url" content="https://orow.github.io/2019/03/16/jQuery-youtube-search/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="DemojQuery 練習-Youtube Search Engine- Demo 1. Introduction 介紹利用 youtube 提供的 api 來達到搜尋後列出 list 的功能。此功能是從 Udemy 的課程學習，現階段不是全部能了解，但還是先記錄下來，以後能夠 review 與修正。 頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，se">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/9EWfqJ8.png">
+<meta property="og:image" content="https://i.imgur.com/7pVD3xo.png">
+<meta property="og:image" content="https://i.imgur.com/gKWiuWh.png">
+<meta property="og:image" content="https://i.imgur.com/W2iZl3a.png">
+<meta property="og:image" content="https://i.imgur.com/RPprBDj.png">
+<meta property="og:image" content="https://i.imgur.com/6zj72YX.png">
+<meta property="og:image" content="https://i.imgur.com/4WTZH8G.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[jQuery] - 練習-Youtube Search Engine">
+<meta name="twitter:description" content="DemojQuery 練習-Youtube Search Engine- Demo 1. Introduction 介紹利用 youtube 提供的 api 來達到搜尋後列出 list 的功能。此功能是從 Udemy 的課程學習，現階段不是全部能了解，但還是先記錄下來，以後能夠 review 與修正。 頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，se">
+<meta name="twitter:image" content="https://i.imgur.com/9EWfqJ8.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[jQuery] - 練習-Youtube Search Engine</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/17/Youtube-Data-API/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/14/jQuery-content-slider/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/16/jQuery-youtube-search/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&text=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&is_video=false&description=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-Youtube Search Engine&body=Check out this article: https://orow.github.io/2019/03/16/jQuery-youtube-search/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&name=[jQuery] - 練習-Youtube Search Engine&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Search-Bar-效果"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Search Bar 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-列出搜尋結果清單"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 列出搜尋結果清單</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-發出-request"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.2.1 發出 request</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-回傳搜尋結果到網頁"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2.2 回傳搜尋結果到網頁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Prev-amp-Next-Page-按鈕"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Prev &amp; Next Page 按鈕</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-nextPage-amp-prevPage-function"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1 nextPage &amp; prevPage function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-getButtons-function"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.3.2 getButtons function</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Fancybox-效果"><span class="toc-number">4.</span> <span class="toc-text">3. Fancybox 效果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [jQuery] - 練習-Youtube Search Engine
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-16T06:18:43.000Z" itemprop="datePublished">2019-03-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>jQuery 練習-Youtube Search Engine- <a href="https://orow.github.io/MyProjects/ProjectsInJS&amp;jQuery/YoutubeSearchEngine/index.html">Demo</a></p>
+<h2 id="1-Introduction-介紹"><a href="#1-Introduction-介紹" class="headerlink" title="1. Introduction 介紹"></a>1. Introduction 介紹</h2><p>利用 youtube 提供的 api 來達到搜尋後列出 list 的功能。<br>此功能是從 Udemy 的課程學習，現階段不是全部能了解，但還是先記錄下來，以後能夠 review 與修正。</p>
+<p>頁面上在還沒搜尋前只有 header 與 search bar 加上 footer 的區塊，search bar 在 focus 與 blur（離開焦點）會有拉長與縮短的效果。<br>輸入關鍵字搜尋後會多出結果顯示：</p>
+<ul>
+<li>搜尋結果清單：每頁五筆資料、左邊是縮圖、右邊是名稱，名稱下則包含上傳者、日期、敘述等。</li>
+<li>上下頁按鈕：第一頁只會有 Next Page button。</li>
+</ul>
+<p><img src="https://i.imgur.com/9EWfqJ8.png" alt></p>
+<p>引入 fancybox 並透過點擊搜尋結果的項目名稱來彈出視窗，顯示在網頁最上層。<br><img src="https://i.imgur.com/7pVD3xo.png" alt></p>
+<h2 id="2-功能"><a href="#2-功能" class="headerlink" title="2. 功能"></a>2. 功能</h2><p>由於這個練習對我來說比較複雜，就拆成幾個部分來分別紀錄</p>
+<ul>
+<li>Search Bar 效果</li>
+<li>列出搜尋結果清單</li>
+<li>Prev &amp; Next Page 按鈕</li>
+<li>Fancybox 效果</li>
+</ul>
+<p>全部有search()、nextPage()、prevPage()、getOutput()、getButtons()五個function。<br>前三個函式search、nextPage、prevPage中，都會用到getOutput產生網頁元素並append回網頁、getButtons產生按鈕並append回網頁。</p>
+<h3 id="2-1-Search-Bar-效果"><a href="#2-1-Search-Bar-效果" class="headerlink" title="2.1 Search Bar 效果"></a>2.1 Search Bar 效果</h3><p>利用 jQuery 在 focus 與 blur（離開焦點）的時候執行 animate 來達到拉長與縮短的效果。<br>search bar 是由一個輸入區塊跟搜尋按鈕兩部分組成，輸入區塊的位置用<code>width</code>百分比控制、按鈕則是用<code>position: absolute</code>加上<code>right</code>的 px 來控制。<br>原始狀態，也就是 blur 時輸入區塊是用<code>width:45％</code>、按鈕是用<code>position: absolute</code>、<code>right:360px</code>。<br>點擊後變為 focus 狀態，輸入區塊則用<code>width:100％</code>、按鈕是用<code>right:10px</code>。</p>
+<ul>
+<li><p>focus<br><img src="https://i.imgur.com/gKWiuWh.png" alt></p>
+</li>
+<li><p>blur<br><img src="https://i.imgur.com/W2iZl3a.png" alt></p>
+</li>
+</ul>
+<p>需要注意搜尋按鈕是用 submit，要用<code>.preventDefault()</code>來停止預設行為的發生。</p>
+<h3 id="2-2-列出搜尋結果清單"><a href="#2-2-列出搜尋結果清單" class="headerlink" title="2.2 列出搜尋結果清單"></a>2.2 列出搜尋結果清單</h3><p>在網頁上輸入關鍵字後按下搜尋按鈕會直接得到 function search()的結果，用了<code>onsubmit=&quot;return search()&quot;</code>的方式。</p>
+<h4 id="2-2-1-發出-request"><a href="#2-2-1-發出-request" class="headerlink" title="2.2.1 發出 request"></a>2.2.1 發出 request</h4><p>要發出 request 當然就是要用到 ajax 了，這邊用 get 方式來發出 request，要使用前需要先申請 youtube 的 API，這邊我也有做一些記錄：<a href="https://orow.github.io/2019/03/17/Youtube-Data-API/">Youtube Data API - Search Engine</a>。</p>
+<p>案例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>("url",</span><br><span class="line">    &#123;</span><br><span class="line">      part: <span class="string">"snippet, id"</span>,</span><br><span class="line">      q: q, <span class="comment">//輸入的關鍵字的值</span></span><br><span class="line">      type: <span class="string">"video"</span>,</span><br><span class="line">      key: <span class="string">"Your_API_key"</span></span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>part: 每個搜尋的結果會帶有什麼內容：snippet 帶有搜尋結果的資訊，頻道 title、id、描述、縮圖、時間等，id：則為影片搜尋結果本身的 id。</li>
+<li>q: 指操作者輸入的關鍵字區塊的值。</li>
+<li>type: 可以選在播放清單或是影片等類型。</li>
+</ul>
+<p>官方文件：<a href="https://developers.google.com/youtube/v3/docs/search/list" target="_blank" rel="noopener">Youtube Data API - Search List</a><br>查詢各種 request 的內容，也可以直接在上面設定 request 的項目來測試會收到什麼。</p>
+<p>Resonpse 則為<br><img src="https://i.imgur.com/RPprBDj.png" alt></p>
+<p>官方文件：Response中的items(search Resource)<br><a href="https://developers.google.com/youtube/v3/docs/search#resource" target="_blank" rel="noopener">Youtube Data API - Search Resource</a></p>
+<p>part 設定的內容則是 resonpse 中的 items 裡面的陣列（search Resource）。<br>預設搜尋結果數量為 5 筆，也可以透過<code>maxResults</code>發出 request 修改。<br><img src="https://i.imgur.com/6zj72YX.png" alt></p>
+<p>程式碼中也有註解，有點雜，但是可以搭配程式碼一起看，個人覺得比較清楚。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"search-form"</span> <span class="attr">name</span>=<span class="string">"search-form"</span> <span class="attr">onsubmit</span>=<span class="string">"return search()"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fieldcontainer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">id</span>=<span class="string">"query"</span> <span class="attr">class</span>=<span class="string">"search-field"</span> <span class="attr">placeholder</span>=<span class="string">"Search YouTube..."</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"search-btn"</span> <span class="attr">id</span>=<span class="string">"search-btn"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Videos list --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"results"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Prev &amp; Next buttons --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"buttons"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Search Function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// clear results</span></span><br><span class="line">  $(<span class="string">"#results"</span>).html(<span class="string">""</span>);</span><br><span class="line">  $(<span class="string">"#buttons"</span>).html(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get Form Input</span></span><br><span class="line">  q = $(<span class="string">"#query"</span>).val();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Run Get Rquest on API</span></span><br><span class="line">  $.<span class="keyword">get</span>(</span><br><span class="line">    "https://www.googleapis.com/youtube/v3/search",</span><br><span class="line">    &#123;</span><br><span class="line">      part: <span class="string">"snippet, id"</span>,</span><br><span class="line">      q: q, <span class="comment">// 輸入關鍵字區塊的值</span></span><br><span class="line">      type: <span class="string">"video"</span>,</span><br><span class="line">      key: <span class="string">"Your_API_key"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> nextPageToken = data.nextPageToken;</span><br><span class="line">      <span class="keyword">var</span> prevPageToken = data.prevPageToken;</span><br><span class="line">      <span class="comment">// Log data - 資料很多，可以印出來回傳的資料再來比對</span></span><br><span class="line">      <span class="built_in">console</span>.log(data);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 回傳資料中的items是搜尋的每一個結果的詳細資料的陣列</span></span><br><span class="line">      $.each(data.items, <span class="function"><span class="keyword">function</span>(<span class="params">i, item</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Get Output - getOutput是把資料加上html各種標籤跟內容的function</span></span><br><span class="line">        <span class="keyword">var</span> output = getOutput(item);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Display results</span></span><br><span class="line">        $(<span class="string">"#results"</span>).append(output);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Button - getButtons是產生上一頁與下一頁按鈕的function</span></span><br><span class="line">      <span class="keyword">var</span> buttons = getButtons(prevPageToken, nextPageToken);</span><br><span class="line">      <span class="comment">// Display Buttons</span></span><br><span class="line">      $(<span class="string">"#buttons"</span>).append(buttons);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-2-回傳搜尋結果到網頁"><a href="#2-2-2-回傳搜尋結果到網頁" class="headerlink" title="2.2.2 回傳搜尋結果到網頁"></a>2.2.2 回傳搜尋結果到網頁</h4><p>在search function中把回傳資料的items中each出來，再帶回到getOutput的function中產生html標籤，最後append回網頁。<br>在組字串前建議用console.log印出結果來參照名稱，getOutput(item)中的item已經是each出來的每一筆資料，要的敘述就是id與snippet中的資料。<br><img src="https://i.imgur.com/4WTZH8G.png" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Build Output</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOutput</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line"><span class="comment">// infos from data</span></span><br><span class="line"><span class="keyword">var</span> videoId = item.id.videoId;</span><br><span class="line"><span class="keyword">var</span> title = item.snippet.title;</span><br><span class="line"><span class="keyword">var</span> description = item.snippet.description;</span><br><span class="line"><span class="keyword">var</span> thumb = item.snippet.thumbnails.high.url;</span><br><span class="line"><span class="keyword">var</span> channelTitle = item.snippet.channelTitle;</span><br><span class="line"><span class="keyword">var</span> videoDate = item.snippet.publishedAt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Build Output String</span></span><br><span class="line"><span class="keyword">var</span> output = <span class="string">'&lt;li&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;div class="list-left"&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;img src=" '</span> + thumb + <span class="string">'"&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;/div&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;div class="list-right"&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;h3&gt;&lt;a data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/'</span> +videoId+ <span class="string">'"href="javascript:;"&gt; '</span>+ title + <span class="string">'&lt;/a&gt;&lt;/h3&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;small&gt;By &lt;span class="cTitle"&gt;'</span> + channelTitle + <span class="string">'&lt;/span&gt; on '</span> + videoDate + <span class="string">'&lt;/small&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;p&gt;'</span> + description + <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;/div&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;/li&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;div classs="clearfix"&gt;&lt;/div&gt;'</span> +</span><br><span class="line">    <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-Prev-amp-Next-Page-按鈕"><a href="#2-3-Prev-amp-Next-Page-按鈕" class="headerlink" title="2.3 Prev &amp; Next Page 按鈕"></a>2.3 Prev &amp; Next Page 按鈕</h3><p>在 serach 的 function 中會執行 getButtons 的 function 來產生按鈕，把產生後的按鈕 append 回到網頁中，兩個按鈕也都會帶有 onclick 的屬性來執行nextPage與prevPage的 function。</p>
+<h4 id="2-3-1-nextPage-amp-prevPage-function"><a href="#2-3-1-nextPage-amp-prevPage-function" class="headerlink" title="2.3.1 nextPage &amp; prevPage function"></a>2.3.1 nextPage &amp; prevPage function</h4><p>跟search的差別是在送出get request的時候多了一個<code>pageToken</code>，目的是要帶回回傳資料中nextPageToken或prevPageToken的字串，這裡也透過自訂屬性<code>data-token</code>來獲取字串。q則一樣是輸入關鍵字的值，也會帶回自訂屬性<code>data-query</code>中。</p>
+<p>用 Next Page 的 function 來説明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NextPage function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextPage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> token = $(<span class="string">"#next-button"</span>).data(<span class="string">"token"</span>);</span><br><span class="line">  <span class="keyword">var</span> q = $(<span class="string">"#next-button"</span>).data(<span class="string">"query"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// clear results</span></span><br><span class="line">  $(<span class="string">"#results"</span>).html(<span class="string">""</span>);</span><br><span class="line">  $(<span class="string">"#buttons"</span>).html(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get Form Input</span></span><br><span class="line">  q = $(<span class="string">"#query"</span>).val();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Run Get Rquest on API</span></span><br><span class="line">  $.<span class="keyword">get</span>(</span><br><span class="line">    "https://www.googleapis.com/youtube/v3/search",</span><br><span class="line">    &#123;</span><br><span class="line">      part: <span class="string">"snippet, id"</span>,</span><br><span class="line">      q: q, <span class="comment">// 輸入關鍵字區塊的值</span></span><br><span class="line">      pageToken:  token, <span class="comment">// 需要是回傳的nextPageToken或prevPageToken字串</span></span><br><span class="line">      type: <span class="string">"video"</span>,</span><br><span class="line">      key: <span class="string">"Your_API_key"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> nextPageToken = data.nextPageToken;</span><br><span class="line">      <span class="keyword">var</span> prevPageToken = data.prevPageToken;</span><br><span class="line">      <span class="comment">// Log data</span></span><br><span class="line">      <span class="built_in">console</span>.log(data);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 回傳資料中的items是搜尋的每一個結果的詳細資料的陣列</span></span><br><span class="line">      $.each(data.items, <span class="function"><span class="keyword">function</span>(<span class="params">i, item</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Get Output - getOutput是把資料加上html各種標籤跟內容的function</span></span><br><span class="line">        <span class="keyword">var</span> output = getOutput(item);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Display results</span></span><br><span class="line">        $(<span class="string">"#results"</span>).append(output);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Button - getButtons是產生上一頁與下一頁按鈕的function</span></span><br><span class="line">      <span class="keyword">var</span> buttons = getButtons(prevPageToken, nextPageToken);</span><br><span class="line">      <span class="comment">// Display Buttons</span></span><br><span class="line">      $(<span class="string">"#buttons"</span>).append(buttons);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-getButtons-function"><a href="#2-3-2-getButtons-function" class="headerlink" title="2.3.2 getButtons function"></a>2.3.2 getButtons function</h4><p>getButtons()中的參數是發出request後會回傳的資料，在程式中使用getButtons會先宣告變數如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nextPageToken = data.nextPageToken;</span><br><span class="line"><span class="keyword">var</span> prevPageToken = data.prevPageToken;</span><br></pre></td></tr></table></figure>
+<p>程式中有包含上一頁跟下一頁的參數，如果是第一頁的搜尋結果，youtube server不會傳送prevPageToken的字串回來，透過if else來判斷只需要下一頁的按鈕或者是兩者都需要。這邊會加上自訂屬性<code>data-token</code>、<code>data-query</code>等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Build the Buttons</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getButtons</span>(<span class="params">prevPageToken, nextPageToken</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!prevPageToken)&#123;</span><br><span class="line">      <span class="keyword">var</span> btnoutput = <span class="string">'&lt;div class="button-container"&gt;'</span> + <span class="string">'&lt;button id="next-button" class="paging-button" data-token="'</span> +nextPageToken+<span class="string">'" data-query="'</span>+q+<span class="string">'" onclick="nextPage();"&gt;Next Page&lt;/button&gt;&lt;/div&gt;'</span>; </span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> btnoutput = <span class="string">'&lt;div class="button-container"&gt;'</span> + <span class="string">'&lt;button id="prev-button" class="paging-button" data-token="'</span> +prevPageToken+<span class="string">'" data-query="'</span>+q+<span class="string">'" onclick="prevPage();"&gt;Prev Page&lt;/button&gt;'</span> + </span><br><span class="line">      <span class="string">'&lt;button id="next-button" class="paging-button" data-token="'</span> +nextPageToken+<span class="string">'" data-query="'</span>+q+<span class="string">'" onclick="nextPage();"&gt;Next Page&lt;/button&gt;&lt;/div&gt;'</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> btnoutput;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-Fancybox-效果"><a href="#3-Fancybox-效果" class="headerlink" title="3. Fancybox 效果"></a>3. Fancybox 效果</h2><p>每一筆的搜尋結果的會使用上fancybox來展示影片與iframe遷入外部網頁的效果<br><a href="https://cdnjs.com/libraries/fancybox" target="_blank" rel="noopener">fancybox CDN</a><br><a href="http://fancyapps.com/fancybox/3/docs/#iframe" target="_blank" rel="noopener">fancybox文件</a></p>
+<p>參照文件中iframe用法如下：<br>src的url使用youtube的遷入影片方式<code>https://www.youtube.com/embed/</code>加上從server回傳的<code>videoId</code><br><a href="https://support.google.com/youtube/answer/171780?hl=zh-Hant" target="_blank" rel="noopener">Youtube嵌入影片說明</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span> <span class="attr">data-type</span>=<span class="string">"iframe"</span> <span class="attr">data-src</span>=<span class="string">"https://www.youtube.com/embed/' +videoId+ '"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span></span><br><span class="line">	Webpage</span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript: fancybox</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'[data-fancybox]'</span>).fancybox(&#123;</span><br><span class="line">  toolbar  : <span class="literal">false</span>,</span><br><span class="line">  smallBtn : <span class="literal">true</span>,</span><br><span class="line">  iframe : &#123;</span><br><span class="line">    preload : <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Search-Bar-效果"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Search Bar 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-列出搜尋結果清單"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 列出搜尋結果清單</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-發出-request"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.2.1 發出 request</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-回傳搜尋結果到網頁"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2.2 回傳搜尋結果到網頁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Prev-amp-Next-Page-按鈕"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Prev &amp; Next Page 按鈕</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-nextPage-amp-prevPage-function"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1 nextPage &amp; prevPage function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-getButtons-function"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.3.2 getButtons function</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Fancybox-效果"><span class="toc-number">4.</span> <span class="toc-text">3. Fancybox 效果</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/16/jQuery-youtube-search/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&text=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&is_video=false&description=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-Youtube Search Engine&body=Check out this article: https://orow.github.io/2019/03/16/jQuery-youtube-search/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&title=[jQuery] - 練習-Youtube Search Engine"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/16/jQuery-youtube-search/&name=[jQuery] - 練習-Youtube Search Engine&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

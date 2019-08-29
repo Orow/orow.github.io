@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 AJAX在前面 javascript 的篇章提過 ajax，在 jquery 中也有提供 ajax 方法來達到非同步資料交換。 AJAX settings直接以案例來做說明：ex.顯示 localhost 圖片來源： 首先先點擊隱藏起來的機票資訊，資訊撈到後透過slidedown()顯示，再去點擊登機證">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[jQuery] - AJAX">
+<meta property="og:url" content="https://orow.github.io/2019/03/23/ajax-jquery/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 AJAX在前面 javascript 的篇章提過 ajax，在 jquery 中也有提供 ajax 方法來達到非同步資料交換。 AJAX settings直接以案例來做說明：ex.顯示 localhost 圖片來源： 首先先點擊隱藏起來的機票資訊，資訊撈到後透過slidedown()顯示，再去點擊登機證">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/M0AIOID.png">
+<meta property="og:image" content="https://i.imgur.com/UqlZeZE.png">
+<meta property="og:image" content="https://i.imgur.com/m9e2qZm.png">
+<meta property="og:image" content="https://i.imgur.com/agadRLt.png">
+<meta property="og:image" content="https://i.imgur.com/c8zf0s3.jpg">
+<meta property="og:image" content="https://i.imgur.com/ufxwuN6.png">
+<meta property="og:image" content="https://i.imgur.com/llPbwqm.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[jQuery] - AJAX">
+<meta name="twitter:description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 AJAX在前面 javascript 的篇章提過 ajax，在 jquery 中也有提供 ajax 方法來達到非同步資料交換。 AJAX settings直接以案例來做說明：ex.顯示 localhost 圖片來源： 首先先點擊隱藏起來的機票資訊，資訊撈到後透過slidedown()顯示，再去點擊登機證">
+<meta name="twitter:image" content="https://i.imgur.com/M0AIOID.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[jQuery] - AJAX</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/24/basic-jquery-additional/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/21/tictactoe/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/23/ajax-jquery/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/23/ajax-jquery/&text=[jQuery] - AJAX"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/23/ajax-jquery/&is_video=false&description=[jQuery] - AJAX"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - AJAX&body=Check out this article: https://orow.github.io/2019/03/23/ajax-jquery/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/23/ajax-jquery/&name=[jQuery] - AJAX&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX"><span class="toc-number">1.</span> <span class="toc-text">AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-settings"><span class="toc-number">1.1.</span> <span class="toc-text">AJAX settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shorthand-with-get"><span class="toc-number">1.2.</span> <span class="toc-text">shorthand with \$.get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sending-parameters-with-requests"><span class="toc-number">1.3.</span> <span class="toc-text">Sending parameters with requests</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-Options"><span class="toc-number">2.</span> <span class="toc-text">AJAX Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-failed-AJAX-requests"><span class="toc-number">2.1.</span> <span class="toc-text">Handling failed AJAX requests</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#beforeSend-amp-complete-callbacks"><span class="toc-number">2.2.</span> <span class="toc-text">beforeSend &amp; complete callbacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-with-Form-amp-JSON"><span class="toc-number">3.</span> <span class="toc-text">AJAX with Form &amp; JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-with-Form"><span class="toc-number">3.1.</span> <span class="toc-text">AJAX with Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-with-JSON"><span class="toc-number">3.2.</span> <span class="toc-text">AJAX with JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getJSON"><span class="toc-number">3.3.</span> <span class="toc-text">getJSON</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [jQuery] - AJAX
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-23T12:00:00.000Z" itemprop="datePublished">2019-03-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/jQuery/">jQuery</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇 jQuery 的 AJAX 是從網路資源與網路平台<code>pluralsight</code>中的課程所學習。</p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>在前面 javascript 的篇章提過 ajax，在 jquery 中也有提供 ajax 方法來達到非同步資料交換。</p>
+<h3 id="AJAX-settings"><a href="#AJAX-settings" class="headerlink" title="AJAX settings"></a>AJAX settings</h3><p>直接以案例來做說明：<br>ex.<br>顯示 localhost 圖片來源：<br><img src="https://i.imgur.com/M0AIOID.png" alt></p>
+<p>首先先點擊隱藏起來的機票資訊，資訊撈到後透過<code>slidedown()</code>顯示，再去點擊登機證連結後會找到<code>img</code>這個元素並<code>.show()</code>，這裡的 url 是 localhost 的絕對路徑<code>/&#39;ticket-14836.png&#39;/</code>。<br>以此案例來說，航班資訊是動態隨時，所以機票與登機證的資訊需要從網路上獲取，這時候就需要用到 AJAX 的方式了。</p>
+<p>AJAX Method：<code>$.ajax(url[, settings])</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// slidedown ticket information</span></span><br><span class="line">$(<span class="string">".confirmation"</span>).on(<span class="string">"click"</span>, <span class="string">"button"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// url也可以用relative url，等同於"confirmation.html"</span></span><br><span class="line">  $.ajax(<span class="string">"http://example.org/confirmation.html"</span>, &#123;</span><br><span class="line">    <span class="comment">// success是溝通成功後執行的callback</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">      $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 透過ajax帶出來的資訊 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">&lt;!-- 其他內容 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">strong</span>&gt;</span>Boarding Pass: <span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"view-boarding-pass"</span>&gt;</span>View Boarding Pass<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"ticket.png"</span> <span class="attr">alt</span>=<span class="string">"Your boarding pass"</span> <span class="attr">class</span>=<span class="string">"boarding-pass"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/UqlZeZE.png" alt></p>
+<ul>
+<li>url 是可以用 relative url（相對網址）來替代的<br>“<a href="http://example.org/confirmation.html&quot;" target="_blank" rel="noopener">http://example.org/confirmation.html&quot;</a> = “confirmation.html”</li>
+</ul>
+<h3 id="shorthand-with-get"><a href="#shorthand-with-get" class="headerlink" title="shorthand with \$.get"></a>shorthand with \$.get</h3><p><code>$.get</code>讓程式更簡潔。<br><code>$.get(url, success)</code> = <code>$.ajax(url[, settings])</code></p>
+<p>使用<code>$.ajax</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">"confirmation.html"</span>, &#123;</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用<code>$.get</code>替代：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>("confirmation.html", function(response) &#123;</span><br><span class="line">  $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Sending-parameters-with-requests"><a href="#Sending-parameters-with-requests" class="headerlink" title="Sending parameters with requests"></a>Sending parameters with requests</h3><p>有兩種方式都可達到這個效果：</p>
+<ol>
+<li>透過 url 網址直接附上參數。</li>
+<li>在 ajax method 中使用 data 來帶入參數。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//url 中的參數為confNum='1234'</span></span><br><span class="line">$.ajax(<span class="string">"confirmation.html?confNum=1234"</span>, &#123;</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">"confirmation.html"</span>, &#123;</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 透過data帶入物件中的參數</span></span><br><span class="line">  data: &#123; <span class="attr">confNum</span>: <span class="number">1234</span> &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>動態（dynamic）獲取參數<br>一般來說，這些參數資料會是變動的，所以會使用動態的方式來取。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ticket"</span> <span class="attr">data-confNum</span>=<span class="string">"1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">"confirmation.html"</span>, &#123;</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 用jQuery方式從dom中獲得data-confNum的參數</span></span><br><span class="line">  data: &#123; <span class="attr">confNum</span>: $(<span class="string">".ticket"</span>).data(<span class="string">"confNum"</span>) &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="AJAX-Options"><a href="#AJAX-Options" class="headerlink" title="AJAX Options"></a>AJAX Options</h2><h3 id="Handling-failed-AJAX-requests"><a href="#Handling-failed-AJAX-requests" class="headerlink" title="Handling failed AJAX requests"></a>Handling failed AJAX requests</h3><p>當發出 ajax requests 結果發生 timeout 或是 error 異常，可以使用 error 執行一些行為。<br>ex. 異常發生後，會 alert 提示訊息。<br><img src="https://i.imgur.com/m9e2qZm.png" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".confirmation"</span>).on(<span class="string">"click"</span>, <span class="string">"button"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(<span class="string">"confirmation.html"</span>, &#123;</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">      $(<span class="string">".ticket"</span>).html(response).slideDown();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 加上error處理行為，alert提示訊息</span></span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">request, errorType, errorMessage</span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">"Error: "</span> + errorType + <span class="string">" with message: "</span> + errorMessage);</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout: <span class="number">3000</span> <span class="comment">// 設定timeout,秒數為ms</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="beforeSend-amp-complete-callbacks"><a href="#beforeSend-amp-complete-callbacks" class="headerlink" title="beforeSend &amp; complete callbacks"></a>beforeSend &amp; complete callbacks</h3><p>beforeSend 是在 ajax requests 被激發前可以製作一些 loading 畫面，告訴瀏覽者需要準備要做資料傳輸需要一點時間等。<br>complete 是在 requests 發送完成且正常運行，或者 error 後也可以執行 callback function。<br><img src="https://i.imgur.com/agadRLt.png" alt></p>
+<h2 id="AJAX-with-Form-amp-JSON"><a href="#AJAX-with-Form-amp-JSON" class="headerlink" title="AJAX with Form &amp; JSON"></a>AJAX with Form &amp; JSON</h2><h3 id="AJAX-with-Form"><a href="#AJAX-with-Form" class="headerlink" title="AJAX with Form"></a>AJAX with Form</h3><p>透過 AJAX 去 submit form 表單的內容，需要將<code>$.ajax</code>中的 type 先改為 post，<code>data</code> 也要帶出資料的 value。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/book"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"destintation"</span> <span class="attr">name</span>=<span class="string">"destination"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"quantity"</span> <span class="attr">name</span>=<span class="string">"quantity"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'form'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 用preventDefault來防止submit的預設送出動作</span></span><br><span class="line">    event.preventDefault();</span><br><span class="line">    $.ajax(<span class="string">'/book'</span>, &#123;</span><br><span class="line">        type: <span class="string">'POST'</span> <span class="comment">// Will do a POST request to the server, which is used for forms</span></span><br><span class="line">        <span class="comment">// data中用object包住select&amp;input的value</span></span><br><span class="line">        data:&#123; <span class="string">"destination"</span>: $(<span class="string">'#destination'</span>).val(),</span><br><span class="line">                <span class="string">"quantity"</span>: $(<span class="string">'#quantity'</span>).val()&#125;</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'form'</span>).remove();</span><br><span class="line">        $(<span class="string">'#vacation'</span>).hide().html(result).fadeIn();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Shortcut method - serialize()</p>
+<p><code>serialize()</code>可以將<code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>或者<code>form</code>本身進行序列化成字符串。<br>但只會將『成功的控制物件(success control)』， 且要含有<code>name</code>這個屬性，才會包含序列字符串中。</p>
+<p>ex. 以上面的程式碼為例，上下兩個結果相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data:&#123; <span class="string">"destination"</span>: $(<span class="string">'#destination'</span>).val(),</span><br><span class="line">        <span class="string">"quantity"</span>: $(<span class="string">'#quantity'</span>).val()&#125;</span><br><span class="line">     &#125;</span><br><span class="line">-------------------------------------------------</span><br><span class="line">data: $(<span class="string">'form'</span>).serialize()</span><br></pre></td></tr></table></figure>
+<p><a href="https://api.jquery.com/serialize/" target="_blank" rel="noopener">serialize()官方文件</a></p>
+<p>上面的例子 form 的 action 跟\$.ajax 的 url 相同，在盡量避免重複的情況下可以用下面的方式取代。<br><code>attr(&lt;attribute&gt;), attr(&lt;attribute&gt;, &lt;value&gt;)</code><br><img src="https://i.imgur.com/c8zf0s3.jpg" alt></p>
+<h3 id="AJAX-with-JSON"><a href="#AJAX-with-JSON" class="headerlink" title="AJAX with JSON"></a>AJAX with JSON</h3><p>上一個例子 form 表單的內容要透過 AJAX 來傳送，如果內容要用 JSON 的資料傳送時，需要<code>$.ajax</code>中加上兩個參數。<br><code>dataType:&#39;json&#39;</code>與<code>contentType:&#39;application/json&#39;</code>。<br><img src="https://i.imgur.com/ufxwuN6.png" alt></p>
+<p>Server return details</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    location: 'Paris',</span><br><span class="line">    totalPrice: 1196.00,</span><br><span class="line">    nights: 4,</span><br><span class="line">    confirmation:  '345feab'</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>成功傳送後的 callback，因為回傳的 result 不是 html，所以要先新增一個 html tag。<br><img src="https://i.imgur.com/llPbwqm.png" alt></p>
+<h3 id="getJSON"><a href="#getJSON" class="headerlink" title="getJSON"></a>getJSON</h3><p><code>$.ajax</code>中選擇資料格式為 json 也可以使用更簡潔的方式：<code>$.getJSON</code>。<br>$.ajax(url, [, success:function(result){}]) = $.getJSON(‘url’, function(result){})</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(<span class="string">'/status'</span>,&#123;</span><br><span class="line">        contentType: <span class="string">'application/json'</span>,</span><br><span class="line">        dataType: <span class="string">'json'</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123; ... &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">-------------------上下相同--------------------</span><br><span class="line"></span><br><span class="line">$(<span class="string">'button'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.getJSON(<span class="string">'/status'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123; ... &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX"><span class="toc-number">1.</span> <span class="toc-text">AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-settings"><span class="toc-number">1.1.</span> <span class="toc-text">AJAX settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shorthand-with-get"><span class="toc-number">1.2.</span> <span class="toc-text">shorthand with \$.get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sending-parameters-with-requests"><span class="toc-number">1.3.</span> <span class="toc-text">Sending parameters with requests</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-Options"><span class="toc-number">2.</span> <span class="toc-text">AJAX Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-failed-AJAX-requests"><span class="toc-number">2.1.</span> <span class="toc-text">Handling failed AJAX requests</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#beforeSend-amp-complete-callbacks"><span class="toc-number">2.2.</span> <span class="toc-text">beforeSend &amp; complete callbacks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-with-Form-amp-JSON"><span class="toc-number">3.</span> <span class="toc-text">AJAX with Form &amp; JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-with-Form"><span class="toc-number">3.1.</span> <span class="toc-text">AJAX with Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-with-JSON"><span class="toc-number">3.2.</span> <span class="toc-text">AJAX with JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getJSON"><span class="toc-number">3.3.</span> <span class="toc-text">getJSON</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/23/ajax-jquery/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/23/ajax-jquery/&text=[jQuery] - AJAX"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/23/ajax-jquery/&is_video=false&description=[jQuery] - AJAX"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - AJAX&body=Check out this article: https://orow.github.io/2019/03/23/ajax-jquery/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/23/ajax-jquery/&title=[jQuery] - AJAX"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/23/ajax-jquery/&name=[jQuery] - AJAX&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

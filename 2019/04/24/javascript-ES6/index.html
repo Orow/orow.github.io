@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 ES6 概念補充ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。這邊可以使用Babel來轉換成舊的瀏覽器也可以支援的內容，babel是一種 js 的 compiler，不過還要搭配一些工具例如Gulp。不過我個人尚未用到，先把他紀錄下來。 這篇要補充的有四點  縮寫 sh">
+<meta name="keywords" content="javascript,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - ES6（補充）">
+<meta property="og:url" content="https://orow.github.io/2019/04/24/javascript-ES6/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 ES6 概念補充ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。這邊可以使用Babel來轉換成舊的瀏覽器也可以支援的內容，babel是一種 js 的 compiler，不過還要搭配一些工具例如Gulp。不過我個人尚未用到，先把他紀錄下來。 這篇要補充的有四點  縮寫 sh">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - ES6（補充）">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 ES6 概念補充ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。這邊可以使用Babel來轉換成舊的瀏覽器也可以支援的內容，babel是一種 js 的 compiler，不過還要搭配一些工具例如Gulp。不過我個人尚未用到，先把他紀錄下來。 這篇要補充的有四點  縮寫 sh">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - ES6（補充）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/24/vue-concept_template/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/10/nodejs-ajax_practice/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/24/javascript-ES6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/24/javascript-ES6/&text=[JavaScript] - ES6（補充）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/24/javascript-ES6/&is_video=false&description=[JavaScript] - ES6（補充）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - ES6（補充）&body=Check out this article: https://orow.github.io/2019/04/24/javascript-ES6/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/24/javascript-ES6/&name=[JavaScript] - ES6（補充）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-概念補充"><span class="toc-number">1.</span> <span class="toc-text">ES6 概念補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#縮寫-Shorthand"><span class="toc-number">1.1.</span> <span class="toc-text">縮寫 Shorthand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解構賦值-Destructure"><span class="toc-number">1.2.</span> <span class="toc-text">解構賦值 Destructure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#陣列解構"><span class="toc-number">1.2.1.</span> <span class="toc-text">陣列解構</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#物件解構"><span class="toc-number">1.2.2.</span> <span class="toc-text">物件解構</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解構函式參數"><span class="toc-number">1.2.3.</span> <span class="toc-text">解構函式參數</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字串模板-String-template"><span class="toc-number">1.3.</span> <span class="toc-text">字串模板 String template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭頭函式-Arrow-function"><span class="toc-number">1.4.</span> <span class="toc-text">箭頭函式 Arrow function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#語法簡短"><span class="toc-number">1.4.1.</span> <span class="toc-text">語法簡短</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自動綁定"><span class="toc-number">1.4.2.</span> <span class="toc-text">自動綁定</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - ES6（補充）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-24T04:00:00.000Z" itemprop="datePublished">2019-04-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/javascript/">javascript</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、<code>w3school</code>及網路上搜尋資源所學習的。</p>
+<h2 id="ES6-概念補充"><a href="#ES6-概念補充" class="headerlink" title="ES6 概念補充"></a>ES6 概念補充</h2><p>ES6 比 ES5 更提升程式品質，可以解決一些 ES5 遇到的問題，但是也會有兼容性的問題。<br>這邊可以使用<a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>來轉換成舊的瀏覽器也可以支援的內容，<code>babel</code>是一種 js 的 compiler，不過還要搭配一些工具例如<code>Gulp</code>。不過我個人尚未用到，先把他紀錄下來。</p>
+<p>這篇要補充的有四點</p>
+<ul>
+<li>縮寫 shorthand</li>
+<li>解構賦值 destructure</li>
+<li>字串模板 string template</li>
+<li>箭頭函式 arrow function</li>
+</ul>
+<h3 id="縮寫-Shorthand"><a href="#縮寫-Shorthand" class="headerlink" title="縮寫 Shorthand"></a>縮寫 Shorthand</h3><p>物件縮寫<br>一個物件中如果 key 等於回傳的 value 就可以縮寫只寫出 key，程式會往上找到 function()中的參數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makePoint</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    x, <span class="comment">// x: x,</span></span><br><span class="line">    y <span class="comment">// y: y,</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>計算屬性<br>在宣告物件的時候，如果 key 是動態的，可以用[]中括號來刮起來，可以塞入變數、表達式等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// const obj = &#123;&#125;;</span></span><br><span class="line">  <span class="comment">// obj[key]=value;</span></span><br><span class="line">  <span class="keyword">const</span> obj = &#123;</span><br><span class="line">    [key + <span class="number">1</span>]: value</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = createObj(<span class="string">"name"</span>, <span class="string">"Jason"</span>);</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     name1: 'Jason',</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="keyword">const</span> cat = creatObj(<span class="string">"legs"</span>, <span class="string">"4"</span>);</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     legs1 :4,</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>函式縮寫</p>
+<p>在物件中去宣告函式的時候，可以像是呼叫函式一樣，直接把 function 省略。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  name: <span class="string">"Options"</span>,</span><br><span class="line">  level: <span class="number">10</span>,</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;...&#125;,</span><br><span class="line">  <span class="comment">// 不需要打: function</span></span><br><span class="line">  mounted() &#123;...&#125;,</span><br><span class="line">  beforeCreate() &#123;...&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解構賦值-Destructure"><a href="#解構賦值-Destructure" class="headerlink" title="解構賦值 Destructure"></a>解構賦值 Destructure</h3><h4 id="陣列解構"><a href="#陣列解構" class="headerlink" title="陣列解構"></a>陣列解構</h4><p>取出陣列中第一個或第二個數值有更快速方便的方式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原本</span></span><br><span class="line"><span class="keyword">const</span> first = nums[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> second = nums[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列解構，與上面結果相同</span></span><br><span class="line"><span class="keyword">const</span> [first, second] = nums;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是用let</span></span><br><span class="line"><span class="keyword">let</span> first;</span><br><span class="line"><span class="keyword">let</span> second;</span><br><span class="line">[first, second] = nums;</span><br></pre></td></tr></table></figure>
+<p>預設值<br>如果超出原本陣列的長度，不存在的元素會變為 undefined，如果要進行計算，可以針對超出陣列的部分設定預設值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">10</span>, <span class="number">20</span>];</span><br><span class="line"><span class="keyword">const</span> [first, second, third = <span class="number">30</span>] = nums;</span><br></pre></td></tr></table></figure>
+<p>忽略元素<br>只想取陣列中某一個元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> [, second] = nums;</span><br></pre></td></tr></table></figure>
+<p>變數交換<br>原本做法需要在宣告額外一個變數來暫存數值，ES6 中可以直接陣列解構變數交換。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原本</span></span><br><span class="line"><span class="keyword">let</span> tmp = a;</span><br><span class="line">a = b;</span><br><span class="line">b = tmp;</span><br><span class="line"></span><br><span class="line"><span class="comment">//解構賦值陣列交換</span></span><br><span class="line">[a, b] = [b, a];</span><br></pre></td></tr></table></figure>
+<p>剩餘部分<br>想要取出除了第一個以外的數值，陣列中宣告<code>first</code>搭配<code>...others</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="comment">// 除了first以外都取出</span></span><br><span class="line"><span class="keyword">const</span> [first, ...others] = nums;</span><br><span class="line">first === <span class="number">1</span>;</span><br><span class="line">others; <span class="comment">// [2,3,4];</span></span><br></pre></td></tr></table></figure>
+<h4 id="物件解構"><a href="#物件解構" class="headerlink" title="物件解構"></a>物件解構</h4><p>與陣列解構幾乎相同，預設值，指派新名稱</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">  x: <span class="number">100</span>,</span><br><span class="line">  y: <span class="number">150</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 原本</span></span><br><span class="line"><span class="keyword">const</span> x = point.x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 物件解構</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, y &#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 預設值</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, y, z = <span class="number">0</span> &#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指派新名稱</span></span><br><span class="line"><span class="comment">// 原本</span></span><br><span class="line"><span class="keyword">const</span> px = point.x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新命名機制，x變為px，y變為py</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">x</span>: px, <span class="attr">y</span>: py &#125; = point;</span><br></pre></td></tr></table></figure>
+<h4 id="解構函式參數"><a href="#解構函式參數" class="headerlink" title="解構函式參數"></a>解構函式參數</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">point</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 原本</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sprt(point.x * point.x + point.y * point.y);</span><br><span class="line">  <span class="comment">// 解構</span></span><br><span class="line">  <span class="keyword">const</span> &#123; x, y &#125; = point;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sprt(x * x + y * y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解構</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">&#123; x, y &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sprt(x * x + y * y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字串模板-String-template"><a href="#字串模板-String-template" class="headerlink" title="字串模板 String template"></a>字串模板 String template</h3><p>字串組合</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Hello, "</span> + name + <span class="string">"!"</span>);</span><br><span class="line">  <span class="comment">// 字串模板 string template - 反引號``插入表達式</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Expression 表達式</span></span><br><span class="line"><span class="comment">// Statement 陳述式</span></span><br><span class="line">greet(<span class="string">"Tom"</span>); <span class="comment">// Hello, Tom!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name, days</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>! It's been <span class="subst">$&#123;days * <span class="number">24</span>&#125;</span>hours.`</span>);</span><br><span class="line">  <span class="comment">// 三元判斷式</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>! <span class="subst">$&#123;days &lt; <span class="number">7</span> ? <span class="string">""</span> : <span class="string">"Long time no see!"</span>&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">"Jack"</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>多行字串<br>ES6 反引號中可以多行（換行）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> words = <span class="string">`</span></span><br><span class="line"><span class="string">    dddd</span></span><br><span class="line"><span class="string">    dddddddddd</span></span><br><span class="line"><span class="string">    dddddddddddd</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="箭頭函式-Arrow-function"><a href="#箭頭函式-Arrow-function" class="headerlink" title="箭頭函式 Arrow function"></a>箭頭函式 Arrow function</h3><h4 id="語法簡短"><a href="#語法簡短" class="headerlink" title="語法簡短"></a>語法簡短</h4><p>ES6 的箭頭函式省略了 ES5 的 function 這個關鍵字。<br>傳入的參數如果只有一個可以省略小括號。<br>如果函式本體只有一行，而且是 return，則可以直接接在箭頭後面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 箭頭函數</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 參數如果只有一個可以省略小括號</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 如果函式本體只有一行，而且是return可以接在箭頭後面</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>array.map 例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arr.amp</span></span><br><span class="line">arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">elm, idx</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> elm + idx;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">arr.map(<span class="function">(<span class="params">elm, idx</span>) =&gt;</span> elm + idx);</span><br></pre></td></tr></table></figure>
+<p>監聽例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(<span class="string">"click"</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">"Hi"</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="自動綁定"><a href="#自動綁定" class="headerlink" title="自動綁定"></a>自動綁定</h4><p>箭頭函式內部的 this 與外部相同，this 就是 context，函式的情境。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>一般的宣告方式則是情況</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 視情況，例子在下面說明</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>this，作為物件的成員函式執行：this 就是該物件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接執行：window(global)</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"Heisenburg"</span>;</span><br><span class="line"><span class="keyword">var</span> sayMyName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 作為物件的成員函式執行：this就是該物件</span></span><br><span class="line"><span class="keyword">var</span> teacher = &#123;</span><br><span class="line">  name: <span class="string">"White"</span></span><br><span class="line">&#125;;</span><br><span class="line">teacher.sayMyName = sayMyName;</span><br><span class="line"></span><br><span class="line">sayMyName(); <span class="comment">// Heisenburg</span></span><br><span class="line">teacher.sayMyName(); <span class="comment">// White</span></span><br></pre></td></tr></table></figure>
+<p>button</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;button id='btn' name='God damn right'&gt;Response&lt;/button&gt;</span></span><br><span class="line"><span class="comment">// 作為 dom 的監聽函式執行：this就是該 dom</span></span><br><span class="line">btn.addEventListener(<span class="string">"click"</span>, sayMyName);</span><br><span class="line"><span class="comment">// 執行sayMyName會印出God damn right</span></span><br></pre></td></tr></table></figure>
+<p>如果都用箭頭函式，this就都會是window下，this.name皆為Heisenburg。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-概念補充"><span class="toc-number">1.</span> <span class="toc-text">ES6 概念補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#縮寫-Shorthand"><span class="toc-number">1.1.</span> <span class="toc-text">縮寫 Shorthand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解構賦值-Destructure"><span class="toc-number">1.2.</span> <span class="toc-text">解構賦值 Destructure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#陣列解構"><span class="toc-number">1.2.1.</span> <span class="toc-text">陣列解構</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#物件解構"><span class="toc-number">1.2.2.</span> <span class="toc-text">物件解構</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解構函式參數"><span class="toc-number">1.2.3.</span> <span class="toc-text">解構函式參數</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字串模板-String-template"><span class="toc-number">1.3.</span> <span class="toc-text">字串模板 String template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭頭函式-Arrow-function"><span class="toc-number">1.4.</span> <span class="toc-text">箭頭函式 Arrow function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#語法簡短"><span class="toc-number">1.4.1.</span> <span class="toc-text">語法簡短</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自動綁定"><span class="toc-number">1.4.2.</span> <span class="toc-text">自動綁定</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/24/javascript-ES6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/24/javascript-ES6/&text=[JavaScript] - ES6（補充）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/24/javascript-ES6/&is_video=false&description=[JavaScript] - ES6（補充）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - ES6（補充）&body=Check out this article: https://orow.github.io/2019/04/24/javascript-ES6/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/24/javascript-ES6/&title=[JavaScript] - ES6（補充）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/24/javascript-ES6/&name=[JavaScript] - ES6（補充）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

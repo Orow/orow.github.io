@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="DemojQuery 練習-Photos Gallery View- Demo 1. Introduction 介紹這是顯示照片集的網頁，滑鼠移動到圖片上覆蓋會有標題與文字敘述搭配背景覆蓋，上方的 navbar item 點擊則可針對圖片顯示做篩選。 引入 lightbox，點擊圖片會彈出視窗，且會顯示照片總數與目前張數。 這邊使用的 lightbox by Lokesh Dhakar：Light">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[jQuery] - 練習-Photos Gallery View">
+<meta property="og:url" content="https://orow.github.io/2019/03/21/photosGallery/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="DemojQuery 練習-Photos Gallery View- Demo 1. Introduction 介紹這是顯示照片集的網頁，滑鼠移動到圖片上覆蓋會有標題與文字敘述搭配背景覆蓋，上方的 navbar item 點擊則可針對圖片顯示做篩選。 引入 lightbox，點擊圖片會彈出視窗，且會顯示照片總數與目前張數。 這邊使用的 lightbox by Lokesh Dhakar：Light">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/pzOiM8V.png">
+<meta property="og:image" content="https://i.imgur.com/VisJwGa.png">
+<meta property="og:image" content="https://i.imgur.com/mZduSwt.png">
+<meta property="og:image" content="https://i.imgur.com/VmGWzdn.png">
+<meta property="og:image" content="https://i.imgur.com/Jwlyl6m.png">
+<meta property="og:image" content="https://i.imgur.com/s95w98w.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[jQuery] - 練習-Photos Gallery View">
+<meta name="twitter:description" content="DemojQuery 練習-Photos Gallery View- Demo 1. Introduction 介紹這是顯示照片集的網頁，滑鼠移動到圖片上覆蓋會有標題與文字敘述搭配背景覆蓋，上方的 navbar item 點擊則可針對圖片顯示做篩選。 引入 lightbox，點擊圖片會彈出視窗，且會顯示照片總數與目前張數。 這邊使用的 lightbox by Lokesh Dhakar：Light">
+<meta name="twitter:image" content="https://i.imgur.com/pzOiM8V.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[jQuery] - 練習-Photos Gallery View</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/21/tictactoe/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/20/event-delegation/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/21/photosGallery/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/21/photosGallery/&text=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/21/photosGallery/&is_video=false&description=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-Photos Gallery View&body=Check out this article: https://orow.github.io/2019/03/21/photosGallery/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/21/photosGallery/&name=[jQuery] - 練習-Photos Gallery View&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [jQuery] - 練習-Photos Gallery View
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-21T06:18:43.000Z" itemprop="datePublished">2019-03-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>jQuery 練習-Photos Gallery View- <a href="https://orow.github.io/MyProjects/ProjectsInJS&amp;jQuery/jQueryPortfolioGallery/index.html">Demo</a></p>
+<h2 id="1-Introduction-介紹"><a href="#1-Introduction-介紹" class="headerlink" title="1. Introduction 介紹"></a>1. Introduction 介紹</h2><p>這是顯示照片集的網頁，滑鼠移動到圖片上覆蓋會有標題與文字敘述搭配背景覆蓋，上方的 navbar item 點擊則可針對圖片顯示做篩選。<br><img src="https://i.imgur.com/pzOiM8V.png" alt></p>
+<p>引入 lightbox，點擊圖片會彈出視窗，且會顯示照片總數與目前張數。<br><img src="https://i.imgur.com/VisJwGa.png" alt></p>
+<p>這邊使用的 lightbox by Lokesh Dhakar：<a href="https://lokeshdhakar.com/projects/lightbox2/#getting-started" target="_blank" rel="noopener">Lightbox</a></p>
+<h2 id="2-功能"><a href="#2-功能" class="headerlink" title="2. 功能"></a>2. 功能</h2><p>一般的網頁架構，有 navbar、標題區塊、主要區塊是圖片顯示。<br>主要功能</p>
+<ul>
+<li>判斷 class 名稱，篩選後顯示圖片</li>
+<li>滑鼠<code>mouseenter</code>、<code>mouseleave</code>搭配文字背景覆蓋的效果</li>
+<li>引入 lightbox</li>
+</ul>
+<p>navbar 的 item 用來篩選照片，每一張照片的 class 要先設定好名稱，再用 jQuery 來判斷 class 名稱來顯示。</p>
+<p>點擊 navbar item 中的 a 連結後，直接取用 navbar item 名稱來篩選每一張圖片的 class 名稱，這邊用了<code>toLowerCase()</code>把文字轉為小寫、<code>replace</code>把空格轉為<code>-</code>。點擊<code>All Projects</code>會把所有 hidden class 的 li 全部 fadeIn 顯示、並把 hidden class 移除。</p>
+<p>如果點擊的是其他的項目則會把全部 li 的陣列用 each 來判斷是不是符合點擊項目的名稱後再去操作<code>hide</code>與<code>fadeIn</code><br><img src="https://i.imgur.com/mZduSwt.png" alt></p>
+<p>程式碼擷取一個 li 範例，li class 可以輸入單個或多個名稱，點擊後篩選就依照是否有該 class 來執行。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span>P GALLERY<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Navbar Item --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>All Projects<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Design<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Programming<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>CMS<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 主要照片區塊 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 舉一個li說明 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"heading"</span>&gt;</span>All Projects<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"gallery"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"design"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"./img/web1.jpg"</span> <span class="attr">data-lightbox</span>=<span class="string">"Projects"</span> <span class="attr">data-title</span>=<span class="string">"Project 1"</span> <span class="attr">data-desc</span>=<span class="string">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat rerum modi harum."</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./img/web1.jpg"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"nav a"</span>).on(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// current class assignment</span></span><br><span class="line">  $(<span class="string">"nav li.current"</span>).removeClass(<span class="string">"current"</span>);</span><br><span class="line">  $(<span class="keyword">this</span>).parent().addClass(<span class="string">"current"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set Heading text</span></span><br><span class="line">  $(<span class="string">"h1#heading"</span>).text($(<span class="keyword">this</span>).text());</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get &amp; Filter link text</span></span><br><span class="line">  <span class="keyword">var</span> category = $(<span class="keyword">this</span>).text().toLowerCase().replace(<span class="string">" "</span>, <span class="string">"-"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Remove hidden class if 'all-projects' is selected</span></span><br><span class="line">  <span class="keyword">if</span> (category == <span class="string">"all-projects"</span>) &#123;</span><br><span class="line">    $(<span class="string">"ul#gallery li:hidden"</span>).fadeIn(<span class="string">"slow"</span>).removeClass(<span class="string">"hidden"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    $(<span class="string">"ul#gallery li"</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (!$(<span class="keyword">this</span>).hasClass(category)) &#123;</span><br><span class="line">        $(<span class="keyword">this</span>).hide().addClass(<span class="string">"hidden"</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $(<span class="keyword">this</span>).fadeIn(<span class="string">"slow"</span>).removeClass(<span class="string">"hidden"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Stop link behaviour</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>另外則是滑鼠移動到圖片上<code>Mouseenter</code>會有標題與文字搭配背景的覆蓋效果，移開<code>mouseleave</code>則恢復圖片顯示。<br>觸發 Mouseenter 事件後，取用自訂屬性的 data-title、data-desc，之後 append 一個 overlay 的區塊在觸發的 li 之後，再將取得自訂屬性的標題與描述內容加進去，再執行 fadeIn 效果。</p>
+<p>Mouseleave 則是會先用<code>stop()</code>停止在執行的效果後再去<code>fadeOut</code></p>
+<p><img src="https://i.imgur.com/VmGWzdn.png" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Mouseenter overlay</span></span><br><span class="line">$(<span class="string">"ul#gallery li"</span>).on(<span class="string">"mouseenter"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Get data attritube values</span></span><br><span class="line">  <span class="keyword">var</span> title = $(<span class="keyword">this</span>).children().data(<span class="string">"title"</span>);</span><br><span class="line">  <span class="keyword">var</span> desc = $(<span class="keyword">this</span>).children().data(<span class="string">"desc"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Validation</span></span><br><span class="line">  <span class="keyword">if</span> (desc == <span class="literal">null</span>) &#123;</span><br><span class="line">    desc = <span class="string">"Click To Enlarge "</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (title == <span class="literal">null</span>) &#123;</span><br><span class="line">    title = <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create overlay div</span></span><br><span class="line">  $(<span class="keyword">this</span>).append(<span class="string">'&lt;div class="overlay"&gt;&lt;/div&gt;'</span>);</span><br><span class="line">  <span class="comment">// Get the overlay div</span></span><br><span class="line">  <span class="keyword">var</span> overlay = $(<span class="keyword">this</span>).children(<span class="string">".overlay"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add html to overaly;</span></span><br><span class="line">  overlay.html(<span class="string">"&lt;h3&gt;"</span> + title + <span class="string">"&lt;/h3&gt;&lt;p&gt;"</span> + desc + <span class="string">"&lt;/p&gt;"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Fade in overlay</span></span><br><span class="line">  overlay.fadeIn(<span class="number">800</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Mouseleave overlay</span></span><br><span class="line">$(<span class="string">"ul#gallery li"</span>).on(<span class="string">"mouseleave"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Get the overlay div</span></span><br><span class="line">  <span class="keyword">var</span> overlay = $(<span class="keyword">this</span>).children(<span class="string">".overlay"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Fade out overlay &amp; Remove overlay</span></span><br><span class="line">  overlay.stop().fadeOut(<span class="number">500</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).remove();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>引入lightbox，這個範例是直接用引入script跟css檔案，並按照提供的方式來設定即可。<br>在a連結的屬性中加上<code>data-lightbox</code>、<code>data-title</code>、<code>data-desc</code>等等。<br><img src="https://i.imgur.com/Jwlyl6m.png" alt></p>
+<p><img src="https://i.imgur.com/s95w98w.png" alt></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/21/photosGallery/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/21/photosGallery/&text=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/21/photosGallery/&is_video=false&description=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-Photos Gallery View&body=Check out this article: https://orow.github.io/2019/03/21/photosGallery/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/21/photosGallery/&title=[jQuery] - 練習-Photos Gallery View"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/21/photosGallery/&name=[jQuery] - 練習-Photos Gallery View&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

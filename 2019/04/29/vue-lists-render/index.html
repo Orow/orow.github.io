@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="列表渲染 Lists renderv-for 把陣列轉為一組元素舉例說明：v-for=&amp;quot;item in todo&amp;quot;，前面參數item代表各個元素，後面todo代表整個陣列是陣列。如果是從 1 開始到實際已知的數值可以不用宣告陣列。也可以用 v-for 取 index 值：v-for=&amp;quot;(month, index) in months&amp;quot;。  123456789">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （四）列表渲染">
+<meta property="og:url" content="https://orow.github.io/2019/04/29/vue-lists-render/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="列表渲染 Lists renderv-for 把陣列轉為一組元素舉例說明：v-for=&amp;quot;item in todo&amp;quot;，前面參數item代表各個元素，後面todo代表整個陣列是陣列。如果是從 1 開始到實際已知的數值可以不用宣告陣列。也可以用 v-for 取 index 值：v-for=&amp;quot;(month, index) in months&amp;quot;。  123456789">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/y8IPFLW.png">
+<meta property="og:image" content="https://i.imgur.com/JuApVLN.png">
+<meta property="og:image" content="https://i.imgur.com/DLa0e82.png">
+<meta property="og:image" content="https://i.imgur.com/Jsx19Uj.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （四）列表渲染">
+<meta name="twitter:description" content="列表渲染 Lists renderv-for 把陣列轉為一組元素舉例說明：v-for=&amp;quot;item in todo&amp;quot;，前面參數item代表各個元素，後面todo代表整個陣列是陣列。如果是從 1 開始到實際已知的數值可以不用宣告陣列。也可以用 v-for 取 index 值：v-for=&amp;quot;(month, index) in months&amp;quot;。  123456789">
+<meta name="twitter:image" content="https://i.imgur.com/y8IPFLW.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （四）列表渲染</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/29/vue-list-render-sideproject/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/29/vue-lists-render/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/29/vue-lists-render/&text=[Vue] - （四）列表渲染"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/29/vue-lists-render/&is_video=false&description=[Vue] - （四）列表渲染"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （四）列表渲染&body=Check out this article: https://orow.github.io/2019/04/29/vue-lists-render/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/29/vue-lists-render/&name=[Vue] - （四）列表渲染&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#列表渲染-Lists-render"><span class="toc-number">1.</span> <span class="toc-text">列表渲染 Lists render</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-把陣列轉為一組元素"><span class="toc-number">1.1.</span> <span class="toc-text">v-for 把陣列轉為一組元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-把物件轉為一組元素"><span class="toc-number">1.2.</span> <span class="toc-text">v-for 把物件轉為一組元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改陣列或物件的注意事項"><span class="toc-number">1.3.</span> <span class="toc-text">修改陣列或物件的注意事項</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的過濾與排序"><span class="toc-number">1.4.</span> <span class="toc-text">列表的過濾與排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-渲染-template"><span class="toc-number">1.5.</span> <span class="toc-text">v-for 渲染 template</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實作-json-資料渲染課程列表"><span class="toc-number">2.</span> <span class="toc-text">實作-json 資料渲染課程列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-資料補充"><span class="toc-number">3.</span> <span class="toc-text">JSON 資料補充</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （四）列表渲染
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-29T07:00:00.000Z" itemprop="datePublished">2019-04-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="列表渲染-Lists-render"><a href="#列表渲染-Lists-render" class="headerlink" title="列表渲染 Lists render"></a>列表渲染 Lists render</h2><h3 id="v-for-把陣列轉為一組元素"><a href="#v-for-把陣列轉為一組元素" class="headerlink" title="v-for 把陣列轉為一組元素"></a>v-for 把陣列轉為一組元素</h3><p>舉例說明：<code>v-for=&quot;item in todo&quot;</code>，前面參數item代表各個元素，後面todo代表整個陣列是陣列。<br>如果是從 1 開始到實際已知的數值可以不用宣告陣列。<br>也可以用 v-for 取 index 值：<code>v-for=&quot;(month, index) in months&quot;</code>。</p>
+<p><img src="https://i.imgur.com/y8IPFLW.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 前面參數代表各個元素，後面代表整個陣列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in todo"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;option v-for="month in months"&gt;&#123;&#123;month&#125;&#125;&lt;/option&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果知道陣列是從1到多少的實際數值，可以不用宣告陣列 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;option v-for="month in 12"&gt;&#123;&#123;month&#125;&#125;&lt;/option&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 取的每個元素的index --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"(month, index) in months"</span> <span class="attr">:value</span>=<span class="string">"index+1"</span>&gt;</span>&#123;&#123;month&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      todo: [<span class="string">"學會JavaScript"</span>, <span class="string">"學會Vue"</span>, <span class="string">"投履歷"</span>, <span class="string">"找到工作"</span>],</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 如果知道陣列是從1到多少的實際數值，可以不用宣告陣列</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// months:[1,2,3,4,5,6,7,8,9,10,11,12],</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 陣列中不是數字，但option的name還是要帶數值，v-for中可以帶index</span></span></span><br><span class="line"><span class="javascript">      months: [<span class="string">"Jan"</span>, <span class="string">"Feb"</span>, <span class="string">"Mar"</span>, <span class="string">"Apr"</span>, <span class="string">"May"</span>, <span class="string">"Jun"</span>]</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="v-for-把物件轉為一組元素"><a href="#v-for-把物件轉為一組元素" class="headerlink" title="v-for 把物件轉為一組元素"></a>v-for 把物件轉為一組元素</h3><p>基本上用法與陣列轉換相同，但有些情況 v-for 在物件中不保證會按照宣告的順序呈現，ex.用數字宣告。<br>如果要按照順序，就使用陣列宣告。</p>
+<p><img src="https://i.imgur.com/JuApVLN.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;div v-for="value in friend"&gt;&#123;&#123;value&#125;&#125;&lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 取key，v-for在物件中無法保證render後的順序，要照順序用array --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;div v-for="(value, key) in friend"&gt;&#123;&#123;key&#125;&#125;:&#123;&#123;value&#125;&#125;&lt;/div&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- render要照順序用array --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in friend"</span>&gt;</span>&#123;&#123;item.prop&#125;&#125; - &#123;&#123;item.value&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// friend: &#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     name: 'Joe',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     id: 'Superman',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     age: '27',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     password: '12345',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line">      friend: [</span><br><span class="line">        &#123;</span><br><span class="line"><span class="javascript">          prop: <span class="string">"name"</span>,</span></span><br><span class="line"><span class="javascript">          value: <span class="string">"Joe"</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="javascript">          prop: <span class="string">"id"</span>,</span></span><br><span class="line"><span class="javascript">          value: <span class="string">"Superman"</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          prop: 32,</span><br><span class="line"><span class="javascript">          value: <span class="string">"訂婚"</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          prop: 28,</span><br><span class="line"><span class="javascript">          value: <span class="string">"創辦公司"</span></span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改陣列或物件的注意事項"><a href="#修改陣列或物件的注意事項" class="headerlink" title="修改陣列或物件的注意事項"></a>修改陣列或物件的注意事項</h3><p>透過修改陣列與物件，結果會直接反應在 html 元素上，但也有一些狀況是不會直接反應在元素上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;li v-for="num in nums"&gt;&#123;&#123;num&#125;&#125;&lt;/li&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(num, key) in nums"</span>&gt;</span>&#123;&#123;key&#125;&#125;: &#123;&#123;num&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"action"</span>&gt;</span>Yo<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>陣列修改：</p>
+<p>  <strong>能夠直接反應：</strong></p>
+<p>  陣列的<code>push</code>, <code>pop</code>, <code>unshift</code>, <code>shift</code>, <code>splice</code>, <code>sort</code>, <code>reverse</code>，新增移除，由小到大排序，反轉等等都可以直接反應在元素上。<code>filter</code>會過濾後產生新陣列，也能夠直接反應。</p>
+<p>  <strong>不能夠直接反應：</strong></p>
+<p>  用指定 index 的方式來操作，陣列會被改變，但 vue 沒辦法偵聽到這個變更，要即時反應在元素上可以用<code>splice</code>來操作。</p>
+<p>  指定陣列的長度來修改也沒辦法直接反應在元素上，但可以透過<code>splice</code>或<code>slice</code>來操作即可。<br>  slice是區間取值 <code>slice(index1, index2) from index1 to index2</code>，算頭不算尾</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    nums: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// sort</span></span><br><span class="line">    <span class="comment">//nums:[1,3,5,4,2],</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 修改陣列</span></span><br><span class="line">    action() &#123;</span><br><span class="line">      <span class="comment">// 內容直接會反應在html元素上</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// this.nums.push(this.nums.length+1);</span></span><br><span class="line">      <span class="comment">// this.nums.pop();</span></span><br><span class="line">      <span class="comment">// this.nums.unshift(0);</span></span><br><span class="line">      <span class="comment">// this.nums.shift();</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// this.nums.splice(2,1);</span></span><br><span class="line">      <span class="comment">// 在該index2的位置刪除一個參數後，新增後面全部的數值</span></span><br><span class="line">      <span class="comment">// this.nums.splice(2,1,9,8,7);</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 由小到大排序</span></span><br><span class="line">      <span class="comment">// this.nums.sort();</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 反轉目前順序</span></span><br><span class="line">      <span class="comment">// this.nums.reverse();</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// filter 只留下偶數值，會生成新陣列</span></span><br><span class="line">      <span class="comment">// this.nums = this.nums.filter(elm =&gt; (elm%2 === 0));</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 修改陣列內容「不會反應」在html元素上</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 指定index的方式來操作，nums會被改變但是vue沒辦法偵聽到這變更</span></span><br><span class="line">      <span class="comment">// this.nums[0]= 10;</span></span><br><span class="line">      <span class="comment">// 用splice來指定index取代即可反應</span></span><br><span class="line">      <span class="comment">// this.nums.splice(0,1,10);</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 指定陣列的長度修改也無法直接反應在元素上</span></span><br><span class="line">      <span class="comment">// this.nums.length =3 ;</span></span><br><span class="line">      <span class="comment">// 用splice或是slice即可反應在元素上</span></span><br><span class="line">      <span class="comment">// this.nums.splice(3);</span></span><br><span class="line">      <span class="comment">// 區間取值 slice(index1, index2) from index1 to index2，算頭不算尾</span></span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.slice(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>物件修改</p>
+<p>  <strong>不能夠直接反應：</strong><br>  指定的不存在物件的 key 的值也不會反應，指定已存在的物件是可以的。</p>
+<p>  如果要設定修改一開始不存在的值，可以使用<code>$set</code>或<code>Vue.set</code>來修改，<code>$</code>字號為 vue 實例。<br>  其中有三個參數：該物件、key、value。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    nums: &#123;</span><br><span class="line">      x: <span class="number">10</span>,</span><br><span class="line">      y: <span class="number">20</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 物件修改</span></span><br><span class="line">    action() &#123;</span><br><span class="line">      <span class="comment">// 指定的不存在物件的key的值也不會反應，指定已存在的物件是可以的</span></span><br><span class="line">      <span class="comment">// this.nums.z =30;</span></span><br><span class="line">      <span class="keyword">this</span>.nums.x = <span class="number">111</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Vue中可以設定一開始不存在的值，$字號為vue實例</span></span><br><span class="line">      <span class="comment">// $set or Vue.set中有三個參數：該物件、key、value</span></span><br><span class="line">      <span class="keyword">this</span>.$<span class="keyword">set</span>(this.nums, "z", 30);</span><br><span class="line">      // Vue.<span class="keyword">set</span></span><br><span class="line">      Vue.<span class="keyword">set</span>(this.nums, "z", 30);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="列表的過濾與排序"><a href="#列表的過濾與排序" class="headerlink" title="列表的過濾與排序"></a>列表的過濾與排序</h3><ul>
+<li>reverse 反轉</li>
+<li>filter 過濾偶數</li>
+<li>sort 排序</li>
+</ul>
+<p>要注意到 sort 會直接修改原本的陣列，可以先用 slice 來取陣列後 sorting。<br><img src="https://i.imgur.com/DLa0e82.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"num in nums"</span>&gt;</span>&#123;&#123;num&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Reverse --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"reverse"</span>&gt;</span>Reverse<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- All --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"all"</span>&gt;</span>All<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Even --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"even"</span>&gt;</span>Even<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Sort --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"sort"</span>&gt;</span>Sort<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// const orgNums = [1,2,3,4,5,6,7,8,9];</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> orgNums = [<span class="number">5</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">6</span>];</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// nums:[1,2,3,4,5,6,7,8,9],</span></span></span><br><span class="line">      nums: orgNums</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      reverse() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.nums.reverse();</span></span><br><span class="line">      &#125;,</span><br><span class="line">      even() &#123;</span><br><span class="line"><span class="javascript">        <span class="comment">// this.nums = this.nums.filter(num =&gt; (num%2===0));</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.nums = orgNums.filter(<span class="function"><span class="params">num</span> =&gt;</span> num % <span class="number">2</span> === <span class="number">0</span>);</span></span><br><span class="line">      &#125;,</span><br><span class="line">      all() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.nums = orgNums;</span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="javascript">      <span class="comment">// sort會修改原本的陣列，用slice則不會影響原本陣列</span></span></span><br><span class="line">      sort() &#123;</span><br><span class="line"><span class="javascript">        <span class="comment">// this.nums = orgNums.sort();</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.nums = orgNums.slice().sort();</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="v-for-渲染-template"><a href="#v-for-渲染-template" class="headerlink" title="v-for 渲染 template"></a>v-for 渲染 template</h3><p>一個元素不只要 render 出自己本身以外，可以用 template 模板（不是實際存在的元素）來渲染。</p>
+<p>ex. 每個 h1 後要接上 hr 的標籤</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 一個元素不指要render出自己本身以外，可以用template模板 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- h1跟著hr --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"header in headers"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;header&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      headers: [<span class="string">"About"</span>, <span class="string">"Products"</span>, <span class="string">"Contact"</span>]</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="實作-json-資料渲染課程列表"><a href="#實作-json-資料渲染課程列表" class="headerlink" title="實作-json 資料渲染課程列表"></a>實作-json 資料渲染課程列表</h2><p>從 data.json(用陣列包住)中用 ajax 方式獲取資料來渲染成列表。<br><img src="https://i.imgur.com/Jsx19Uj.png" alt></p>
+<p>data.json 格式範例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"img"</span>: <span class="string">"https://cdn.hiskio.com/courses/145/cover/1510133824V8glV.png"</span>,</span><br><span class="line">    <span class="attr">"url"</span>: <span class="string">"https://hiskio.com/course/145"</span>,</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"精通 VueJS 之 前端開發完全指南 預購中"</span>,</span><br><span class="line">    <span class="attr">"teacher"</span>: <span class="string">"諾浩設計講堂"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>用 v-for 迴圈帶出背景圖片、標題搭配 a 連結、課程老師。<br>要用背景圖來渲染，所以用上 v-bind 動態綁定屬性，a 連結的 href 也是動態綁定。</p>
+<p>ajax 在 mounted 階段就去初始化，用原生的<code>fetch</code>來串接，之後再用<code>then</code>搭配箭頭函式，把值 return 到原本 vue 實例中 data 的空陣列裡面。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"lesson in lessons"</span> <span class="attr">class</span>=<span class="string">"lesson"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;img :src="lesson.img" height="100"&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"image"</span> <span class="attr">:style</span>=<span class="string">"imgStyle(lesson.img)"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"lesson.url"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;lesson.title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"teacher"</span>&gt;</span>&#123;&#123;lesson.teacher&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      lessons: []</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// 掛載的時候進行ajax獲取json資料</span></span></span><br><span class="line">    mounted() &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// fetch搭配then，then中使用箭頭函式</span></span></span><br><span class="line"><span class="javascript">      fetch(<span class="string">"./data.json"</span>)</span></span><br><span class="line"><span class="javascript">        .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span></span><br><span class="line"><span class="javascript">        .then(<span class="function"><span class="params">lessons</span> =&gt;</span> (<span class="keyword">this</span>.lessons = lessons));</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      imgStyle(img) &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 'background-image':`url($&#123;img&#125;)`,</span></span></span><br><span class="line"><span class="javascript">          <span class="comment">// Camel case</span></span></span><br><span class="line"><span class="javascript">          backgroundImage: <span class="string">`url(<span class="subst">$&#123;img&#125;</span>)`</span></span></span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>剩下的就是 css 的渲染設定</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Arial, Microsoft JhengHei;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#369</span>;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.teacher</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.lesson</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">240px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="comment">/* 圖片破壞圓角 */</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">4px</span> <span class="number">4px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.image</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-position</span>: center center;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSON-資料補充"><a href="#JSON-資料補充" class="headerlink" title="JSON 資料補充"></a>JSON 資料補充</h2><p>json 中，物件的 key 需要用雙引號，物件中最後一個 key 或是 value 後不能有逗號，不能有函式（但可以宣告成字串，之後用 js 取出來用）。</p>
+<p><code>JSON.stringify()</code>括號中可以含三個參數，第一個是內容，第二個是 replacer，第三個是數字。</p>
+<p>第二個 replacer，內容輸出後只會有第二個參數傳入陣列的內容會留下。</p>
+<p>第三個數字，為了可讀性，斷行，縮排的次數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const data = &#123;</span></span><br><span class="line"><span class="comment">//     name: 'point',</span></span><br><span class="line"><span class="comment">//     x: 2,</span></span><br><span class="line"><span class="comment">//     y: 4,</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"><span class="keyword">const</span> dataJSON = &#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"point"</span>,</span><br><span class="line">  <span class="string">"x"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"y"</span>: <span class="number">4</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 錯誤處理，try catch，try如果無法就會走catch</span></span><br><span class="line"><span class="keyword">let</span> data;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  data = <span class="built_in">JSON</span>.parse(dataJSON);</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  data = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// const dataJSON = JSON.stringify(data);</span></span><br><span class="line"><span class="comment">// const data2 = JSON.parse(dataJSON);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 輸出後只會有第二個參數傳入陣列的內容會留下</span></span><br><span class="line"><span class="comment">// 第二個參數replacer，第三個參數是為了可讀性，斷行，縮排的次數</span></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data, [<span class="string">"x"</span>, <span class="string">"y"</span>], <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 轉全部</span></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data, <span class="literal">null</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#列表渲染-Lists-render"><span class="toc-number">1.</span> <span class="toc-text">列表渲染 Lists render</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-把陣列轉為一組元素"><span class="toc-number">1.1.</span> <span class="toc-text">v-for 把陣列轉為一組元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-把物件轉為一組元素"><span class="toc-number">1.2.</span> <span class="toc-text">v-for 把物件轉為一組元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改陣列或物件的注意事項"><span class="toc-number">1.3.</span> <span class="toc-text">修改陣列或物件的注意事項</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的過濾與排序"><span class="toc-number">1.4.</span> <span class="toc-text">列表的過濾與排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-渲染-template"><span class="toc-number">1.5.</span> <span class="toc-text">v-for 渲染 template</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實作-json-資料渲染課程列表"><span class="toc-number">2.</span> <span class="toc-text">實作-json 資料渲染課程列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-資料補充"><span class="toc-number">3.</span> <span class="toc-text">JSON 資料補充</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/29/vue-lists-render/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/29/vue-lists-render/&text=[Vue] - （四）列表渲染"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/29/vue-lists-render/&is_video=false&description=[Vue] - （四）列表渲染"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （四）列表渲染&body=Check out this article: https://orow.github.io/2019/04/29/vue-lists-render/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/29/vue-lists-render/&title=[Vue] - （四）列表渲染"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/29/vue-lists-render/&name=[Vue] - （四）列表渲染&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

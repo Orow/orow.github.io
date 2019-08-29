@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Demo切版練習-Blogen - Demo 1. Introduction 網頁介紹此版面是 blog 擁有者的管理後台，主要是用 table 來顯示。不過網頁是用來切版練習，大多數功能是沒有的。 有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profile、setting 等操作頁面。Posts, Categorie">
+<meta name="keywords" content="bootstrap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Bootstrap] - 切版練習-Blogen">
+<meta property="og:url" content="https://orow.github.io/2019/03/05/Note-Blogen/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="Demo切版練習-Blogen - Demo 1. Introduction 網頁介紹此版面是 blog 擁有者的管理後台，主要是用 table 來顯示。不過網頁是用來切版練習，大多數功能是沒有的。 有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profile、setting 等操作頁面。Posts, Categorie">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/X6ERVfo.png">
+<meta property="og:image" content="https://i.imgur.com/HLHRIYm.png">
+<meta property="og:image" content="https://i.imgur.com/Yfk5UC4.png">
+<meta property="og:image" content="https://i.imgur.com/DuehURV.png">
+<meta property="og:image" content="https://i.imgur.com/VRs3gSx.png">
+<meta property="og:image" content="https://i.imgur.com/dWk6ANm.png">
+<meta property="og:image" content="https://i.imgur.com/MlczDF1.png">
+<meta property="og:image" content="https://i.imgur.com/8T5DT5z.png">
+<meta property="og:image" content="https://i.imgur.com/3wh45Bi.png">
+<meta property="og:image" content="https://i.imgur.com/jtQFHyv.png">
+<meta property="og:image" content="https://i.imgur.com/CbssgOy.png">
+<meta property="og:image" content="https://i.imgur.com/aWk8LQn.png">
+<meta property="og:image" content="https://i.imgur.com/DbWpz5Z.png">
+<meta property="og:image" content="https://i.imgur.com/Iyi07hM.png">
+<meta property="og:image" content="https://i.imgur.com/uJ6wvku.png">
+<meta property="og:image" content="https://i.imgur.com/PdRfcLo.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Bootstrap] - 切版練習-Blogen">
+<meta name="twitter:description" content="Demo切版練習-Blogen - Demo 1. Introduction 網頁介紹此版面是 blog 擁有者的管理後台，主要是用 table 來顯示。不過網頁是用來切版練習，大多數功能是沒有的。 有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profile、setting 等操作頁面。Posts, Categorie">
+<meta name="twitter:image" content="https://i.imgur.com/X6ERVfo.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Bootstrap] - 切版練習-Blogen</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/06/closure/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/03/Note-Glozzom/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/05/Note-Blogen/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/05/Note-Blogen/&text=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/05/Note-Blogen/&is_video=false&description=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Bootstrap] - 切版練習-Blogen&body=Check out this article: https://orow.github.io/2019/03/05/Note-Blogen/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/05/Note-Blogen/&name=[Bootstrap] - 切版練習-Blogen&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-網頁介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 網頁介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Layout-Notes"><span class="toc-number">3.</span> <span class="toc-text">2. Layout Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Dashboard"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Posts"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Posts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Categories-amp-Users"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Categories &amp; Users</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Details"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 Details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Setting"><span class="toc-number">3.5.</span> <span class="toc-text">2.4 Setting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Profile"><span class="toc-number">3.6.</span> <span class="toc-text">2.5 Profile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Login"><span class="toc-number">3.7.</span> <span class="toc-text">2.6 Login</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事項"><span class="toc-number">4.</span> <span class="toc-text">注意事項</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Bootstrap] - 切版練習-Blogen
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-05T06:18:43.000Z" itemprop="datePublished">2019-03-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/bootstrap/">bootstrap</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>切版練習-Blogen - <a href="https://orow.github.io/MyProjects/BootstrapWith5Projects/Blogen-Practice/index.html">Demo</a></p>
+<h2 id="1-Introduction-網頁介紹"><a href="#1-Introduction-網頁介紹" class="headerlink" title="1. Introduction 網頁介紹"></a>1. Introduction 網頁介紹</h2><p>此版面是 blog 擁有者的管理後台，主要是用 table 來顯示。<br>不過網頁是用來切版練習，大多數功能是沒有的。</p>
+<p>有四個檢視頁面： Dashboard, Posts, Categories, Users。還有 login 頁面，使用者的 profile、setting 等操作頁面。Posts, Categories, Users 都是用不同 title 來顯示 blog 文章，這三個頁面也新增了 serach bar。</p>
+<p>Dashborad 中則有<code>Add Post</code>，裡面有用<code>select</code>、<code>coustom file</code>來選則上傳檔案、<code>CKEditor</code>所見即所得套件。<br>Profile 設定中與 add post 類似，也有用到所見即所得套件</p>
+<h2 id="2-Layout-Notes"><a href="#2-Layout-Notes" class="headerlink" title="2. Layout Notes"></a>2. Layout Notes</h2><h3 id="2-1-Dashboard"><a href="#2-1-Dashboard" class="headerlink" title="2.1 Dashboard"></a>2.1 Dashboard</h3><p>Navbar 跟先前方式沒有太大不同，不過這個版面的 navbar 左右都有 item，所以需要兩個 ul 來包其中的 li，要把第二個 ul 靠右的話則需要用到<code>class=&quot;ml-auto&quot;</code>，<br><img src="https://i.imgur.com/X6ERVfo.png" alt></p>
+<p>在右邊的 item 中有 dropdown 的效果<br><img src="https://i.imgur.com/HLHRIYm.png" alt></p>
+<p>Dropdown 在 bootstrap 使用方式直接參考程式碼</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"nav-item dropdown mr-3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"nav-link dropdown-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"dropdown"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fas fa-user"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Welcome QQ</span><br><span class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"profile.html"</span> <span class="attr">class</span>=<span class="string">"dropdown-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fas fa-user-circle"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Profiles</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"setting.html"</span> <span class="attr">class</span>=<span class="string">"dropdown-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fas fa-cog"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Setting</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Header 區塊的版面用了 col-6 呈現目前的位置，三個 Action 則用了 col-3 切成四等份，來佔了其中三個位置。<br><img src="https://i.imgur.com/Yfk5UC4.png" alt></p>
+<p>個別 action 都用到 modal 的效果<br>Add post<br>這邊用了一般包含 label 與 input 的 form-group，也用到 select 選則，上傳 custom-file，最後則是所見即所得套件 CKEditor。<br><img src="https://i.imgur.com/DuehURV.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-body"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"title"</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"category"</span>&gt;</span>Category<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>Web Development<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>Tech Gadgets<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>Business<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>Health &amp; Wellness<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"image"</span>&gt;</span>Upload Image<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"custom-file"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"image"</span> <span class="attr">class</span>=<span class="string">"custom-file-label"</span>&gt;</span>Choose File<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"image"</span> <span class="attr">class</span>=<span class="string">"custom-file-input"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span> <span class="attr">class</span>=<span class="string">"form-text text-muted"</span>&gt;</span>Max Size 3mb<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"body"</span>&gt;</span>Body<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--   注意name名字為CKEditor-function中所需   --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"editor1"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>What you see is what you get 所見即所得套件<a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CKEditor</a><br>JavaScript code:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CK Editor - What you see is what you get</span></span><br><span class="line"></span><br><span class="line">CKEDITOR.replace(<span class="string">"editor1"</span>);</span><br></pre></td></tr></table></figure>
+<p>Add Categories<br>一般的 form-group 包了 label 與 input。<br><img src="https://i.imgur.com/VRs3gSx.png" alt></p>
+<p>Add User<br>與 categories 類似，這邊有四組。<br><img src="https://i.imgur.com/dWk6ANm.png" alt></p>
+<p>table 區塊左邊是表格，右邊則是 card 呈現，左邊表格用了<code>class=&quot;table-striped&quot;</code>來讓表格行程線斑馬紋交錯。<br><img src="https://i.imgur.com/MlczDF1.png" alt></p>
+<h3 id="2-2-Posts"><a href="#2-2-Posts" class="headerlink" title="2.2 Posts"></a>2.2 Posts</h3><p>Posts 頁面中大致上沒有太大差別，navbar 相同，Search section 中用 seach bar 呈現。<br>靠右的方式用上了<code>class=&quot;col-6 ml-auto&quot;</code>，整個 search bar 則是用<code>class=&quot;input-group&quot;</code>的方式，後面的 button 則會用 div <code>class=&quot;input-append&quot;</code>包起來，這樣 button 才會接在前面 input 的後面。<br><img src="https://i.imgur.com/8T5DT5z.png" alt></p>
+<p>最下面則是用了頁面 pagination，此功能尚未連結到真的頁面切換。<br><img src="https://i.imgur.com/3wh45Bi.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"ml-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item disabled"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Previous<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item active"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Next<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-Categories-amp-Users"><a href="#2-3-Categories-amp-Users" class="headerlink" title="2.3 Categories &amp; Users"></a>2.3 Categories &amp; Users</h3><p>這個兩個頁面跟 Posts 相同，把 pagination 拿掉，表格內容少了一個 column。<br><img src="https://i.imgur.com/jtQFHyv.png" alt></p>
+<p><img src="https://i.imgur.com/CbssgOy.png" alt></p>
+<h3 id="2-4-Details"><a href="#2-4-Details" class="headerlink" title="2.4 Details"></a>2.4 Details</h3><p>在 table 中可以點擊<code>details</code>button 連結的這個頁面。<br><img src="https://i.imgur.com/aWk8LQn.png" alt></p>
+<p>這個頁面跟前面的 Add Post modal 內容相同，截圖表示：<br><img src="https://i.imgur.com/DbWpz5Z.png" alt></p>
+<h3 id="2-4-Setting"><a href="#2-4-Setting" class="headerlink" title="2.4 Setting"></a>2.4 Setting</h3><p>整個內容主要部分用 card 呈現，這邊的 form 用了<code>fieldset</code>搭配<code>legend</code>，讓無障礙能夠友善的閱讀。<br>主要用<code>radio</code> button呈現，注意 name 的屬性內容要一致，才不能複選。<br><img src="https://i.imgur.com/Iyi07hM.png" alt></p>
+<p>其中一個fieldset的程式碼：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">legend</span>&gt;</span>Allow User Registration<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-check"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"form-check-label"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">class</span>=<span class="string">"form-check-input"</span> <span class="attr">name</span>=<span class="string">"yes-no"</span> <span class="attr">value</span>=<span class="string">"Yes"</span> <span class="attr">checked</span>&gt;</span></span><br><span class="line">      Yes</span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-check"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"form-check-label"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">class</span>=<span class="string">"form-check-input"</span> <span class="attr">name</span>=<span class="string">"yes-no"</span> <span class="attr">value</span>=<span class="string">"No"</span>&gt;</span></span><br><span class="line">      No</span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-5-Profile"><a href="#2-5-Profile" class="headerlink" title="2.5 Profile"></a>2.5 Profile</h3><p>相比details頁面多了一部份有照片跟button的區塊。<br><img src="https://i.imgur.com/uJ6wvku.png" alt></p>
+<h3 id="2-6-Login"><a href="#2-6-Login" class="headerlink" title="2.6 Login"></a>2.6 Login</h3><p>登入頁面則把nabar全部item都拿掉，內容只有簡單的card包一個form，裡面則是一般的label+input呈現。<br><img src="https://i.imgur.com/PdRfcLo.png" alt></p>
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><ul>
+<li>Dropdown</li>
+<li>Custom-file：上傳檔案</li>
+<li>CKEditor：所見即所得<br>這三項是第一次使用，需要特別注意。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-網頁介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 網頁介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Layout-Notes"><span class="toc-number">3.</span> <span class="toc-text">2. Layout Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Dashboard"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Posts"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Posts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Categories-amp-Users"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Categories &amp; Users</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Details"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 Details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Setting"><span class="toc-number">3.5.</span> <span class="toc-text">2.4 Setting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Profile"><span class="toc-number">3.6.</span> <span class="toc-text">2.5 Profile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Login"><span class="toc-number">3.7.</span> <span class="toc-text">2.6 Login</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事項"><span class="toc-number">4.</span> <span class="toc-text">注意事項</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/05/Note-Blogen/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/05/Note-Blogen/&text=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/05/Note-Blogen/&is_video=false&description=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Bootstrap] - 切版練習-Blogen&body=Check out this article: https://orow.github.io/2019/03/05/Note-Blogen/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/05/Note-Blogen/&title=[Bootstrap] - 切版練習-Blogen"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/05/Note-Blogen/&name=[Bootstrap] - 切版練習-Blogen&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

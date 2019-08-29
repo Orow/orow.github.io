@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="DemoJS-AJAX 練習-氣象即時資訊- Demo 1. Introduction 介紹JS 的 AJAX 練習，使用第三方 API 介接，顯示台北市大安區現在溫度與三天內的氣象資訊。  介接第三方資訊 - 中央氣象局開放資料平台 撈取位置，觀測站別、目前溫度、風速 三天內的天氣現象、溫度、6 小時降雨機率  中央氣象局 API 指南中央氣象局開放資料平臺之資料擷取 API自動氣象站資料及說明">
+<meta name="keywords" content="javascript,ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - AJAX：氣象即時資訊">
+<meta property="og:url" content="https://orow.github.io/2019/04/06/DaanWeather/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="DemoJS-AJAX 練習-氣象即時資訊- Demo 1. Introduction 介紹JS 的 AJAX 練習，使用第三方 API 介接，顯示台北市大安區現在溫度與三天內的氣象資訊。  介接第三方資訊 - 中央氣象局開放資料平台 撈取位置，觀測站別、目前溫度、風速 三天內的天氣現象、溫度、6 小時降雨機率  中央氣象局 API 指南中央氣象局開放資料平臺之資料擷取 API自動氣象站資料及說明">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/pqBBDlB.png">
+<meta property="og:image" content="https://i.imgur.com/hUHSDuB.png">
+<meta property="og:image" content="https://i.imgur.com/SLOmLhm.png">
+<meta property="og:image" content="https://i.imgur.com/0a2h2nX.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - AJAX：氣象即時資訊">
+<meta name="twitter:description" content="DemoJS-AJAX 練習-氣象即時資訊- Demo 1. Introduction 介紹JS 的 AJAX 練習，使用第三方 API 介接，顯示台北市大安區現在溫度與三天內的氣象資訊。  介接第三方資訊 - 中央氣象局開放資料平台 撈取位置，觀測站別、目前溫度、風速 三天內的天氣現象、溫度、6 小時降雨機率  中央氣象局 API 指南中央氣象局開放資料平臺之資料擷取 API自動氣象站資料及說明">
+<meta name="twitter:image" content="https://i.imgur.com/pqBBDlB.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - AJAX：氣象即時資訊</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/08/nodejs-ajax_faztweb/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/24/basic-jquery-additional/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/06/DaanWeather/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/06/DaanWeather/&text=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/06/DaanWeather/&is_video=false&description=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX：氣象即時資訊&body=Check out this article: https://orow.github.io/2019/04/06/DaanWeather/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/06/DaanWeather/&name=[JavaScript] - AJAX：氣象即時資訊&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - AJAX：氣象即時資訊
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-06T13:18:43.000Z" itemprop="datePublished">2019-04-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ajax/">ajax</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>JS-AJAX 練習-氣象即時資訊- <a href="https://orow.github.io/MyProjects/HandsOnJS-JSON/05-tw-weather/index.html">Demo</a></p>
+<h2 id="1-Introduction-介紹"><a href="#1-Introduction-介紹" class="headerlink" title="1. Introduction 介紹"></a>1. Introduction 介紹</h2><p>JS 的 AJAX 練習，使用第三方 API 介接，顯示台北市大安區現在溫度與三天內的氣象資訊。<br><img src="https://i.imgur.com/pqBBDlB.png" alt></p>
+<ul>
+<li>介接第三方資訊 - 中央氣象局開放資料平台</li>
+<li>撈取位置，觀測站別、目前溫度、風速</li>
+<li>三天內的天氣現象、溫度、6 小時降雨機率</li>
+</ul>
+<p><a href="https://opendata.cwb.gov.tw/devManual/insrtuction" target="_blank" rel="noopener">中央氣象局 API 指南</a><br><a href="https://opendata.cwb.gov.tw/dist/opendata-swagger.html#/" target="_blank" rel="noopener">中央氣象局開放資料平臺之資料擷取 API</a><br><a href="https://opendata.cwb.gov.tw/opendatadoc/DIV2/A0001-001.pdf" target="_blank" rel="noopener">自動氣象站資料及說明</a></p>
+<h2 id="2-功能"><a href="#2-功能" class="headerlink" title="2. 功能"></a>2. 功能</h2><p>使用了中央氣象局開方資料平台中的兩個資料 API，一個是氣象站-現在天氣觀測報告，另一個則是台北市未來兩天天氣預報。<br>在中央氣象局的資料平台網站中，可以設定一些條件後執行，馬上可以看到回傳的資料是哪些。<br><img src="https://i.imgur.com/hUHSDuB.png" alt></p>
+<p>這邊使用到兩個資料 API，所以會宣告兩個<code>new XMLHttpRequest()</code>，分左右區塊來說明。</p>
+<p>左邊區塊顯示的是現在天氣</p>
+<ul>
+<li>位置資訊</li>
+<li>站別名稱</li>
+<li>現在溫度</li>
+<li>風速</li>
+</ul>
+<p><img src="https://i.imgur.com/SLOmLhm.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"left"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"location"</span>&gt;</span>City UT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"station"</span>&gt;</span>Current station<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"temperature"</span>&gt;</span>00<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"desc"</span>&gt;</span>A mix of clouds<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> weatherConditions = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> cObj;</span><br><span class="line"></span><br><span class="line"><span class="comment">// GET THE CONDITIONS</span></span><br><span class="line">weatherConditions.open(<span class="string">"get"</span>, <span class="string">"現在天氣觀測的url"</span>, <span class="literal">true</span>);</span><br><span class="line">weatherConditions.send();</span><br><span class="line"></span><br><span class="line">weatherConditions.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (weatherConditions.status === <span class="number">200</span>) &#123;</span><br><span class="line">    cObj = <span class="built_in">JSON</span>.parse(weatherConditions.responseText);</span><br><span class="line">    <span class="built_in">console</span>.log(cObj);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// area of taipei</span></span><br><span class="line">    <span class="keyword">var</span> taipeiDaan =</span><br><span class="line">      cObj.records.location[<span class="number">0</span>].parameter[<span class="number">0</span>].parameterValue + <span class="string">" "</span> + cObj.records.location[<span class="number">0</span>].parameter[<span class="number">2</span>].parameterValue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// temperature</span></span><br><span class="line">    <span class="keyword">var</span> daanTemp = cObj.records.location[<span class="number">0</span>].weatherElement[<span class="number">3</span>].elementValue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Wind Speed</span></span><br><span class="line">    <span class="keyword">var</span> windSpeed = cObj.records.location[<span class="number">0</span>].weatherElement[<span class="number">2</span>].elementValue;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"location"</span>).innerHTML = taipeiDaan;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"station"</span>).innerHTML = <span class="string">"站別："</span> + cObj.records.location[<span class="number">0</span>].locationName;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"temperature"</span>).innerHTML = daanTemp;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"desc"</span>).innerHTML = <span class="string">"Wind Speed: "</span> + windSpeed;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>右邊是未來兩天天氣預報，這邊每一列是分開處理，第一列是標題，第二列以後只有取的值的 index 不同。<br>用陣列index搭配object的選取，從中取出資料加回html網頁中。</p>
+<ul>
+<li>日期</li>
+<li>天氣現象</li>
+<li>溫度</li>
+<li>6 小時降雨機率<br><img src="https://i.imgur.com/0a2h2nX.png" alt></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 最上面的Title --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"area"</span>&gt;</span>My Weather Channel<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>JSON data from 中央氣象局<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r1c1"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r1c2"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r1c3"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r1c4"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r2c1"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r2c2"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r2c3"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r2c4"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r3c1"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r3c2"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r3c3"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r3c4"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r4c1"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r4c2"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r4c3"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"r4c4"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> weatherForecast = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> fObj;</span><br><span class="line"><span class="comment">// GET THE FORECARST</span></span><br><span class="line">weatherForecast.open(<span class="string">"get"</span>, <span class="string">"未來兩天天氣預報的url"</span>, <span class="literal">true</span>);</span><br><span class="line">weatherForecast.send();</span><br><span class="line"></span><br><span class="line">weatherForecast.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (weatherForecast.status === <span class="number">200</span>) &#123;</span><br><span class="line">    fObj = <span class="built_in">JSON</span>.parse(weatherForecast.responseText);</span><br><span class="line">    <span class="built_in">console</span>.log(fObj);</span><br><span class="line">    <span class="comment">// title</span></span><br><span class="line">    <span class="keyword">var</span> area_raw = fObj.records.locations[<span class="number">0</span>].datasetDescription;</span><br><span class="line">    area_raw = area_raw.substring(<span class="number">7</span>, <span class="number">17</span>) + area_raw.substring(<span class="number">21</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// weather situation</span></span><br><span class="line">    <span class="keyword">var</span> weatherSituation =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">1</span>].description;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// temperature</span></span><br><span class="line">    <span class="keyword">var</span> currentTemp =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">3</span>].description;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// rainPrecent</span></span><br><span class="line">    <span class="keyword">var</span> rainPrecent =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">7</span>].description;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"area"</span>).innerHTML = <span class="string">"臺北市大安區"</span> + area_raw;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r1c1"</span>).innerHTML = <span class="string">"日期"</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r1c2"</span>).innerHTML = weatherSituation;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r1c3"</span>).innerHTML = currentTemp;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r1c4"</span>).innerHTML = rainPrecent;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// date</span></span><br><span class="line">    <span class="keyword">var</span> date_raw = fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">1</span>].time[<span class="number">3</span>].startTime;</span><br><span class="line">    date_raw = date_raw.substring(<span class="number">5</span>, <span class="number">11</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// weather situation</span></span><br><span class="line">    <span class="keyword">var</span> weatherSituation =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">1</span>].time[<span class="number">3</span>].elementValue[<span class="number">0</span>].value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// temperature</span></span><br><span class="line">    <span class="keyword">var</span> currentTemp =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">3</span>].time[<span class="number">3</span>].elementValue[<span class="number">0</span>].value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// rainPrecent</span></span><br><span class="line">    <span class="keyword">var</span> rainPrecent =</span><br><span class="line">      fObj.records.locations[<span class="number">0</span>].location[<span class="number">0</span>].weatherElement[<span class="number">7</span>].time[<span class="number">2</span>].elementValue[<span class="number">0</span>].value;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"area"</span>).innerHTML = <span class="string">"臺北市大安區"</span> + area_raw;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r2c1"</span>).innerHTML = date_raw;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r2c2"</span>).innerHTML = weatherSituation;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r2c3"</span>).innerHTML = currentTemp + <span class="string">"&amp;deg"</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"r2c4"</span>).innerHTML = rainPrecent + <span class="string">"%"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/06/DaanWeather/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/06/DaanWeather/&text=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/06/DaanWeather/&is_video=false&description=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX：氣象即時資訊&body=Check out this article: https://orow.github.io/2019/04/06/DaanWeather/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/06/DaanWeather/&title=[JavaScript] - AJAX：氣象即時資訊"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/06/DaanWeather/&name=[JavaScript] - AJAX：氣象即時資訊&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

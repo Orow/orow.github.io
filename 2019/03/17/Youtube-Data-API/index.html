@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="1. Create API key1.1 Google Cloud Platformref : https://console.cloud.google.com/?hl=zh-TW  確認有沒有專案repository  如果沒有要新建立一個專案(it shoulde be one repository at least)   取用API &amp;amp; Services  選單中選取API和服務(A">
+<meta name="keywords" content="Youtube Data API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Youtube Data API - Search Engine">
+<meta property="og:url" content="https://orow.github.io/2019/03/17/Youtube-Data-API/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="1. Create API key1.1 Google Cloud Platformref : https://console.cloud.google.com/?hl=zh-TW  確認有沒有專案repository  如果沒有要新建立一個專案(it shoulde be one repository at least)   取用API &amp;amp; Services  選單中選取API和服務(A">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/C1uYFCf.png">
+<meta property="og:image" content="https://i.imgur.com/74Uj0fc.png">
+<meta property="og:image" content="https://i.imgur.com/jNhGNEi.png">
+<meta property="og:image" content="https://i.imgur.com/QFkkGXe.png">
+<meta property="og:image" content="https://i.imgur.com/Jy4dXS1.png">
+<meta property="og:image" content="https://i.imgur.com/RPprBDj.png">
+<meta property="og:image" content="https://i.imgur.com/dGhJw1i.png">
+<meta property="og:image" content="https://i.imgur.com/4WTZH8G.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Youtube Data API - Search Engine">
+<meta name="twitter:description" content="1. Create API key1.1 Google Cloud Platformref : https://console.cloud.google.com/?hl=zh-TW  確認有沒有專案repository  如果沒有要新建立一個專案(it shoulde be one repository at least)   取用API &amp;amp; Services  選單中選取API和服務(A">
+<meta name="twitter:image" content="https://i.imgur.com/C1uYFCf.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Youtube Data API - Search Engine</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/18/jQuery-faq-slider/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/16/jQuery-youtube-search/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/17/Youtube-Data-API/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&text=Youtube Data API - Search Engine"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&is_video=false&description=Youtube Data API - Search Engine"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Youtube Data API - Search Engine&body=Check out this article: https://orow.github.io/2019/03/17/Youtube-Data-API/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&name=Youtube Data API - Search Engine&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Create-API-key"><span class="toc-number">1.</span> <span class="toc-text">1. Create API key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Google-Cloud-Platform"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Google Cloud Platform</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-How-to-use-Search-Engine"><span class="toc-number">2.</span> <span class="toc-text">2. How to use - Search Engine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Example-Youtube-Search-Engine"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Example: Youtube Search Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-HTTP-request"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 HTTP request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Server-Response"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Server Response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-prevPage-amp-nextPage"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 prevPage &amp; nextPage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Video-information"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 Video information</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-參考資料"><span class="toc-number">3.</span> <span class="toc-text">3. 參考資料</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Youtube Data API - Search Engine
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-17T06:18:43.000Z" itemprop="datePublished">2019-03-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/API/">API</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Youtube-Data-API/">Youtube Data API</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Create-API-key"><a href="#1-Create-API-key" class="headerlink" title="1. Create API key"></a>1. Create API key</h2><h3 id="1-1-Google-Cloud-Platform"><a href="#1-1-Google-Cloud-Platform" class="headerlink" title="1.1 Google Cloud Platform"></a>1.1 Google Cloud Platform</h3><p>ref : <a href="https://console.cloud.google.com/?hl=zh-TW" target="_blank" rel="noopener">https://console.cloud.google.com/?hl=zh-TW</a></p>
+<ol>
+<li><p>確認有沒有專案repository</p>
+<ul>
+<li>如果沒有要新建立一個專案(it shoulde be one repository at least)<br><img src="https://i.imgur.com/C1uYFCf.png" alt></li>
+</ul>
+</li>
+<li><p>取用API &amp; Services</p>
+<ul>
+<li>選單中選取<code>API和服務(API &amp; Services)</code></li>
+<li><p>選擇資訊主頁(Dashboard) =&gt; <code>啟用API和服務(Enable APIS &amp; SERVICES)</code><br><img src="https://i.imgur.com/74Uj0fc.png" alt></p>
+</li>
+<li><p>選擇Youtube Data API v3 and 啟用(Enable)<br><img src="https://i.imgur.com/jNhGNEi.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>新增憑證</p>
+<ul>
+<li><p>啟用後進入到Youtube Data API v3的管理(Manage)頁面並選取憑證(credentials)<br><img src="https://i.imgur.com/QFkkGXe.png" alt></p>
+</li>
+<li><p>API管理員中的「憑證」頁面(Credentials in the API Manager)</p>
+</li>
+<li>建立憑證(Create credentials) =&gt; API key<br><img src="https://i.imgur.com/Jy4dXS1.png" alt></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-How-to-use-Search-Engine"><a href="#2-How-to-use-Search-Engine" class="headerlink" title="2. How to use - Search Engine"></a>2. How to use - Search Engine</h2><p>此部分對我現階段來說還是比較複雜，沒有理解到很多，主要是透過網路上課程來進行這部分的運用（使用jQuery）。<br><strong>如果有錯請不吝嗇的告知小弟</strong><br>下面是這次的例子:</p>
+<h3 id="2-1-Example-Youtube-Search-Engine"><a href="#2-1-Example-Youtube-Search-Engine" class="headerlink" title="2.1 Example: Youtube Search Engine"></a>2.1 Example: Youtube Search Engine</h3><p>Link: <a href="https://orow.github.io/2019/03/16/jQuery-youtube-search/">Youtube Search Engine</a></p>
+<h3 id="2-2-HTTP-request"><a href="#2-2-HTTP-request" class="headerlink" title="2.2 HTTP request"></a>2.2 HTTP request</h3><p>案例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>("url",</span><br><span class="line">    &#123;</span><br><span class="line">      part: <span class="string">"snippet, id"</span>,</span><br><span class="line">      q: q, <span class="comment">//輸入的關鍵字的值</span></span><br><span class="line">      type: <span class="string">"video"</span>,</span><br><span class="line">      key: <span class="string">"Your_API_key"</span></span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>part: 每個搜尋的結果會帶有什麼內容：snippet 帶有搜尋結果的資訊，頻道 title、id、描述、縮圖、時間等，id：則為影片搜尋結果本身的 id。</li>
+<li>q: 指操作者輸入的關鍵字區塊的值。</li>
+<li>type: 可以選在播放清單或是影片等類型。</li>
+</ul>
+<p>官方文件：<a href="https://developers.google.com/youtube/v3/docs/search/list" target="_blank" rel="noopener">Youtube Data API - Search List</a><br>查詢各種 request 的內容，也可以直接在上面設定 request 的項目來測試會收到什麼。</p>
+<h3 id="2-3-Server-Response"><a href="#2-3-Server-Response" class="headerlink" title="2.3 Server Response"></a>2.3 Server Response</h3><p>Resonpse 則為<br><img src="https://i.imgur.com/RPprBDj.png" alt></p>
+<p>Response中的items(search Resource)<br><img src="https://i.imgur.com/dGhJw1i.png" alt></p>
+<p>官方文件：<a href="https://developers.google.com/youtube/v3/docs/search#resource" target="_blank" rel="noopener">Youtube Data API - Search Resource</a></p>
+<h3 id="2-4-prevPage-amp-nextPage"><a href="#2-4-prevPage-amp-nextPage" class="headerlink" title="2.4 prevPage &amp; nextPage"></a>2.4 prevPage &amp; nextPage</h3><p>可以在$.get裡面的物件加上<code>{pageToken: token}</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(</span><br><span class="line">  "https://www.googleapis.com/youtube/v3/search",</span><br><span class="line">  &#123;</span><br><span class="line">    part: <span class="string">"snippet, id"</span>,</span><br><span class="line">    q: q, <span class="comment">// 輸入關鍵字區塊的值</span></span><br><span class="line">    pageToken:  token, <span class="comment">// 需要是回傳的nextPageToken或prevPageToken字串</span></span><br><span class="line">    type: <span class="string">"video"</span>,</span><br><span class="line">    key: <span class="string">"Your_API_key"</span></span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>這邊的token是要帶回回傳資料中nextPageToken或prevPageToken的字串。<br>發出的request中要寫入pageToken的request，在這個callback function中就可以利用<code>prevPageToken</code>跟<code>nextPageToken</code>的字串進行上下頁的切換。</p>
+<h3 id="2-5-Video-information"><a href="#2-5-Video-information" class="headerlink" title="2.5 Video information"></a>2.5 Video information</h3><p>發出的request中有<code>part: &#39;snippet, id&#39;</code>。<br>可以透過search Resource中的snippet獲得影片的發佈時間、title、description、縮圖連結等。<br>也可以透過id來獲取種類、頻道、播放清單等的資訊。<br><img src="https://i.imgur.com/4WTZH8G.png" alt></p>
+<h2 id="3-參考資料"><a href="#3-參考資料" class="headerlink" title="3. 參考資料"></a>3. 參考資料</h2><ol>
+<li>官方資料<br> <a href="https://developers.google.com/youtube/v3/getting-started" target="_blank" rel="noopener">Getting-started</a><br> <a href="https://developers.google.com/youtube/v3/docs/search/list" target="_blank" rel="noopener">Search Lists</a><br> <a href="https://developers.google.com/youtube/v3/docs/search#resource" target="_blank" rel="noopener">Search resources</a></li>
+<li>網路資料<br> Request中除了part參數跟其他的部分: <a href="https://ithelp.ithome.com.tw/articles/10194007" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10194007</a></li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Create-API-key"><span class="toc-number">1.</span> <span class="toc-text">1. Create API key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Google-Cloud-Platform"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Google Cloud Platform</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-How-to-use-Search-Engine"><span class="toc-number">2.</span> <span class="toc-text">2. How to use - Search Engine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Example-Youtube-Search-Engine"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Example: Youtube Search Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-HTTP-request"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 HTTP request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Server-Response"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Server Response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-prevPage-amp-nextPage"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 prevPage &amp; nextPage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Video-information"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 Video information</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-參考資料"><span class="toc-number">3.</span> <span class="toc-text">3. 參考資料</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/17/Youtube-Data-API/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&text=Youtube Data API - Search Engine"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&is_video=false&description=Youtube Data API - Search Engine"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Youtube Data API - Search Engine&body=Check out this article: https://orow.github.io/2019/03/17/Youtube-Data-API/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&title=Youtube Data API - Search Engine"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/17/Youtube-Data-API/&name=Youtube Data API - Search Engine&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

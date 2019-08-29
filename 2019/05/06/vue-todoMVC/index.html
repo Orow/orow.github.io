@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="DemotodoMVC-vue 的應用- Demo todoMVC 分析學習大約 10 天的 vue 後，嘗試製作入門的 todoMVC 功能。這次實作著重在於功能的撰寫，把 todoMVC 官網上的版本 clone 下來，我是用 jQuery 的版本來修改，刪除 js 所有檔案，保留 html 靜態網頁的部分、css 版面等等，再引入 vue 的 cdn。 功能分析 先分析有哪些功能，怎麼觸發功">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - todoMVC-待辦事項功能實作">
+<meta property="og:url" content="https://orow.github.io/2019/05/06/vue-todoMVC/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="DemotodoMVC-vue 的應用- Demo todoMVC 分析學習大約 10 天的 vue 後，嘗試製作入門的 todoMVC 功能。這次實作著重在於功能的撰寫，把 todoMVC 官網上的版本 clone 下來，我是用 jQuery 的版本來修改，刪除 js 所有檔案，保留 html 靜態網頁的部分、css 版面等等，再引入 vue 的 cdn。 功能分析 先分析有哪些功能，怎麼觸發功">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/astvRxJ.png">
+<meta property="og:image" content="https://i.imgur.com/GCPG68C.png">
+<meta property="og:image" content="https://i.imgur.com/Fh03D93.png">
+<meta property="og:image" content="https://i.imgur.com/5KbPlgI.png">
+<meta property="og:image" content="https://i.imgur.com/nqfTzWe.png">
+<meta property="og:image" content="https://i.imgur.com/86dawq4.png">
+<meta property="og:image" content="https://i.imgur.com/TGFz2mL.png">
+<meta property="og:image" content="https://i.imgur.com/YAKj1rT.png">
+<meta property="og:image" content="https://i.imgur.com/0OsX4LV.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - todoMVC-待辦事項功能實作">
+<meta name="twitter:description" content="DemotodoMVC-vue 的應用- Demo todoMVC 分析學習大約 10 天的 vue 後，嘗試製作入門的 todoMVC 功能。這次實作著重在於功能的撰寫，把 todoMVC 官網上的版本 clone 下來，我是用 jQuery 的版本來修改，刪除 js 所有檔案，保留 html 靜態網頁的部分、css 版面等等，再引入 vue 的 cdn。 功能分析 先分析有哪些功能，怎麼觸發功">
+<meta name="twitter:image" content="https://i.imgur.com/astvRxJ.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - todoMVC-待辦事項功能實作</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/05/07/webpack-intros/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/02/vue-component-sideproject/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/06/vue-todoMVC/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/06/vue-todoMVC/&text=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/06/vue-todoMVC/&is_video=false&description=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - todoMVC-待辦事項功能實作&body=Check out this article: https://orow.github.io/2019/05/06/vue-todoMVC/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/06/vue-todoMVC/&name=[Vue] - todoMVC-待辦事項功能實作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todoMVC-分析"><span class="toc-number">2.</span> <span class="toc-text">todoMVC 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新增待辦項目"><span class="toc-number">2.0.1.</span> <span class="toc-text">新增待辦項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#刪除待辦項目"><span class="toc-number">2.0.2.</span> <span class="toc-text">刪除待辦項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改項目狀態"><span class="toc-number">2.0.3.</span> <span class="toc-text">修改項目狀態</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#選取（取消選取）全部"><span class="toc-number">2.0.4.</span> <span class="toc-text">選取（取消選取）全部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清除已完成項目"><span class="toc-number">2.0.5.</span> <span class="toc-text">清除已完成項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#編輯已存在的項目"><span class="toc-number">2.0.6.</span> <span class="toc-text">編輯已存在的項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#篩選狀態後顯示項目"><span class="toc-number">2.0.7.</span> <span class="toc-text">篩選狀態後顯示項目</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-number">3.</span> <span class="toc-text">功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增待辦項目-1"><span class="toc-number">3.1.</span> <span class="toc-text">新增待辦項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刪除待辦項目-1"><span class="toc-number">3.2.</span> <span class="toc-text">刪除待辦項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改項目狀態-1"><span class="toc-number">3.3.</span> <span class="toc-text">修改項目狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#選取（取消選取）全部-1"><span class="toc-number">3.4.</span> <span class="toc-text">選取（取消選取）全部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除已完成項目-1"><span class="toc-number">3.5.</span> <span class="toc-text">清除已完成項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#編輯已存在的項目-1"><span class="toc-number">3.6.</span> <span class="toc-text">編輯已存在的項目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-if-判斷顯示編輯模式"><span class="toc-number">3.6.1.</span> <span class="toc-text">v-if 判斷顯示編輯模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#編輯的部分需要三個功能"><span class="toc-number">3.6.2.</span> <span class="toc-text">編輯的部分需要三個功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#篩選狀態後顯示項目-1"><span class="toc-number">3.7.</span> <span class="toc-text">篩選狀態後顯示項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#資料存進-localsotrage"><span class="toc-number">3.8.</span> <span class="toc-text">資料存進 localsotrage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mounted-執行未完成項目數量的初始化"><span class="toc-number">3.9.</span> <span class="toc-text">mounted 執行未完成項目數量的初始化</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - todoMVC-待辦事項功能實作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-05-06T10:00:00.000Z" itemprop="datePublished">2019-05-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>todoMVC-vue 的應用- <a href="https://orow.github.io/todoMVC-vue/index.html">Demo</a></p>
+<h2 id="todoMVC-分析"><a href="#todoMVC-分析" class="headerlink" title="todoMVC 分析"></a>todoMVC 分析</h2><p>學習大約 10 天的 vue 後，嘗試製作入門的 todoMVC 功能。這次實作著重在於功能的撰寫，把 todoMVC 官網上的版本 clone 下來，我是用 jQuery 的版本來修改，刪除 js 所有檔案，保留 html 靜態網頁的部分、css 版面等等，再引入 vue 的 cdn。</p>
+<p><strong>功能分析</strong></p>
+<p>先分析有哪些功能，怎麼觸發功能，再思考怎麼去執行。<br>主要有七個功能：</p>
+<ul>
+<li>新增待辦項目</li>
+<li>刪除項目功能</li>
+<li>修改項目狀態</li>
+<li>選取（取消選取）全部</li>
+<li>清除完成項目</li>
+<li>編輯已存在的項目</li>
+<li>篩選狀態後顯示項目</li>
+</ul>
+<h4 id="新增待辦項目"><a href="#新增待辦項目" class="headerlink" title="新增待辦項目"></a>新增待辦項目</h4><p>輸入後按下 enter 即可新增，綁定<code>keyup.enter</code>事件。</p>
+<p><img src="https://i.imgur.com/astvRxJ.png" alt></p>
+<h4 id="刪除待辦項目"><a href="#刪除待辦項目" class="headerlink" title="刪除待辦項目"></a>刪除待辦項目</h4><p>移動到已存在的項目後，右方會有 x 按鈕，點擊會刪除該項目。<br>預計用<code>splice</code>來刪除選取到的陣列中該 index 的項目。</p>
+<p><img src="https://i.imgur.com/GCPG68C.png" alt></p>
+<h4 id="修改項目狀態"><a href="#修改項目狀態" class="headerlink" title="修改項目狀態"></a>修改項目狀態</h4><p>點擊該按鈕，狀態會在執行中跟已完成切換，下方的未完成的數量會根據狀態來計算。<br>數量的部分，自己分析是在 vue 實例中給一個長度 0，新增項目就+1，切換狀態到已完成或是刪除就-1。</p>
+<p><img src="https://i.imgur.com/Fh03D93.png" alt></p>
+<h4 id="選取（取消選取）全部"><a href="#選取（取消選取）全部" class="headerlink" title="選取（取消選取）全部"></a>選取（取消選取）全部</h4><p>點擊選取全部或是取消選取全部。</p>
+<p><img src="https://i.imgur.com/5KbPlgI.png" alt></p>
+<h4 id="清除已完成項目"><a href="#清除已完成項目" class="headerlink" title="清除已完成項目"></a>清除已完成項目</h4><p>刪除是狀態已完成的項目，分析用 for 迴圈來執行全部待辦事項的陣列，判斷狀態是已完成就刪除。</p>
+<p><img src="https://i.imgur.com/nqfTzWe.png" alt></p>
+<h4 id="編輯已存在的項目"><a href="#編輯已存在的項目" class="headerlink" title="編輯已存在的項目"></a>編輯已存在的項目</h4><p>click 後會進入編輯狀態，這部分一開始只有分析出，點擊後會帶入 class 來產生顯示編輯狀態，按 enter 會送出，esc 會離開不修改。</p>
+<p><img src="https://i.imgur.com/86dawq4.png" alt></p>
+<h4 id="篩選狀態後顯示項目"><a href="#篩選狀態後顯示項目" class="headerlink" title="篩選狀態後顯示項目"></a>篩選狀態後顯示項目</h4><p>task 有兩種狀態，active 執行中與 completed 完成，選擇 all 則是全部狀態都顯示，一開始預設是 all 顯示。<br>這部分認為是用 v-if, v-else 來顯示，具體做法還不確定，先執行其他功能。</p>
+<p><img src="https://i.imgur.com/TGFz2mL.png" alt></p>
+<p>選擇 active，判斷狀態是進行中的 task<br><img src="https://i.imgur.com/YAKj1rT.png" alt></p>
+<p>completed，判斷是已選取的 task<br><img src="https://i.imgur.com/0OsX4LV.png" alt></p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><h3 id="新增待辦項目-1"><a href="#新增待辦項目-1" class="headerlink" title="新增待辦項目"></a>新增待辦項目</h3><p>保留原 html 內容，<code>v-model</code>綁定<code>inputValue</code>，<code>v-on:keyup.enter=&quot;add&quot;</code> 綁定 keyup 事件執行新增項目的 function。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">"new-todo"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-model</span>=<span class="string">"inputVaule"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.enter</span>=<span class="string">"add"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">placeholder</span>=<span class="string">"Add to do item..."</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autofocus</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  data:&#123;</span><br><span class="line"><span class="javascript">      inputValue: <span class="string">''</span>,</span></span><br><span class="line">      items: [],</span><br><span class="line"><span class="javascript">      todoLen: <span class="number">0</span>, <span class="comment">// 未完成項目預設為0，</span></span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> todoContent = &#123;</span></span><br><span class="line"><span class="javascript">            text: <span class="keyword">this</span>.inputVaule,</span></span><br><span class="line"><span class="javascript">            completed: <span class="literal">false</span>,</span></span><br><span class="line">        &#125;;</span><br><span class="line"><span class="javascript">        <span class="comment">// 把新增項目的內容，跟預設false的狀態放在物件中push到陣列中</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.items.push(todoContent);</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 這個長度是用來計算未完成項目的數量</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.todoLen++;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.inputVaule = <span class="string">''</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="刪除待辦項目-1"><a href="#刪除待辦項目-1" class="headerlink" title="刪除待辦項目"></a>刪除待辦項目</h3><p>顯示的待辦項目中，button 綁定 click 事件來執行刪除項目的函式。<br>數量的部分，自己分析是在 vue 實例中給一個長度 0，新增項目就+1，切換狀態到已完成或是刪除就-1。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"todo-list"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 顯示待辦項目 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;completed: item.completed&#125;"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span> @<span class="attr">click</span>=<span class="string">"removeTodo(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  methods:&#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// 點擊事件觸發的函式要回傳index，才會刪除正確的項目</span></span></span><br><span class="line">    removeTodo(index) &#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// 多一個判斷，如果選中的項目是未完成，要把數量減一</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="keyword">this</span>.items[index].completed == <span class="literal">false</span>) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.todoLen--;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">// 如果本來就是已完成，不需要減少數量</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">this</span>.items.splice(index, <span class="number">1</span>);</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改項目狀態-1"><a href="#修改項目狀態-1" class="headerlink" title="修改項目狀態"></a>修改項目狀態</h3><p>點擊該按鈕，狀態會在執行中跟已完成切換。用 v-model 綁定項目狀態，再綁定 change 事件來執行函式。<br>這邊要注意的是，如果項目原本是未完成的，點擊時會因為 v-model 綁定狀態，會把項目的狀態改回 true 也就是已完成。這時候 change 事件執行的函式，就需要判斷如果是改變後的狀態是 true，計算未完成的數量要減一。<br>反之原本是已完成的項目，點擊後，狀態改為未完成、數量加一。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"todo-list"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;completed: item.completed&#125;"</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- v-model綁定該項目的狀態，綁定change事件執行函式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">          <span class="attr">class</span>=<span class="string">"toggle"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">type</span>=<span class="string">"checkbox"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">v-model</span>=<span class="string">"item.completed"</span></span></span><br><span class="line"><span class="tag">          @<span class="attr">change</span>=<span class="string">"changeTodo(index)"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span> @<span class="attr">click</span>=<span class="string">"removeTodo(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  methods:&#123;</span><br><span class="line">      changeTodo(index) &#123;</span><br><span class="line"><span class="javascript">      	<span class="comment">// 因為v-model綁定completed的狀態，在changeTodo函式中，需要以改變後的狀態來判斷</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 原本是未完成，false</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (<span class="keyword">this</span>.items[index].completed == <span class="literal">true</span>) &#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.todoLen--;</span></span><br><span class="line"><span class="javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 原本是已完成，改為未完成，所以要加一</span></span></span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.todoLen++;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="選取（取消選取）全部-1"><a href="#選取（取消選取）全部-1" class="headerlink" title="選取（取消選取）全部"></a>選取（取消選取）全部</h3><p>點擊選取全部或是取消選取全部。綁定點擊執行 selectAll 函式。<br>判斷如果現在未完成數量等於 0，用 for 迴圈把陣列 items 中每一個項目的狀態都改為 false，然後把未完成數量改為陣列的長度。<br>如果未完成數量不等於 0，也用 for 迴圈把每一個項目的狀態改為 true 以達成全選的效果，未完成數量則改為 0。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">"toggle-all"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"toggle-all"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"checkbox"</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">click</span>=<span class="string">"selectAll"</span></span></span><br><span class="line"><span class="tag">  /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"toggle-all"</span>&gt;</span>Mark all as complete<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"todo-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>...<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    ....</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  selectAll() &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// 如果都是已完成項目，把全部狀態改為false，數量等於陣列長度</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (<span class="keyword">this</span>.todoLen == <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">              <span class="keyword">this</span>.items[i].completed = <span class="literal">false</span>;</span></span><br><span class="line">          &#125;</span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.todoLen = <span class="keyword">this</span>.items.length;</span></span><br><span class="line"><span class="javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 只要數量不等於0，會把所有項目狀態改為true，達到全選效果</span></span></span><br><span class="line"><span class="javascript">          <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">              <span class="keyword">this</span>.items[i].completed = <span class="literal">true</span>;</span></span><br><span class="line">          &#125;</span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.todoLen = <span class="number">0</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="清除已完成項目-1"><a href="#清除已完成項目-1" class="headerlink" title="清除已完成項目"></a>清除已完成項目</h3><p>刪除是狀態已完成的項目，用 for 迴圈來執行全部待辦事項的陣列，判斷狀態是已完成就刪除。<br>在實作的時候發現，執行時會有異常，狀態有些項目突然變成已完成等等。<br>原因是 splice 執行時會改變陣列長度，所以只有在不刪除元素狀況下才會去執行行 i++。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 這邊v-if判斷如果項目陣列中有待辦項目就會顯示 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer"</span> <span class="attr">v-if</span>=<span class="string">"items != ''"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"todo-count"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123;todoLen&#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"filters"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>...<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"clear-completed"</span> @<span class="attr">click</span>=<span class="string">"clearCompleted"</span>&gt;</span></span><br><span class="line">    Clear completed</span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  methods:&#123;</span><br><span class="line">      clearCompleted() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length;) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="keyword">this</span>.items[i].completed == <span class="literal">true</span>) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// splice會改變陣列長度，所以只有在不刪除元素狀況下才會去執行行i++</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.items.splice(i, <span class="number">1</span>);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="編輯已存在的項目-1"><a href="#編輯已存在的項目-1" class="headerlink" title="編輯已存在的項目"></a>編輯已存在的項目</h3><p>在實作編輯功能的時候，卡關很久，網路上搜尋資源，很多方式來達成，但因為前面功能自己寫，跟網路上做法有些差異，後來網路上找到別的相對簡單方式來實現。<br>分析的時候，這個 css 配置是 li ＋ input 搭配<code>li class=&quot;editing&quot;</code>就會轉換成編輯模式。</p>
+<ul>
+<li><a href="https://www.zmrenwu.com/courses/vue2x-todo-tutorial/materials/44/" target="_blank" rel="noopener">參考來源</a></li>
+</ul>
+<p>用 click 來觸發編輯模式，double click在mobile上不支援。</p>
+<h4 id="v-if-判斷顯示編輯模式"><a href="#v-if-判斷顯示編輯模式" class="headerlink" title="v-if 判斷顯示編輯模式"></a>v-if 判斷顯示編輯模式</h4><p>另外還需要 v-if 來判斷顯示，在 vue instance 的 data 新增一個<code>editedItem: null</code>，這是用來暫存編輯項目的原本內容，還用來判斷顯示編輯模式會取用的值。</p>
+<p>如果 editedItem 不是 null，就會顯示編輯模式，所以在 click 執行的函式中，會把原本項目的內容存到這裏來，這樣編輯模式也會顯示。原本的待辦項目顯示用 v-else 則不會渲染出來。</p>
+<p>註：這邊 v-if 也需要判斷暫存資料（editedItem）中的 index 跟目前選取的項目 index 是否相同，這樣編輯模式才會一次顯示一個。</p>
+<p>html：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"todo-list"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 編輯項目顯示 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"editing"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-if</span>=<span class="string">"editedItem !== null &amp;&amp; editedItem.index === index"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"edit"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">"item.text"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">keyup.enter</span>=<span class="string">"editFinished(item)"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">keyup.esc</span>=<span class="string">"cancelEdit(item)"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-focus</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 待辦項目顯示 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;completed: item.completed&#125;"</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">....</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> @<span class="attr">click</span>=<span class="string">"editItem(item, index)"</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">...</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="編輯的部分需要三個功能"><a href="#編輯的部分需要三個功能" class="headerlink" title="編輯的部分需要三個功能"></a>編輯的部分需要三個功能</h4><ul>
+<li>在原本項目上 click 後執行</li>
+<li>編輯完成後 keyup.enter 執行函式</li>
+<li>取消編輯，keyup.esc 執行函式</li>
+</ul>
+<p><strong>Click 後執行函式</strong></p>
+<p>觸發事件後執行<code>editItem(item, index)</code>。<br>把 data 中要當作暫存的 editedItem 指定為目前項目的內容、狀態，index 也加起來是為了判斷編輯模式只會顯示在正確的項目。<br>這邊不用<code>this.editedItem = item</code>，是因為這樣會變成直接引用，只要 item 有修改，暫存區的內容也會跟著修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">          editedItem: <span class="literal">null</span>, <span class="comment">// 單一項目編輯的暫存，編輯的v-if判斷</span></span><br><span class="line">          &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">          <span class="comment">// editedItem是用來點擊後暫存編輯前的資料，不直接引入項目名稱是因為會連動，所以單純保存資料</span></span><br><span class="line">      editItem(item, index) &#123;</span><br><span class="line">          <span class="comment">// 多了一個index是要在html中用來判斷v-if顯示點擊的單一項目來編輯</span></span><br><span class="line">          <span class="keyword">this</span>.editedItem = &#123;</span><br><span class="line">              index: index,</span><br><span class="line">              text: item.text,</span><br><span class="line">              completed: item.completed</span><br><span class="line">          &#125;;</span><br><span class="line">      &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>編輯完成按下 enter 後執行函式</strong></p>
+<p>在編輯模式的 input 中用了 v-model 綁定<code>item.text</code>，輸入會直接綁定 item 的內容。<br>按下 enter 則是會把用來暫存的 editedItem 清空改為 null，也會讓編輯模式的 v-if 條件變為 false 而不渲染出來。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    <span class="comment">// 編輯時按下enter，會直接清空暫存資料，v-if會等false就不顯示，內容直接綁定v-model</span></span><br><span class="line">    editFinished(item) &#123;</span><br><span class="line">        <span class="keyword">this</span>.editedItem = <span class="literal">null</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>取消編輯，按下 esc 後執行函式</strong></p>
+<p>Click 後進入編輯模式後，尚未編輯或者是編輯到一半，因為 v-model 綁定輸入值，所以按下 esc 後要從暫存的地方取回資料後再去清空改為 null。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    <span class="comment">// 編輯時在按下enter前要取消，按下esc會執行</span></span><br><span class="line">    <span class="comment">// 因為v-model綁定輸入值，所以要從暫存區取回資料</span></span><br><span class="line">    cancelEdit(item) &#123;</span><br><span class="line">        item.text = <span class="keyword">this</span>.editedItem.text;</span><br><span class="line">        <span class="keyword">this</span>.editedItem = <span class="literal">null</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>補充：進入編輯模式後，自動 focus 在 input 上</strong></p>
+<p>在 html 的 input 中加上<code>v-focus=&quot;true&quot;</code>。<br>這樣在 click 顯示編輯模式的時候也會直接 focus 在 input 上。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// auto focus，下方寫完後，在html中需要自動focus的元素加上v-focus="true"</span></span><br><span class="line">directives: &#123;</span><br><span class="line">    focus: &#123;</span><br><span class="line">        inserted(el) &#123;</span><br><span class="line">            el.focus()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="篩選狀態後顯示項目-1"><a href="#篩選狀態後顯示項目-1" class="headerlink" title="篩選狀態後顯示項目"></a>篩選狀態後顯示項目</h3><p>篩選的這個功能也是卡關很久，也是參考跟編輯功能相同資源來學習。</p>
+<ul>
+<li><a href="https://www.zmrenwu.com/courses/vue2x-todo-tutorial/materials/48/" target="_blank" rel="noopener">參考來源</a></li>
+</ul>
+<p>在 vue instance 的 data 中新增 filterTask，預設用<code>&#39;all&#39;</code>，意思就是顯示全部。再用 computed 來計算屬性（fitlerItems），在 html 透過綁定 click 事件來修改 filterTask 的內容，進而觸發 computed 的屬性計算。</p>
+<p>computed 的 filterItems，在判斷 data 中 filterTask 的值後再用 filter 來 return 值。<br>如果是<code>&#39;active&#39;</code>，return 的則會是只有 item.completed = false 的 item。<br>如果是<code>&#39;completed&#39;</code>，return 的則會是只有 item.completed = true 的 item。<br>其餘的（也就是<code>&#39;all&#39;</code>），就會 return 在 vue instance 中的待辦項目陣列。</p>
+<p>用 v-for 來顯示待辦項目中的陣列也改為 computed 中的 filterItems 來渲染。</p>
+<p>另外每一個篩選的按鈕要綁定 class，用三元判斷式來判斷 filterTask 的內容，如果符合=true，就回傳<code>selected</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"todo-list"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- v-for 渲染的陣列改為computed中的filterItems --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in filterItems"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>...<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer"</span> <span class="attr">v-if</span>=<span class="string">"items != ''"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"todo-count"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123;todoLen&#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"filters"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"#/all"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:class</span>=<span class="string">"(filterTask == 'all')? 'selected' : ''"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">click</span>=<span class="string">"filterTask ='all'"</span></span></span><br><span class="line"><span class="tag">        &gt;</span>All<span class="tag">&lt;/<span class="name">a</span></span></span><br><span class="line"><span class="tag">      &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"#/active"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:class</span>=<span class="string">"(filterTask == 'active')? 'selected' : ''"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">click</span>=<span class="string">"filterTask ='active'"</span></span></span><br><span class="line"><span class="tag">        &gt;</span>Active<span class="tag">&lt;/<span class="name">a</span></span></span><br><span class="line"><span class="tag">      &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span></span></span><br><span class="line"><span class="tag">        <span class="attr">href</span>=<span class="string">"#/completed"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:class</span>=<span class="string">"(filterTask == 'completed')? 'selected' : ''"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">click</span>=<span class="string">"filterTask ='completed'"</span></span></span><br><span class="line"><span class="tag">        &gt;</span>Completed<span class="tag">&lt;/<span class="name">a</span></span></span><br><span class="line"><span class="tag">      &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"clear-completed"</span> @<span class="attr">click</span>=<span class="string">"clearCompleted"</span>&gt;</span></span><br><span class="line">    Clear completed</span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">   data:&#123;</span><br><span class="line"><span class="javascript">       filterTask: <span class="string">'all'</span>, <span class="comment">// 用來篩選項目，預設為顯示全部</span></span></span><br><span class="line">   &#125;,</span><br><span class="line"><span class="javascript">   <span class="comment">// 計算屬性，判定篩選項目</span></span></span><br><span class="line">  computed: &#123;</span><br><span class="line">  	filterItems() &#123;</span><br><span class="line"><span class="javascript">  		<span class="keyword">if</span> (<span class="keyword">this</span>.filterTask === <span class="string">'active'</span>) &#123;</span></span><br><span class="line"><span class="javascript">  			<span class="keyword">return</span> <span class="keyword">this</span>.items.filter(<span class="function"><span class="params">item</span> =&gt;</span> !item.completed)</span></span><br><span class="line"><span class="javascript">  		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.filterTask === <span class="string">'completed'</span>) &#123;</span></span><br><span class="line"><span class="javascript">  			<span class="keyword">return</span> <span class="keyword">this</span>.items.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.completed)</span></span><br><span class="line"><span class="javascript">  		&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">  			<span class="comment">// 剩下就是'all'</span></span></span><br><span class="line"><span class="javascript">  			<span class="keyword">return</span> <span class="keyword">this</span>.items</span></span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="資料存進-localsotrage"><a href="#資料存進-localsotrage" class="headerlink" title="資料存進 localsotrage"></a>資料存進 localsotrage</h3><p>做完上面這些功能，可以說是完成了，但只要網頁一重新整理，全部的待辦事項都會清空了，所以這時候就需要使用瀏覽器中的 localstorage 來存取。</p>
+<p>使用 js 語法，把儲存與獲取的兩個 function 指定在一個物件裡面，方便取用。<br>要注意，存進 localstorage 時要轉為字串，取用時要用 parse 把字串解析回來。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> storageLists = <span class="string">"toDoMVC-vue"</span>;</span><br><span class="line"><span class="keyword">let</span> todoStorage = &#123;</span><br><span class="line">  getToDos() &#123;</span><br><span class="line">    <span class="comment">// 如果一開始localstorage中沒有資料，會取得[]空陣列</span></span><br><span class="line">    <span class="keyword">let</span> todos = <span class="built_in">JSON</span>.parse(localStorage.getItem(storageLists) || <span class="string">"[]"</span>);</span><br><span class="line">    <span class="keyword">return</span> todos;</span><br><span class="line">  &#125;,</span><br><span class="line">  saveToDos(item) &#123;</span><br><span class="line">    localStorage.setItem(storageLists, <span class="built_in">JSON</span>.stringify(item));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在設定好 localstorage 存取的函式後，就可以來設定什麼時候存取了。<br>vue instance data 中的 itmes 待辦項目陣列，直接指定執行獲取 localstorage 的函式。<br>watch 偵聽 items 陣列，只要 items 中有資料變更，就會存到 localstorage 中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    items: todoStorage.getToDos(), <span class="comment">// 在建立vue instance的時候直接取資料</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// 用watch偵聽items陣列，只要items中有資料變更，就會存到localstorage中</span></span><br><span class="line">watch: &#123;</span><br><span class="line">    items: &#123;</span><br><span class="line">        handler(items) &#123;</span><br><span class="line">            todoStorage.saveToDos(items);</span><br><span class="line">        &#125;,</span><br><span class="line">        deep: <span class="literal">true</span> <span class="comment">// 偵聽陣列</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="mounted-執行未完成項目數量的初始化"><a href="#mounted-執行未完成項目數量的初始化" class="headerlink" title="mounted 執行未完成項目數量的初始化"></a>mounted 執行未完成項目數量的初始化</h3><p> 在左下角會顯示剩餘未完成項目的數量，在更新網頁時會歸零，因為在 vue data 中預設值是 0。<br>為了處理這個狀況，在 methods 中寫了一個初始化數量的函式，用 for 迴圈來判斷整個待辦項目陣列的長度後，再來判斷狀態為 false 的話，數量參數 todoLen 就要+1。</p>
+<p>並在 vue 中的 mounted 中去執行這個函式，這樣才每次網頁重新整理建立 vue 的時候就會執行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    initTodoLen() &#123;</span><br><span class="line">        <span class="keyword">let</span> itemsLen = <span class="keyword">this</span>.items.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; itemsLen; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.items[i].completed === <span class="literal">false</span>) &#123;</span><br><span class="line">                <span class="keyword">this</span>.todoLen++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">mounted() &#123;</span><br><span class="line">    <span class="keyword">this</span>.initTodoLen();</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todoMVC-分析"><span class="toc-number">2.</span> <span class="toc-text">todoMVC 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新增待辦項目"><span class="toc-number">2.0.1.</span> <span class="toc-text">新增待辦項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#刪除待辦項目"><span class="toc-number">2.0.2.</span> <span class="toc-text">刪除待辦項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改項目狀態"><span class="toc-number">2.0.3.</span> <span class="toc-text">修改項目狀態</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#選取（取消選取）全部"><span class="toc-number">2.0.4.</span> <span class="toc-text">選取（取消選取）全部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清除已完成項目"><span class="toc-number">2.0.5.</span> <span class="toc-text">清除已完成項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#編輯已存在的項目"><span class="toc-number">2.0.6.</span> <span class="toc-text">編輯已存在的項目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#篩選狀態後顯示項目"><span class="toc-number">2.0.7.</span> <span class="toc-text">篩選狀態後顯示項目</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-number">3.</span> <span class="toc-text">功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增待辦項目-1"><span class="toc-number">3.1.</span> <span class="toc-text">新增待辦項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刪除待辦項目-1"><span class="toc-number">3.2.</span> <span class="toc-text">刪除待辦項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改項目狀態-1"><span class="toc-number">3.3.</span> <span class="toc-text">修改項目狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#選取（取消選取）全部-1"><span class="toc-number">3.4.</span> <span class="toc-text">選取（取消選取）全部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除已完成項目-1"><span class="toc-number">3.5.</span> <span class="toc-text">清除已完成項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#編輯已存在的項目-1"><span class="toc-number">3.6.</span> <span class="toc-text">編輯已存在的項目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-if-判斷顯示編輯模式"><span class="toc-number">3.6.1.</span> <span class="toc-text">v-if 判斷顯示編輯模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#編輯的部分需要三個功能"><span class="toc-number">3.6.2.</span> <span class="toc-text">編輯的部分需要三個功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#篩選狀態後顯示項目-1"><span class="toc-number">3.7.</span> <span class="toc-text">篩選狀態後顯示項目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#資料存進-localsotrage"><span class="toc-number">3.8.</span> <span class="toc-text">資料存進 localsotrage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mounted-執行未完成項目數量的初始化"><span class="toc-number">3.9.</span> <span class="toc-text">mounted 執行未完成項目數量的初始化</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/06/vue-todoMVC/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/06/vue-todoMVC/&text=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/06/vue-todoMVC/&is_video=false&description=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - todoMVC-待辦事項功能實作&body=Check out this article: https://orow.github.io/2019/05/06/vue-todoMVC/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/06/vue-todoMVC/&title=[Vue] - todoMVC-待辦事項功能實作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/06/vue-todoMVC/&name=[Vue] - todoMVC-待辦事項功能實作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

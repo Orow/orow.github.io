@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="AJAX概論Asynchronous JavaScript And XML = AJAXAJAX 並非是一個技術（Technology），而是一種網站設計的架構（Architecture），雖然主要以 JavaScript 與 XML 為主，但還包括其它成員，也就是 CSS、DOM（Document Object Model）與 HTML 等，特別是 XMLHttpRequest 元件，使 AJA">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - AJAX">
+<meta property="og:url" content="https://orow.github.io/2019/03/11/ajax-javascript/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="AJAX概論Asynchronous JavaScript And XML = AJAXAJAX 並非是一個技術（Technology），而是一種網站設計的架構（Architecture），雖然主要以 JavaScript 與 XML 為主，但還包括其它成員，也就是 CSS、DOM（Document Object Model）與 HTML 等，特別是 XMLHttpRequest 元件，使 AJA">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/38uu0Fw.png">
+<meta property="og:image" content="https://i.imgur.com/pDb67jR.png">
+<meta property="og:image" content="https://i.imgur.com/WMkEuLP.png">
+<meta property="og:image" content="https://i.imgur.com/6LGJsug.png">
+<meta property="og:image" content="https://i.imgur.com/xXTCXLX.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - AJAX">
+<meta name="twitter:description" content="AJAX概論Asynchronous JavaScript And XML = AJAXAJAX 並非是一個技術（Technology），而是一種網站設計的架構（Architecture），雖然主要以 JavaScript 與 XML 為主，但還包括其它成員，也就是 CSS、DOM（Document Object Model）與 HTML 等，特別是 XMLHttpRequest 元件，使 AJA">
+<meta name="twitter:image" content="https://i.imgur.com/38uu0Fw.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - AJAX</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/11/ajax-js-sideproject/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/10/localstorage-sideproject/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/11/ajax-javascript/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/11/ajax-javascript/&text=[JavaScript] - AJAX"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/11/ajax-javascript/&is_video=false&description=[JavaScript] - AJAX"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX&body=Check out this article: https://orow.github.io/2019/03/11/ajax-javascript/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/11/ajax-javascript/&name=[JavaScript] - AJAX&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX"><span class="toc-number">1.</span> <span class="toc-text">AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XMLHttpRequest"><span class="toc-number">1.1.</span> <span class="toc-text">XMLHttpRequest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asynchronous-非同步-概念"><span class="toc-number">1.2.</span> <span class="toc-text">Asynchronous(非同步)概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-狀態碼"><span class="toc-number">1.3.</span> <span class="toc-text">HTTP 狀態碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS"><span class="toc-number">1.4.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST-Method"><span class="toc-number">1.5.</span> <span class="toc-text">POST Method</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - AJAX
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-11T13:00:00.000Z" itemprop="datePublished">2019-03-11</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/javascript/">javascript</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>概論<br>Asynchronous JavaScript And XML = AJAX<br>AJAX 並非是一個技術（Technology），而是一種網站設計的架構（Architecture），雖然主要以 JavaScript 與 XML 為主，但還包括其它成員，也就是 CSS、DOM（Document Object Model）與 HTML 等，特別是 XMLHttpRequest 元件，使 AJAX 能達到非同步資料交換的目的。<br><code>非同步資料交換（asynchronous）</code>： 瀏覽器不需重新整理就可以跟後端程式或是資料庫傳送接收資料</p>
+<p><img src="https://i.imgur.com/38uu0Fw.png" alt></p>
+<p>在 Jesse Garrett 的文章中，對 AJAX 的定義如下：<br>● 使用 XHTML 與 CSS 作為展現標準<br>● 使用 DOM 作為動態顯示與互動<br>● 使用 XML 與 XSLT 作為資料交換與運用<br>● 使用 XMLHttpRequest 作為非同步的資料回饋<br>● 使用 JavaScript 結合以上所有結果</p>
+<p><a href="https://www.ithome.com.tw/node/33060" target="_blank" rel="noopener">參考來源</a></p>
+<p>像是一般在註冊表單頁面，要輸入新增帳戶，有時候打完到一半或是打完帳號後，就有提示說已經有人註冊過。或是購物網站中的庫存數量透過選取數量或者是加入購物車後會顯示剩餘庫存，並提示是否能繼續下一步購買流程。<br>這些都是透過 ajax 的方式，不需要重新整理讀取整個頁面才能顯示。</p>
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p>透過 XMLHttpRequest 來獲取瀏覽器資料。</p>
+<p>首先要先產生<code>XMLHttpRequest()</code>才能跟其他伺服器要資料，執行這個 request 後，就會出現相對應資料。<br>Chrome 瀏覽器中 dev tool 中的 console：<br><img src="https://i.imgur.com/pDb67jR.png" alt></p>
+<p>其中 readyState 就是代表目前狀態</p>
+<pre><code>readtState
+0 - (request not initialized)已經產生一個XMLHttpRequest，但還沒有連結要撈的資料。
+1 - (server connection established)用了open()，但還沒有把資料傳送過去。
+2 - (request received)偵側到用了send。
+3 - (processing request)資訊處理中。
+4 - (request finished and response is ready)撈到資料，數據完全接收到了。
+</code></pre><p>要用<code>open()</code>指令來初始設定，<br>其中第一個參數是發出 request 的方式，第二個是讀取的網址，第三個是同步(false)與非同步(true) 。</p>
+<p>格式則有<code>get</code>(讀取)，<code>post</code>(傳送資料到伺服器)。<br>如下面程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="comment">// 格式,要讀取的網址,同步與非同步</span></span><br><span class="line"><span class="comment">// 格式: get(讀取), post(傳送資料到伺服器)</span></span><br><span class="line">xhr.open(<span class="string">"get"</span>, <span class="string">"這裡放網址"</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">// 空值，單純get，沒有要傳資料，括號中用null</span></span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<p>如果資料傳輸完畢且成功，在 XMLHttpRequest 中的 readyState 會等於 4，responseText 則是內容。</p>
+<h3 id="Asynchronous-非同步-概念"><a href="#Asynchronous-非同步-概念" class="headerlink" title="Asynchronous(非同步)概念"></a>Asynchronous(非同步)概念</h3><p>在使用 ajax 的<code>open()</code>這個指令的時候會用非同步這個概念 。<br>在 open 裡面第三個欄位的參數為。</p>
+<ul>
+<li>true: 非同步,不會等資料傳回來就讓程式繼續往下跑,等到資料跑完才自動回傳。</li>
+<li>false: 同步,會等資料跑完回傳回來,程式再繼續往下跑。</li>
+</ul>
+<p>有些伺服器的資料是很龐大的，一般來說不太可能等全部跑完再執行之後的程式碼，所以就會用非同步的概念。<br>但是非同步的狀況會遇到下面的狀況<br>程式碼中的 console.log 不會有東西出現，但之後去確認 xhr 變數卻是成功的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.open(</span><br><span class="line">  <span class="string">"get"</span>,</span><br><span class="line">  <span class="string">"https://data.kcg.gov.tw/dataset/a98754a3-3446-4c9a-abfc-58dc49f2158c/resource/48d4dfc4-a4b2-44a5-bdec-70f9558cd25d/download/yopendata1070622opendatajson-1070622.json"</span>,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(xhr.responseText); <span class="comment">// 沒有印出東西</span></span><br></pre></td></tr></table></figure>
+<p>這種情況就需要用到<code>onload</code>這個事件來解決。<br>意思就是當傳送後載入完成再去執行這個<code>onload</code>帶的 function。</p>
+<p>舉一個非同步也能夠處理的例子</p>
+<ul>
+<li>url 這邊是高雄市 opendata-電動機車充電站的資訊</li>
+<li>用 for 迴圈把種類是公共充電站加上位置名稱後，新增到清單中</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.open(</span><br><span class="line">  <span class="string">"get"</span>,</span><br><span class="line">  <span class="string">"https://data.kcg.gov.tw/dataset/a98754a3-3446-4c9a-abfc-58dc49f2158c/resource/48d4dfc4-a4b2-44a5-bdec-70f9558cd25d/download/yopendata1070622opendatajson-1070622.json"</span>,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">  <span class="comment">//轉換字串為原資料型別（這邊是JSON)</span></span><br><span class="line">  <span class="keyword">var</span> str = <span class="built_in">JSON</span>.parse(xhr.responseText);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> kind = str[i].Kind;</span><br><span class="line">    <span class="keyword">if</span> (kind == <span class="string">"公共充電站"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.querySelector(<span class="string">".list"</span>).innerHTML +=</span><br><span class="line">        <span class="string">"&lt;li&gt;"</span> + str[i].Location + <span class="string">"&lt;/li&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>總結整個流程分為以下：</p>
+<ol>
+<li>建立 XMLHttpRequest</li>
+<li>傳送到對方伺服器並要資料</li>
+<li>回傳到自己的瀏覽器</li>
+<li>拿到資料後再看要怎麼處理</li>
+</ol>
+<h3 id="HTTP-狀態碼"><a href="#HTTP-狀態碼" class="headerlink" title="HTTP 狀態碼"></a>HTTP 狀態碼</h3><p>可以透過 chrome 瀏覽器開發工具中的 Network 去確認，選擇 JS 後看到有<code>Status</code>的部分<br>這邊是用 google mpas 去打開<br><img src="https://i.imgur.com/WMkEuLP.png" alt></p>
+<p>status = 200，資料有正確回傳，有撈到。<br>status = 404，資料讀取錯誤，沒有撈到。</p>
+<p>也可以利用 if 判斷式(xhr.status == 200)，來確認有沒有撈到資料，條件成立再去執行要做的行為。</p>
+<p>詳細 http 狀況碼可以參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank" rel="noopener">MDN</a></p>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS(Cross-Prigin Resource Sharing)就是跨網域分享。<br>這邊用行政院 opendata 中<a href="http://opendata.epa.gov.tw/webapi/Data/UV/?$orderby=PublishTime%20desc&amp;$skip=0&amp;$top=1000&amp;format=json" target="_blank" rel="noopener">紫外線</a>的資料，直接在網路上打開 JSON 資料是可以瀏覽。<br>但用 ajax 方式去發出 request 會顯示下面狀況。</p>
+<p><img src="https://i.imgur.com/6LGJsug.png" alt></p>
+<p>這是 CORS 沒有被開啟的原因，可能是怕資安或是其他因素問題而不打開。</p>
+<p>紀錄一個網站可以偵測 url 有沒有辦法接受開放資料的存取。<br><a href="http://www.test-cors.org/" target="_blank" rel="noopener">test-cors.org</a></p>
+<p>用行政院 opendata 的紫外線網址去發出 request 回得到 status:0<br><img src="https://i.imgur.com/xXTCXLX.png" alt></p>
+<h3 id="POST-Method"><a href="#POST-Method" class="headerlink" title="POST Method"></a>POST Method</h3><p><code>POST</code>可以把資料傳到遠端資料去執行行為。<br>POST 相比 GET 需要在 open 之後多一個指令<code>setRequestHeader</code>，告訴伺服器現在要傳送資料、並告知資料的格式。而<code>setRequestHeader</code>與<code>send</code>也會因為格式不同而要傳送不同的內容。</p>
+<p>這邊用註冊的概念來舉例，送出要註冊的帳號密碼，可以透過 xhr 中的<code>responsText</code>來確認是不是有相同帳號。</p>
+<p>傳統格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'post'</span>,<span class="string">'url'</span>,<span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(“Content-type”,“application/x-www-form-urlencoded”);</span><br><span class="line">xhr.send(<span class="string">"email=abcde1111@gmail.com&amp;password=12345"</span>);</span><br></pre></td></tr></table></figure>
+<p>JSON 格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> account = &#123;</span><br><span class="line">  email: <span class="string">"qweasdqq@gamil.com"</span>,</span><br><span class="line">  password: <span class="string">"555"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">"post"</span>, <span class="string">"url"</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/json"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send()中需要用字串傳進去</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.stringify(account);</span><br><span class="line">xhr.send(data);</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX"><span class="toc-number">1.</span> <span class="toc-text">AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XMLHttpRequest"><span class="toc-number">1.1.</span> <span class="toc-text">XMLHttpRequest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asynchronous-非同步-概念"><span class="toc-number">1.2.</span> <span class="toc-text">Asynchronous(非同步)概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-狀態碼"><span class="toc-number">1.3.</span> <span class="toc-text">HTTP 狀態碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS"><span class="toc-number">1.4.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST-Method"><span class="toc-number">1.5.</span> <span class="toc-text">POST Method</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/11/ajax-javascript/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/11/ajax-javascript/&text=[JavaScript] - AJAX"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/11/ajax-javascript/&is_video=false&description=[JavaScript] - AJAX"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - AJAX&body=Check out this article: https://orow.github.io/2019/03/11/ajax-javascript/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/11/ajax-javascript/&title=[JavaScript] - AJAX"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/11/ajax-javascript/&name=[JavaScript] - AJAX&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

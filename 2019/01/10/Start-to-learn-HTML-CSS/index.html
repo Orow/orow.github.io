@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="1. 從零開始 From ScratchMentor：要踏入網頁需要先了解HTML與CSS是什麼 HTML(mark up) - 標籤式語言，網頁的結構與內容，會是使用者所看到，瀏覽頁面所接收到的信息CSS(style) - 外觀的控制，用來修飾網頁，字體、顏色、背景、邊框等等  在什麼都不會,沒有基礎的狀況下，直接從做中學開始  2. 最早接觸到的HTML &amp;amp; CSS - freeC">
+<meta name="keywords" content="html,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn HTML &amp; CSS(新手村)">
+<meta property="og:url" content="https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="1. 從零開始 From ScratchMentor：要踏入網頁需要先了解HTML與CSS是什麼 HTML(mark up) - 標籤式語言，網頁的結構與內容，會是使用者所看到，瀏覽頁面所接收到的信息CSS(style) - 外觀的控制，用來修飾網頁，字體、顏色、背景、邊框等等  在什麼都不會,沒有基礎的狀況下，直接從做中學開始  2. 最早接觸到的HTML &amp;amp; CSS - freeC">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/XvOkZrb.png">
+<meta property="og:image" content="https://i.imgur.com/0Y9OvCV.png">
+<meta property="og:image" content="https://i.imgur.com/m2pKjSt.png">
+<meta property="og:image" content="https://i.imgur.com/afVSRBJ.png">
+<meta property="og:image" content="https://i.imgur.com/rxyZhMf.png">
+<meta property="og:image" content="https://i.imgur.com/5jM2642.png">
+<meta property="og:image" content="https://i.imgur.com/jkQxZ5J.png">
+<meta property="og:image" content="https://i.imgur.com/BXz0KrK.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn HTML &amp; CSS(新手村)">
+<meta name="twitter:description" content="1. 從零開始 From ScratchMentor：要踏入網頁需要先了解HTML與CSS是什麼 HTML(mark up) - 標籤式語言，網頁的結構與內容，會是使用者所看到，瀏覽頁面所接收到的信息CSS(style) - 外觀的控制，用來修飾網頁，字體、顏色、背景、邊框等等  在什麼都不會,沒有基礎的狀況下，直接從做中學開始  2. 最早接觸到的HTML &amp;amp; CSS - freeC">
+<meta name="twitter:image" content="https://i.imgur.com/XvOkZrb.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Learn HTML &amp; CSS(新手村)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/17/git/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&text=Learn HTML &amp; CSS(新手村)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&is_video=false&description=Learn HTML &amp; CSS(新手村)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Learn HTML &amp; CSS(新手村)&body=Check out this article: https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&name=Learn HTML &amp; CSS(新手村)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-從零開始-From-Scratch"><span class="toc-number">1.</span> <span class="toc-text">1. 從零開始 From Scratch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-最早接觸到的HTML-amp-CSS-freeCodeCamp"><span class="toc-number">2.</span> <span class="toc-text">2. 最早接觸到的HTML &amp; CSS - freeCodeCamp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-HTML-freeCodeCamp"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 HTML-freeCodeCamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-CSS-freeCodeCamp"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 CSS-freeCodeCamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-CSS版面學習網站"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 CSS版面學習網站</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Learn HTML &amp; CSS(新手村)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-10T06:18:43.000Z" itemprop="datePublished">2019-01-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/test/">test</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/css/">css</a>, <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-從零開始-From-Scratch"><a href="#1-從零開始-From-Scratch" class="headerlink" title="1. 從零開始 From Scratch"></a>1. 從零開始 From Scratch</h2><p><br><em>Mentor：要踏入網頁需要先了解HTML與CSS是什麼</em></p>
+<p>HTML(mark up) - 標籤式語言，網頁的結構與內容，會是使用者所看到，瀏覽頁面所接收到的信息<br>CSS(style) - 外觀的控制，用來修飾網頁，字體、顏色、背景、邊框等等</p>
+<blockquote>
+<p>在什麼都不會,沒有基礎的狀況下，直接從<strong>做中學</strong>開始</p>
+</blockquote>
+<h2 id="2-最早接觸到的HTML-amp-CSS-freeCodeCamp"><a href="#2-最早接觸到的HTML-amp-CSS-freeCodeCamp" class="headerlink" title="2. 最早接觸到的HTML &amp; CSS - freeCodeCamp"></a>2. 最早接觸到的HTML &amp; CSS - freeCodeCamp</h2><p>這是一個線上學習的課程，依照網站上每個小單元的過關條件進行coding，如果不會寫卡住，也有提示可以參考，且是直接在網頁上coding，這對於新手沒有接觸過程式、編輯器安裝等，個人是覺得很友善的。而且是免費的！！<br>想試試看請點擊: <a href="https://learn.freecodecamp.org/" target="_blank" rel="noopener">freeCodeCamp</a></p>
+<h3 id="2-1-HTML-freeCodeCamp"><a href="#2-1-HTML-freeCodeCamp" class="headerlink" title="2.1 HTML-freeCodeCamp"></a>2.1 HTML-freeCodeCamp</h3><ol>
+<li>h1,h2等標題tag</li>
+<li>段落paragraph - p</li>
+<li>comment to HTML</li>
+<li>插入image</li>
+<li>a link<pre><code>href=&apos;url&apos;     - 點擊後可以直接跳到該網址
+href=&apos;#footer&apos; - 點擊後可以直接跳到元素中id=&quot;footer&quot;的位置
+href=&apos;#&apos; - 點擊會回到網頁最上端
+target=&quot;_blank&quot; - 點擊後是另開視窗
+</code></pre></li>
+<li>ul/ol - unordered list &amp; ordered list<pre><code>都會接著包li
+ul是圓點顯示，li用編號顯示
+</code></pre></li>
+<li>input<pre><code>type=&apos;text&apos; - 可輸入內容
+placeholder - 該欄位在為輸入前顯示的內容
+required - 放在form如果submit出去時，沒有輸入內容會被擋下
+</code></pre></li>
+<li>form<pre><code>action=&quot;&quot; - submit後送到server的位址
+</code></pre></li>
+<li>button<pre><code>type=&quot;submit&quot; - 放在form內,點擊就會執行submit
+</code></pre></li>
+<li>radio buuton<pre><code>input type=&apos;radio&apos;
+name 彼此需要是相同的名稱，否則會可以複選
+checked - default =&gt; 一開啟網頁就選取
+</code></pre></li>
+<li>checkbox <pre><code>input type=&apos;checkbox&apos; 可複選
+checked - default =&gt; 一開啟網頁就選取
+</code></pre></li>
+<li>div<pre><code>用div將上面的h1, p, img, a, form ,ul等等包起來
+</code></pre></li>
+<li>html =&gt; head + body<pre><code>head中含title
+body為網頁顯示內容
+</code></pre></li>
+</ol>
+<h3 id="2-2-CSS-freeCodeCamp"><a href="#2-2-CSS-freeCodeCamp" class="headerlink" title="2.2 CSS-freeCodeCamp"></a>2.2 CSS-freeCodeCamp</h3><ol>
+<li>文字顏色, 字體大小<pre><code>inline - &lt;標籤 style=&quot;color: blue;&quot;&gt;CatPhotoApp&lt;/標籤&gt;
+style - 寫在html中
+</code></pre></li>
+<li>圖片大小 - width: 可以用px, %等等</li>
+<li>border<pre><code>顏色，寬度，實線虛線等
+radius - 倒角，50%即是圓形
+</code></pre></li>
+<li>background - 背景顏色，大小</li>
+<li>透過id &amp; class進行選擇<pre><code>id = #
+class = .
+</code></pre></li>
+<li>padding - 調整內距</li>
+<li>margin - 調整邊框</li>
+<li>選擇type<pre><code>選擇type是radio的 =&gt; [type=&apos;radio&apos;]
+</code></pre></li>
+<li>權重<pre><code>後面的CSS會覆蓋前面的
+!important &gt; inline的CSS &gt; id &gt; class &gt; element
+</code></pre></li>
+</ol>
+<h3 id="2-3-CSS版面學習網站"><a href="#2-3-CSS版面學習網站" class="headerlink" title="2.3 CSS版面學習網站"></a>2.3 CSS版面學習網站</h3><p><a href="http://zh-tw.learnlayout.com/" target="_blank" rel="noopener">學習CSS版面配置</a> - 點擊此標題可連結</p>
+<ol>
+<li>display</li>
+</ol>
+<ul>
+<li>block - div就是一個區塊元素，會讓內容從新的一行開始並盡可能地充滿容器</li>
+<li>inline - span就是行內元素，a也是行內元素</li>
+<li>none - 會隱藏但不會刪除該原本內容的空間</li>
+<li>inline-block - 改變為行內的區塊<br><img src="https://i.imgur.com/XvOkZrb.png" alt></li>
+</ul>
+<ol start="2">
+<li>margin: auto;  </li>
+</ol>
+<ul>
+<li>區塊元素的width，避免左到右完全撐滿容器，可以設定左右外邊距(margin-left, margin-right)為auto  </li>
+<li>margin: 0 auto; //第一個參數代表上下，第二個為左右</li>
+<li>max-width -水平auto可能因為視窗比元素寬度還小導致出現水平捲軸，此時可以用max-width來解決</li>
+</ul>
+<ol start="3">
+<li>Box Model<br><img src="https://i.imgur.com/0Y9OvCV.png" alt></li>
+</ol>
+<ul>
+<li>當設定元素的的寬度,但顯示卻超過你的設定=&gt; 因為margin(邊框),border(邊界)都會撐開進而影響元素大小</li>
+<li>可以用<code>box-sizing:border-box</code>來修飾 =&gt;這個元素的margin,border則都不會增加元素本身大小</li>
+<li>-webkit-box-sizing =&gt; 支援safari</li>
+<li>-moz-box-sizing =&gt; 支援firefox</li>
+</ul>
+<ol start="4">
+<li>position</li>
+</ol>
+<ul>
+<li><p>relative - 不會有特別表現，除非增加了額外的屬性<br>sample</p>
+<ul>
+<li>top: -20px;</li>
+<li>left: 20px;</li>
+<li>width: 500px;<br><img src="https://i.imgur.com/m2pKjSt.png" alt></li>
+</ul>
+</li>
+<li><p>fixed - 和relative一樣，會用top, right, bottom, left來進行定位。但是是相對於瀏覽器的視窗，就算頁面捲動還是固定在相同位置</p>
+</li>
+<li><p>absolute - 與fixed很像，但不一樣的地方是定位在該元素所處的上一層容器的相對位置</p>
+<ul>
+<li>sample<br><img src="https://i.imgur.com/afVSRBJ.png" alt></li>
+<li>如果上層容器沒有可以被定位的容器，就會依照該網頁的所有內容(body)進行定位，就會跟fixed相同</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>float - 用在文繞圖</li>
+</ol>
+<ul>
+<li><p>sample<br><img src="https://i.imgur.com/rxyZhMf.png" alt></p>
+</li>
+<li><p>clear屬性</p>
+<ul>
+<li>因為float是浮動的概念，很可能會漂浮在下一個元素上，導致看起來像是下一個元素將上一個元素包起來<br><img src="https://i.imgur.com/5jM2642.png" alt></li>
+<li>如果想要讓此狀況顯示順序正常則需要用到clear屬性，也可以直些使用clear:both;<br><img src="https://i.imgur.com/jkQxZ5J.png" alt></li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>media queries - 響應式設計(Responsive Design)</li>
+</ol>
+<ul>
+<li>針對不同瀏覽器與裝置響應不同顯示效果<br><img src="https://i.imgur.com/BXz0KrK.png" alt></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-從零開始-From-Scratch"><span class="toc-number">1.</span> <span class="toc-text">1. 從零開始 From Scratch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-最早接觸到的HTML-amp-CSS-freeCodeCamp"><span class="toc-number">2.</span> <span class="toc-text">2. 最早接觸到的HTML &amp; CSS - freeCodeCamp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-HTML-freeCodeCamp"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 HTML-freeCodeCamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-CSS-freeCodeCamp"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 CSS-freeCodeCamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-CSS版面學習網站"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 CSS版面學習網站</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&text=Learn HTML &amp; CSS(新手村)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&is_video=false&description=Learn HTML &amp; CSS(新手村)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Learn HTML &amp; CSS(新手村)&body=Check out this article: https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&title=Learn HTML &amp; CSS(新手村)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/01/10/Start-to-learn-HTML-CSS/&name=Learn HTML &amp; CSS(新手村)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

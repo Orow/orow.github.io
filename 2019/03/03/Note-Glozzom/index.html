@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Demo切版練習-Glozzom Multi Page - Demo 1. Introduction 網頁介紹此版面有五個頁面： Home, About, Services, Blog, Contact。Home 頁面用到 slider(bootstrap)、有兩個區塊的背景圖片不會隨著捲動而移動，用到了modal與iframe來顯示 youtube 的影片，用lightbox顯示照片。About">
+<meta name="keywords" content="bootstrap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Bootstrap] - 切版練習-Glozzom Multi Page">
+<meta property="og:url" content="https://orow.github.io/2019/03/03/Note-Glozzom/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="Demo切版練習-Glozzom Multi Page - Demo 1. Introduction 網頁介紹此版面有五個頁面： Home, About, Services, Blog, Contact。Home 頁面用到 slider(bootstrap)、有兩個區塊的背景圖片不會隨著捲動而移動，用到了modal與iframe來顯示 youtube 的影片，用lightbox顯示照片。About">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/tNrLRgh.png">
+<meta property="og:image" content="https://i.imgur.com/KPPvFHq.png">
+<meta property="og:image" content="https://i.imgur.com/5SBqVp6.png">
+<meta property="og:image" content="https://i.imgur.com/Ikwa2tv.png">
+<meta property="og:image" content="https://i.imgur.com/KW8EbXR.png">
+<meta property="og:image" content="https://i.imgur.com/BE0VEsS.png">
+<meta property="og:image" content="https://i.imgur.com/nPa1CgI.png">
+<meta property="og:image" content="https://i.imgur.com/QhgC8sD.png">
+<meta property="og:image" content="https://i.imgur.com/6nCcQRy.png">
+<meta property="og:image" content="https://i.imgur.com/dZIVgLO.png">
+<meta property="og:image" content="https://i.imgur.com/uBHf77f.png">
+<meta property="og:image" content="https://i.imgur.com/0OurJto.png">
+<meta property="og:image" content="https://i.imgur.com/yBVd0MI.png">
+<meta property="og:image" content="https://i.imgur.com/ukWtLKv.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Bootstrap] - 切版練習-Glozzom Multi Page">
+<meta name="twitter:description" content="Demo切版練習-Glozzom Multi Page - Demo 1. Introduction 網頁介紹此版面有五個頁面： Home, About, Services, Blog, Contact。Home 頁面用到 slider(bootstrap)、有兩個區塊的背景圖片不會隨著捲動而移動，用到了modal與iframe來顯示 youtube 的影片，用lightbox顯示照片。About">
+<meta name="twitter:image" content="https://i.imgur.com/tNrLRgh.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Bootstrap] - 切版練習-Glozzom Multi Page</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/05/Note-Blogen/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/28/basic-javascript/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/03/Note-Glozzom/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/03/Note-Glozzom/&text=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/03/Note-Glozzom/&is_video=false&description=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Bootstrap] - 切版練習-Glozzom Multi Page&body=Check out this article: https://orow.github.io/2019/03/03/Note-Glozzom/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/03/Note-Glozzom/&name=[Bootstrap] - 切版練習-Glozzom Multi Page&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-網頁介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 網頁介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Layout-Notes"><span class="toc-number">3.</span> <span class="toc-text">2. Layout Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Home"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Home</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-About"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 About</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Services"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Services</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Blog"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 Blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Contact"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 Contact</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Bootstrap] - 切版練習-Glozzom Multi Page
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-03T06:18:43.000Z" itemprop="datePublished">2019-03-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/bootstrap/">bootstrap</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>切版練習-Glozzom Multi Page - <a href="https://orow.github.io/MyProjects/BootstrapWith5Projects/Glozzom-Practice/index.html">Demo</a></p>
+<h2 id="1-Introduction-網頁介紹"><a href="#1-Introduction-網頁介紹" class="headerlink" title="1. Introduction 網頁介紹"></a>1. Introduction 網頁介紹</h2><p>此版面有五個頁面： Home, About, Services, Blog, Contact。<br>Home 頁面用到 slider(bootstrap)、有兩個區塊的背景圖片不會隨著捲動而移動，用到了<code>modal</code>與<code>iframe</code>來顯示 youtube 的影片，用<code>lightbox</code>顯示照片。<br>About 頁面則是有一區塊背景圖不隨著捲動來移動，最後用的是<code>slick</code>的方式。<br>Service 頁面主要有一個區塊用 card 的方式去呈現（裡面有 list 與 font-awesome icon），最後用 accordion 呈現 FAQ。<br>Blog 頁面用了 bootstrap 的<code>card-columns</code>來排版。<br>最後的 contact 頁面則是一般的聯絡資訊，表單，還有 staff 的資料與照片呈現。</p>
+<h2 id="2-Layout-Notes"><a href="#2-Layout-Notes" class="headerlink" title="2. Layout Notes"></a>2. Layout Notes</h2><h3 id="2-1-Home"><a href="#2-1-Home" class="headerlink" title="2.1 Home"></a>2.1 Home</h3><p>Showcase - Carousel slider，是整個背景圖片 slide，還有<code>indicator</code>, arrow 加上內容描述，arrow 要加上<code>slide prev &amp; next</code>的功能，背景圖片這邊要注意,包著他的容器要給高度,若高度不是給容器則無法填滿。<br>接在下面的section 則是<code>font-awesome icon</code>加上文字敘述。<br><img src="https://i.imgur.com/tNrLRgh.png" alt></p>
+<p>下面兩處紅框區則是背景圖固定，不隨滑鼠捲動而移動，高度用<code>min-height</code>，可以透過<code>backgropund-position</code>來調整背景圖位置。<br>箭頭處則是<code>modal</code>。<br><img src="https://i.imgur.com/KPPvFHq.png" alt></p>
+<p>點擊後彈出視窗（iframe）<br>modal + iframe 參照範例與套件<br><img src="https://i.imgur.com/5SBqVp6.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Video modal --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal fade"</span> <span class="attr">id</span>=<span class="string">"videomodal"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-dialog"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-content"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-body"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"close"</span> <span class="attr">data-dismiss</span>=<span class="string">"modal"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">height</span>=<span class="string">"350"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Video Play</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Auto play modal video</span></span><br><span class="line">  $(<span class="string">".video"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> theModal = $(<span class="keyword">this</span>).data(<span class="string">"target"</span>),</span><br><span class="line">      videoSRC = $(<span class="keyword">this</span>).attr(<span class="string">"data-video"</span>),</span><br><span class="line">      videoSRCauto =</span><br><span class="line">        videoSRC +</span><br><span class="line">        <span class="string">"?modestbranding=1&amp;rel=0&amp;controls=0&amp;showinfo=0&amp;html5=1&amp;autoplay=1"</span>;</span><br><span class="line">    $(theModal + <span class="string">" iframe"</span>).attr(<span class="string">"src"</span>, videoSRCauto);</span><br><span class="line">    $(theModal + <span class="string">" button.close"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(theModal + <span class="string">" iframe"</span>).attr(<span class="string">"src"</span>, videoSRC);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Photo-gallery section: 用到 lightbox，照片我用 unsplash 隨機的照片。<br>lightbox 需要引用 CDN，<a href="http://ashleydw.github.io/lightbox/" target="_blank" rel="noopener">Lightbox for Bootstrap</a><br><img src="https://i.imgur.com/Ikwa2tv.png" alt></p>
+<p>點擊會跳出額外視窗<br><img src="https://i.imgur.com/KW8EbXR.png" alt></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Lightbox Init</span></span><br><span class="line">$(<span class="built_in">document</span>).on(<span class="string">"click"</span>, <span class="string">'[data-toggle="lightbox"]'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line">  $(<span class="keyword">this</span>).ekkoLightbox();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Newsletter section: inline-block 的 form<br><img src="https://i.imgur.com/BE0VEsS.png" alt></p>
+<h3 id="2-2-About"><a href="#2-2-About" class="headerlink" title="2.2 About"></a>2.2 About</h3><p>Navbar: 相同，只有移動 active class 到該頁面的區塊，active 有 border-left 的效果。<br>接著的 Page header: 背景圖片仍是 fixed，不隨滑鼠捲動而移動。<br>About 區塊則是一邊敘述，一邊是圖片<code>class=&quot;rounded-circle&quot;</code>有<code>border-radius:50%</code>的效果，再利用負的<code>margin-top</code>來超出邊界。<br><img src="https://i.imgur.com/nPa1CgI.png" alt></p>
+<p>Icon boxes: 含有 font-awesome 的 box，用 card 呈現。<br>Testimonial: 文字需要 slider(slick)，文字後面的 footer 要加上<code>blockquote-footer</code>的 class。<br><img src="https://i.imgur.com/QhgC8sD.png" alt></p>
+<p>slick 需引用 CDN，除了 js 檔外，也有 slick 的 css 檔案，<a href="http://kenwheeler.github.io/slick/" target="_blank" rel="noopener">Slick</a><br>下面兩個方式都可以達成需求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// // Slider function - single item -sample 1</span></span><br><span class="line">$(<span class="string">".slider"</span>).slick();</span><br><span class="line"></span><br><span class="line"><span class="comment">// // Slider function - sample 2</span></span><br><span class="line">$(<span class="string">".slider"</span>).slick(&#123;</span><br><span class="line">  infinite: <span class="literal">true</span>,</span><br><span class="line">  slidesToShow: <span class="number">1</span>,</span><br><span class="line">  slidesToScroll: <span class="number">1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-Services"><a href="#2-3-Services" class="headerlink" title="2.3 Services"></a>2.3 Services</h3><p>與 About 頁面類似，Services section: 用 card 呈現。<br>使用的是 Card 元件，方法很簡單，加上以下三個 class 即可，<code>.card-header.card-body.card-footer</code><br><img src="https://i.imgur.com/6nCcQRy.png" alt></p>
+<p>Accordion: 要分成兩邊，一邊各三個 collapse，每個 collapse 需要有自己的 id 並用<code>a href</code>來連結。<br><img src="https://i.imgur.com/dZIVgLO.png" alt></p>
+<h3 id="2-4-Blog"><a href="#2-4-Blog" class="headerlink" title="2.4 Blog"></a>2.4 Blog</h3><p>Blog section:<br><img src="https://i.imgur.com/uBHf77f.png" alt></p>
+<p>用 card-columns，這裡使用了 6 個 card，這裡的 card 有兩種：</p>
+<ul>
+<li>有加 img, h4, small, p 等等</li>
+<li>blockquote: p, footer(small &gt; cite)<br><img src="https://i.imgur.com/0OurJto.png" alt></li>
+</ul>
+<h3 id="2-5-Contact"><a href="#2-5-Contact" class="headerlink" title="2.5 Contact"></a>2.5 Contact</h3><p>Contact section: 左邊為 information，右邊為 form-group 表單。<br><img src="https://i.imgur.com/yBVd0MI.png" alt></p>
+<p>staff section: 四個 staff，附上照片<br><img src="https://i.imgur.com/ukWtLKv.png" alt></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-網頁介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 網頁介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Layout-Notes"><span class="toc-number">3.</span> <span class="toc-text">2. Layout Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Home"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Home</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-About"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 About</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Services"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Services</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Blog"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 Blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Contact"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 Contact</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/03/Note-Glozzom/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/03/Note-Glozzom/&text=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/03/Note-Glozzom/&is_video=false&description=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Bootstrap] - 切版練習-Glozzom Multi Page&body=Check out this article: https://orow.github.io/2019/03/03/Note-Glozzom/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/03/Note-Glozzom/&title=[Bootstrap] - 切版練習-Glozzom Multi Page"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/03/Note-Glozzom/&name=[Bootstrap] - 切版練習-Glozzom Multi Page&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 Utility Methods$.each透過$.each()把陣列或物件中的內容重複取出，再依次去執行 callback。 以下案例為：點擊一個 button，要秀出全部喜愛的城市與圖片。 html 123456789&amp;lt;div class=&quot;favorite-0&quot;&amp;gt;  ...&amp;lt;/di">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[jQuery] - Basic（補充）">
+<meta property="og:url" content="https://orow.github.io/2019/03/24/basic-jquery-additional/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 Utility Methods$.each透過$.each()把陣列或物件中的內容重複取出，再依次去執行 callback。 以下案例為：點擊一個 button，要秀出全部喜愛的城市與圖片。 html 123456789&amp;lt;div class=&quot;favorite-0&quot;&amp;gt;  ...&amp;lt;/di">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/bBZSZQr.png">
+<meta property="og:image" content="https://i.imgur.com/BnWFm2q.png">
+<meta property="og:image" content="https://i.imgur.com/cnWRZfS.png">
+<meta property="og:image" content="https://i.imgur.com/BMliVFI.png">
+<meta property="og:image" content="https://i.imgur.com/LkGArRj.png">
+<meta property="og:image" content="https://i.imgur.com/2OhKquA.png">
+<meta property="og:image" content="https://i.imgur.com/pVJYhDQ.png">
+<meta property="og:image" content="https://i.imgur.com/CFw9fUC.png">
+<meta property="og:image" content="https://i.imgur.com/nebEntN.png">
+<meta property="og:image" content="https://i.imgur.com/1Yez98f.png">
+<meta property="og:image" content="https://i.imgur.com/3KsU8WR.png">
+<meta property="og:image" content="https://i.imgur.com/cjtK7Vi.png">
+<meta property="og:image" content="https://i.imgur.com/j9WxVoS.jpg">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[jQuery] - Basic（補充）">
+<meta name="twitter:description" content="本篇 jQuery 的 AJAX 是從網路資源與網路平台pluralsight中的課程所學習。 Utility Methods$.each透過$.each()把陣列或物件中的內容重複取出，再依次去執行 callback。 以下案例為：點擊一個 button，要秀出全部喜愛的城市與圖片。 html 123456789&amp;lt;div class=&quot;favorite-0&quot;&amp;gt;  ...&amp;lt;/di">
+<meta name="twitter:image" content="https://i.imgur.com/bBZSZQr.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[jQuery] - Basic（補充）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/06/DaanWeather/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/23/ajax-jquery/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/24/basic-jquery-additional/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&text=[jQuery] - Basic（補充）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&is_video=false&description=[jQuery] - Basic（補充）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - Basic（補充）&body=Check out this article: https://orow.github.io/2019/03/24/basic-jquery-additional/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&name=[jQuery] - Basic（補充）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Utility-Methods"><span class="toc-number">1.</span> <span class="toc-text">Utility Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#each"><span class="toc-number">1.1.</span> <span class="toc-text">$.each</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-number">1.2.</span> <span class="toc-text">$.map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#detach"><span class="toc-number">1.3.</span> <span class="toc-text">detach</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Events"><span class="toc-number">2.</span> <span class="toc-text">Advanced Events</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#off"><span class="toc-number">2.1.</span> <span class="toc-text">off</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trigger"><span class="toc-number">2.2.</span> <span class="toc-text">trigger</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [jQuery] - Basic（補充）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-24T12:00:00.000Z" itemprop="datePublished">2019-03-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/jQuery/">jQuery</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇 jQuery 的 AJAX 是從網路資源與網路平台<code>pluralsight</code>中的課程所學習。</p>
+<h2 id="Utility-Methods"><a href="#Utility-Methods" class="headerlink" title="Utility Methods"></a>Utility Methods</h2><h3 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h3><p>透過<code>$.each()</code>把陣列或物件中的內容重複取出，再依次去執行 callback。<br><img src="https://i.imgur.com/bBZSZQr.png" alt></p>
+<p>以下案例為：點擊一個 button，要秀出全部喜愛的城市與圖片。</p>
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"favorite-0"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"favorite-1"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"favorite-2"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>result 的內容（JSON 格式）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    image: <span class="string">'imgaes/paris.png'</span>,</span><br><span class="line">    name: <span class="string">'Paris, France'</span>,</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    image: <span class="string">'imgaes/london.png'</span>,</span><br><span class="line">    name: <span class="string">'London, UK'</span>,</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    image: <span class="string">'imgaes/mardird.png'</span>,</span><br><span class="line">    name: <span class="string">'Madrid, Spain'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>$.each</code>來迭代 result 這個 JSON 的物件，並將 name 與 image 新增到 html 內容裡面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"button"</span>).on(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(<span class="string">"/cities/favorite/1"</span>, &#123;</span><br><span class="line">    contentType: <span class="string">"application/json"</span>,</span><br><span class="line">    dataType: <span class="string">"json"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// resutl是json object</span></span><br><span class="line">      $.each(result, <span class="function"><span class="keyword">function</span>(<span class="params">index, city</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> favorite = $(<span class="string">".favorite-"</span> + index);</span><br><span class="line">        favorite.find(<span class="string">"p"</span>).html(city.name);</span><br><span class="line">        favorite.find(<span class="string">"img"</span>).attr(<span class="string">"src"</span>, city.image);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="https://api.jquery.com/jQuery.each/" target="_blank" rel="noopener">$.each 官方文件</a></p>
+<h3 id="map"><a href="#map" class="headerlink" title="$.map"></a>$.map</h3><p><code>$.map</code><br><img src="https://i.imgur.com/BnWFm2q.png" alt></p>
+<p>使用 map 創立新數組<br>ex.1<br><img src="https://i.imgur.com/cnWRZfS.png" alt></p>
+<p>ex.2<br><img src="https://i.imgur.com/BMliVFI.png" alt></p>
+<p>將 return 後的 listItem 指定為<code>statusElements</code>再塞回整個清單中。<br><img src="https://i.imgur.com/LkGArRj.png" alt></p>
+<p>與<code>$.each</code>的差異是 map 會把結果以新的數組 return，each 沒有返回值，不會改變其值。<br><img src="https://i.imgur.com/2OhKquA.png" alt></p>
+<p><a href="http://api.jquery.com/jquery.map/" target="_blank" rel="noopener">$.map 官方文件</a></p>
+<h3 id="detach"><a href="#detach" class="headerlink" title="detach"></a>detach</h3><p><img src="https://i.imgur.com/pVJYhDQ.png" alt></p>
+<p>使用 detach 而不使用 remove 來刪除元素，detach 會把選取的元素移除，但是會保留著，還是可以再去使用。<br>這是一個更有效能的做法，</p>
+<p>在上面的例子中改為：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".status-list"</span>)</span><br><span class="line">  .detach()</span><br><span class="line">  .html(statusElements)</span><br><span class="line">  .appendTo(<span class="string">".status"</span>);</span><br></pre></td></tr></table></figure>
+<p><a href="https://api.jquery.com/detach/" target="_blank" rel="noopener">detach 官方文件</a></p>
+<h2 id="Advanced-Events"><a href="#Advanced-Events" class="headerlink" title="Advanced Events"></a>Advanced Events</h2><h3 id="off"><a href="#off" class="headerlink" title="off"></a>off</h3><p>停止去監聽符合條件的事件（通常是用 on 新增的事件）。<br><img src="https://i.imgur.com/CFw9fUC.png" alt></p>
+<p>ex.1 停止全部 click 事件<br><img src="https://i.imgur.com/nebEntN.png" alt></p>
+<p>ex.2 停止單一事件 - 需要應用到 namespacing<br><img src="https://i.imgur.com/1Yez98f.png" alt></p>
+<p>ex.3 停止全部相同 namespace 的事件<br><img src="https://i.imgur.com/3KsU8WR.png" alt></p>
+<h3 id="trigger"><a href="#trigger" class="headerlink" title="trigger"></a>trigger</h3><p><code>trigger()</code>用來觸發所指定的事件類型。</p>
+<p>ex1. 等同於點擊 button 觸發事件<br>同時觸發兩個 click 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">picture</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Show Plane'</span>);&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">status</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'In Service'</span>);&#125;</span><br><span class="line"></span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'button'</span>).on(<span class="string">'click.image'</span>, picture);</span><br><span class="line">        $(<span class="string">'button'</span>).on(<span class="string">'click.details'</span>, status);</span><br><span class="line">        $(<span class="string">'button'</span>).on(<span class="string">'mouseover.image'</span>, zoom);</span><br><span class="line">        ...</span><br><span class="line">        $(<span class="string">'button'</span>).trigger(<span class="string">'click'</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>ex.2 trigger 也可以指定 namespace 來觸發<br>觸發 image namespace 的 click 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">picture</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'Show Plane'</span>);&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">status</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'In Service'</span>);&#125;</span><br><span class="line"></span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'button'</span>).on(<span class="string">'click.image'</span>, picture);</span><br><span class="line">        $(<span class="string">'button'</span>).on(<span class="string">'click.details'</span>, status);</span><br><span class="line">        ...</span><br><span class="line">        $(<span class="string">'button'</span>).trigger(<span class="string">'click.image'</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>ex.3 可以trigger自訂的event.namespace<br>trigger一個按鈕可以觸發所有符合條件項目的function<br><img src="https://i.imgur.com/cjtK7Vi.png" alt></p>
+<p><img src="https://i.imgur.com/j9WxVoS.jpg" alt></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Utility-Methods"><span class="toc-number">1.</span> <span class="toc-text">Utility Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#each"><span class="toc-number">1.1.</span> <span class="toc-text">$.each</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-number">1.2.</span> <span class="toc-text">$.map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#detach"><span class="toc-number">1.3.</span> <span class="toc-text">detach</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Events"><span class="toc-number">2.</span> <span class="toc-text">Advanced Events</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#off"><span class="toc-number">2.1.</span> <span class="toc-text">off</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trigger"><span class="toc-number">2.2.</span> <span class="toc-text">trigger</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/24/basic-jquery-additional/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&text=[jQuery] - Basic（補充）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&is_video=false&description=[jQuery] - Basic（補充）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - Basic（補充）&body=Check out this article: https://orow.github.io/2019/03/24/basic-jquery-additional/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&title=[jQuery] - Basic（補充）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/24/basic-jquery-additional/&name=[jQuery] - Basic（補充）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

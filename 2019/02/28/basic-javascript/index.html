@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="新手針對網路課程與資料做筆記記錄。在剛接觸時加深自己印象與記憶點。網路課程：freeCodeCamp, Udemy, eloqument JavaScript 基礎概念JavaScript 是一門基於原型、函式先行的語言，支援物件導向設計。白話的說是一種用來呈現網頁動態效果的程式語言，例如：更新內容、控制動畫圖片等 概論以下引用wiki 一般來說，完整的JavaScript包括以下幾個部分： -">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - Basic">
+<meta property="og:url" content="https://orow.github.io/2019/02/28/basic-javascript/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="新手針對網路課程與資料做筆記記錄。在剛接觸時加深自己印象與記憶點。網路課程：freeCodeCamp, Udemy, eloqument JavaScript 基礎概念JavaScript 是一門基於原型、函式先行的語言，支援物件導向設計。白話的說是一種用來呈現網頁動態效果的程式語言，例如：更新內容、控制動畫圖片等 概論以下引用wiki 一般來說，完整的JavaScript包括以下幾個部分： -">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/Yf3vaaO.png">
+<meta property="og:image" content="https://i.imgur.com/bPWbsMH.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - Basic">
+<meta name="twitter:description" content="新手針對網路課程與資料做筆記記錄。在剛接觸時加深自己印象與記憶點。網路課程：freeCodeCamp, Udemy, eloqument JavaScript 基礎概念JavaScript 是一門基於原型、函式先行的語言，支援物件導向設計。白話的說是一種用來呈現網頁動態效果的程式語言，例如：更新內容、控制動畫圖片等 概論以下引用wiki 一般來說，完整的JavaScript包括以下幾個部分： -">
+<meta name="twitter:image" content="https://i.imgur.com/Yf3vaaO.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - Basic</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/03/Note-Glozzom/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/27/basic-jquery/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/02/28/basic-javascript/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/02/28/basic-javascript/&text=[JavaScript] - Basic"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/02/28/basic-javascript/&is_video=false&description=[JavaScript] - Basic"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - Basic&body=Check out this article: https://orow.github.io/2019/02/28/basic-javascript/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/02/28/basic-javascript/&name=[JavaScript] - Basic&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基礎概念"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 基礎概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概論"><span class="toc-number">1.1.</span> <span class="toc-text">概論</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態型別"><span class="toc-number">1.2.</span> <span class="toc-text">動態型別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#資料型別"><span class="toc-number">1.3.</span> <span class="toc-text">資料型別</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基本功能介紹"><span class="toc-number">2.</span> <span class="toc-text">JavaScript 基本功能介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#運算子-Operators"><span class="toc-number">2.1.</span> <span class="toc-text">運算子(Operators)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跳脫字元"><span class="toc-number">2.2.</span> <span class="toc-text">跳脫字元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陣列-Array"><span class="toc-number">2.3.</span> <span class="toc-text">陣列(Array)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function"><span class="toc-number">3.</span> <span class="toc-text">Function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-定義"><span class="toc-number">3.1.</span> <span class="toc-text">Function 定義</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提升-Hoisting"><span class="toc-number">3.2.</span> <span class="toc-text">提升(Hoisting)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IIFE"><span class="toc-number">3.3.</span> <span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-參考資料"><span class="toc-number">3.4.</span> <span class="toc-text">Function 參考資料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域-Scope"><span class="toc-number">4.</span> <span class="toc-text">作用域(Scope)</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - Basic
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-02-28T12:00:00.000Z" itemprop="datePublished">2019-02-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/javascript/">javascript</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>新手針對網路課程與資料做筆記記錄。<br>在剛接觸時加深自己印象與記憶點。<br>網路課程：<code>freeCodeCamp</code>, <code>Udemy</code>, <code>eloqument</code></p>
+<h2 id="JavaScript-基礎概念"><a href="#JavaScript-基礎概念" class="headerlink" title="JavaScript 基礎概念"></a>JavaScript 基礎概念</h2><p>JavaScript 是一門基於原型、函式先行的語言，支援物件導向設計。<br>白話的說是一種用來呈現網頁動態效果的程式語言，例如：更新內容、控制動畫圖片等</p>
+<h3 id="概論"><a href="#概論" class="headerlink" title="概論"></a>概論</h3><p>以下引用<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">wiki</a></p>
+<pre><code>一般來說，完整的JavaScript包括以下幾個部分：
+- ECMAScript，描述了該語言的語法和基本物件
+- 文件物件模型（DOM），描述處理網頁內容的方法和介面
+- 瀏覽器物件模型（BOM），描述與瀏覽器進行互動的方法和介面
+
+JavaScript的基本特點如下：
+- 是一種解釋性程式語言（程式碼不進行預編譯）。
+- 主要用來向HTML頁面添加互動行為。
+- 可以直接嵌入HTML頁面，但寫成單獨的js檔案有利於結構和行為的分離。
+
+JavaScript常用來完成以下任務：
+- 嵌入動態文字於HTML頁面
+- 對瀏覽器事件作出回應
+- 讀寫HTML元素
+- 在資料被提交到伺服器之前驗證資料
+- 檢測訪客的瀏覽器資訊
+- 控制cookies，包括建立和修改等
+</code></pre><h3 id="動態型別"><a href="#動態型別" class="headerlink" title="動態型別"></a>動態型別</h3><p>屬於弱型別，也能說是動態的程式語言，意思是不用特別宣告變數的型別。<br>程式在運作時，型別會自動轉換，代表可以以不同型別使用同一個變數</p>
+<h3 id="資料型別"><a href="#資料型別" class="headerlink" title="資料型別"></a>資料型別</h3><p>原始型別</p>
+<ul>
+<li>string： 字串</li>
+<li>number： 數字</li>
+<li>boolean：true or false</li>
+<li>null: 只有一個 null 值</li>
+<li>undefined： 未被定義的參數有 undefined 值</li>
+<li>symbol： ES6 定義，個人尚未用到，待後續深入學習</li>
+</ul>
+<p>物件型別</p>
+<ul>
+<li><p>object：在 JavaScript 裡，”物件”是一個擁有自己的屬性、型別、獨立的實體。<br>這裡我們以杯子舉例：我們可以從顏色、設計、重量、材質等方面來描述他的屬性。同樣的，我們也可以用各種屬性來描述 JavaScript 中某個物體的特性。<br>下為一個物件的例子。</p>
+<p>object={key: value}<br>name, ages 是 key ; ‘陳小美’, 22 為 value</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ar auntie = &#123;</span><br><span class="line">    name: <span class="string">'陳小美'</span>,</span><br><span class="line">    ages: <span class="number">22</span>,</span><br><span class="line">        bwh: &#123;</span><br><span class="line">        strength: <span class="number">34</span>,</span><br><span class="line">        agility: <span class="number">25</span>,</span><br><span class="line">        intelligence: <span class="number">96</span></span><br><span class="line">    &#125;,</span><br><span class="line">    single: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Working_with_Objects" target="_blank" rel="noopener">參考來源</a></li>
+</ul>
+</li>
+</ul>
+<p>原始型別是一個值，沒有屬性，且是不可變異(immutable)。<br>必要時，JavaScript 引擎會將原始別強制轉型為對應的物件型別（除了 null &amp; undefined）。</p>
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10192598" target="_blank" rel="noopener">參考來源</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="number">42</span>; <span class="comment">//foo 目前是number</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>; <span class="comment">//foo 目前是string</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="literal">true</span>; <span class="comment">// foo目前是boolean</span></span><br></pre></td></tr></table></figure>
+<h2 id="JavaScript-基本功能介紹"><a href="#JavaScript-基本功能介紹" class="headerlink" title="JavaScript 基本功能介紹"></a>JavaScript 基本功能介紹</h2><h3 id="運算子-Operators"><a href="#運算子-Operators" class="headerlink" title="運算子(Operators)"></a>運算子(Operators)</h3><p>一元運算子: 只用到一個運算元</p>
+<ul>
+<li><code>++</code>, <code>--</code>等遞增遞減</li>
+</ul>
+<p>二元運算子：有兩個運算元（大部分運算子都是二元）<br>舉例：</p>
+<ul>
+<li>比較運算子<br><img src="https://i.imgur.com/Yf3vaaO.png" alt></li>
+</ul>
+<p>三元運算子</p>
+<ul>
+<li>條件運算子<br>(condition ? statement-if-true : statement-if-false;)<br>也就是：條件式 ? 成立傳回值 : 失敗傳回值</li>
+</ul>
+<p>運算子眾多，詳細請參考<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators" target="_blank" rel="noopener">MDN</a></p>
+<h3 id="跳脫字元"><a href="#跳脫字元" class="headerlink" title="跳脫字元"></a>跳脫字元</h3><p>特殊字元例如單引號或雙引號在 javascript 中是用來包字串，跳脫字元就是用來將這些字元納入字串中。<br>在這些字元前都必須加入反斜線<br>如下圖：<br><img src="https://i.imgur.com/bPWbsMH.png" alt></p>
+<h3 id="陣列-Array"><a href="#陣列-Array" class="headerlink" title="陣列(Array)"></a>陣列(Array)</h3><p>Array 在 javascript 是用來存取數據的工具，可以存放其他物件或是數值。<br>這邊舉幾個常用例子，詳細可以到 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">MDN-Array</a> 上作查詢</p>
+<p>建立 Array</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"Apple"</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">"Banana"</span>];</span><br></pre></td></tr></table></figure>
+<p>用 index 取的 array 中的 item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = arr[<span class="number">0</span>]; <span class="comment">// Apple</span></span><br><span class="line"><span class="keyword">var</span> third = arr[<span class="number">2</span>]; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>push()：從 array 最後加入 item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newNumber = arr.push(<span class="string">"5"</span>); <span class="comment">// arr = ['Apple', 2, 3, 'Banana', 5];</span></span><br></pre></td></tr></table></figure>
+<p>pop()：移除 array 最後一個 item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> last = arr.pop(); <span class="comment">// arr = ['Apple', 2, 3, 'Banana'];</span></span><br></pre></td></tr></table></figure>
+<p>shift()：移除 array 最前面一個 item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = arr.shift(); <span class="comment">// arr = [2, 3, 'Banana'];</span></span><br></pre></td></tr></table></figure>
+<p>unshift()：從 array 最前面加入 item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newFruits = arr.unshift(<span class="string">"Watermelon"</span>); <span class="comment">// arr = ['Watermelon', 2, 3, 'Banana'];</span></span><br></pre></td></tr></table></figure>
+<p>splice(pos, index)：移除從 pos 起的幾個項目(注意是用 index 計算)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> removeItem = arr.splice(<span class="number">2</span>, <span class="number">2</span>); <span class="comment">// arr = ['Watermelon', 2];</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>Function 是 JavaScript 的一級物件(first class object)，組成依次為：</p>
+<ul>
+<li>函式的名稱。</li>
+<li>包圍在括號()中，並由逗號區隔的一個函式參數(argement)列表。</li>
+<li>包圍在大括號{}中，內含需要重複執行的內容，是函式功能的主要區塊。</li>
+</ul>
+<h3 id="Function-定義"><a href="#Function-定義" class="headerlink" title="Function 定義"></a>Function 定義</h3><ol>
+<li><p>函式宣告式、函式陳述式（Function Declaration）<br>宣告方式:</p>
+<ul>
+<li>宣告式（具名,匿名）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>); // 具名</span></span><br><span class="line"><span class="function"><span class="title">var</span> <span class="title">add</span> = <span class="title">function</span> (<span class="params">a,b</span>); // 匿名</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函式運算式、 函式表達式（Function Expressions）<br>宣告方式:</p>
+<ul>
+<li>表示式（具名,匿名）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>); // 具名</span></span><br><span class="line"><span class="function"><span class="title">function</span> (<span class="params">a,b</span>); // 匿名</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>透過 new Function 關鍵字建立函式<br>直接使用 Function 這個關鍵字來建立函式物件。<br>這裡要注意的是，如果使用這樣的方式建立函數，不會建立任何的 closure，而在這個函數中只能存取全域（global）的變數或是存在於該函數內部的變數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"return a + b"</span>);</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 輸出 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> glbFoo = <span class="string">"global"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">scope</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> scpFoo = <span class="string">"scoped"</span>,</span><br><span class="line">    scop = <span class="built_in">Function</span>(<span class="string">"console.log(typeof scpFoo)"</span>),</span><br><span class="line">    glob = <span class="built_in">Function</span>(<span class="string">"console.log(typeof glbFoo)"</span>);</span><br><span class="line"></span><br><span class="line">  scop(); <span class="comment">// 只能讀到全域變數，函式本身沒有變數</span></span><br><span class="line">  glob(); <span class="comment">// glbFoo是全域變數，在執行scope()後是可以得到glbFoo的type</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">scope();</span><br><span class="line"><span class="comment">// 輸出 undefined</span></span><br><span class="line"><span class="comment">// 輸出 string</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="提升-Hoisting"><a href="#提升-Hoisting" class="headerlink" title="提升(Hoisting)"></a>提升(Hoisting)</h3><p>函式陳述式(Function Declaration)與函式表達式（Function Expressions)的差異。<br>函式宣告建立的函數，會被提升（hoisting）到該作用域（scope）最頂端，讓整個作用域都可以呼叫它。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">declared();</span><br><span class="line"><span class="comment">// 輸出 declared</span></span><br><span class="line"><span class="comment">// 函式陳述式 function declaration</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">declared</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"declared"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">expressed();</span><br><span class="line"><span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line"><span class="comment">// 函式表達式 function expressions</span></span><br><span class="line"><span class="keyword">var</span> expressed = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"expressed"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">expressed();</span><br><span class="line"><span class="comment">// 輸出 expressed</span></span><br></pre></td></tr></table></figure>
+<h3 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h3><p>Immediately Invoked Functions Expressions 指的是可以立即執行的 Functions Expressions 函式表示式，中文多譯為立即(執行)函式。</p>
+<p>下面是一個範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hello = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Hello, "</span> + name + <span class="string">"how are you?"</span>);</span><br><span class="line">  <span class="comment">// consolo.log會印出 Hello, undefined how are you?</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>這是一個 function expressions<br>呼叫他會寫成<code>hello();</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello();</span><br></pre></td></tr></table></figure>
+<p>如果改成並把<code>hello();</code>拿掉</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hello = (<span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Hello, "</span> + name + <span class="string">"how are you?"</span>);</span><br><span class="line">  <span class="comment">// consolo.log會印出 Hello, undefined how are you?</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>結果會是一樣的，因為在讀到函式運算是後面的<code>()</code>，就會立刻呼叫這個 function 去執行，這就是 IIFE。</p>
+<h3 id="Function-參考資料"><a href="#Function-參考資料" class="headerlink" title="Function 參考資料"></a>Function 參考資料</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions" target="_blank" rel="noopener">MDN</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10191549" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191549</a></li>
+<li><a href="https://blog.gtwang.org/programming/defining-javascript-functions/" target="_blank" rel="noopener">https://blog.gtwang.org/programming/defining-javascript-functions/</a></li>
+</ul>
+<h2 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域(Scope)"></a>作用域(Scope)</h2><p>全域變數(global)，在瀏覽器下也就是 window 物件，function 外的變數<br>區域變數，function 中的變數</p>
+<p>傳統的後端程式語言，區域變數只在大括號{ }中有效，在此範圍外，就是全域變數，它是以區塊(block){ }作為區分，但 JavaScript 卻不是以此做區分，它是用函式(Function)作為區分，在函式內為區域變數，函式外為全域變數，要達成這樣的條件還有一個前提，變數必須以 var 宣告。</p>
+<ul>
+<li><p>例子 1：雖然都是 scope，function 回傳的是區域變數的值，但最後的敘述式(statement)的值是全域變數的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"全域"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">"區域"</span>;</span><br><span class="line">  <span class="keyword">return</span> scope;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getValue()); <span class="comment">//區域</span></span><br><span class="line"><span class="built_in">console</span>.log(scope); <span class="comment">//全域</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例子 2：兩個 function 都有 scope，但不同區域的同命變數實際上是不同的。<br>即使 scope 被宣告 3 次，但彼此之間沒有關係，都是獨立的變數。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"全域"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">"區域1"</span>;</span><br><span class="line">  <span class="keyword">return</span> scope;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">"區域2"</span>;</span><br><span class="line">  <span class="keyword">return</span> scope;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getValue1()); <span class="comment">//區域1</span></span><br><span class="line"><span class="built_in">console</span>.log(getValue2()); <span class="comment">//區域2</span></span><br><span class="line"><span class="built_in">console</span>.log(scope); <span class="comment">//全域</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例子 3：如果不用 var 宣告<br>結果會顯示同一個變數“區域”。<br>不使用 var 這種作法很容易污染到全域(後來的 ES6 有 let 來改善 var 有時候會污染全域的問題)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scope = <span class="string">"全域"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  scope = <span class="string">"區域"</span>;</span><br><span class="line">  <span class="keyword">return</span> scope;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getValue()); <span class="comment">//區域</span></span><br><span class="line"><span class="built_in">console</span>.log(scope); <span class="comment">//區域</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://ithelp.ithome.com.tw/articles/10206604?sc=iThelpR" target="_blank" rel="noopener">參考來源</a></p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基礎概念"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 基礎概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概論"><span class="toc-number">1.1.</span> <span class="toc-text">概論</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態型別"><span class="toc-number">1.2.</span> <span class="toc-text">動態型別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#資料型別"><span class="toc-number">1.3.</span> <span class="toc-text">資料型別</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基本功能介紹"><span class="toc-number">2.</span> <span class="toc-text">JavaScript 基本功能介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#運算子-Operators"><span class="toc-number">2.1.</span> <span class="toc-text">運算子(Operators)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跳脫字元"><span class="toc-number">2.2.</span> <span class="toc-text">跳脫字元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陣列-Array"><span class="toc-number">2.3.</span> <span class="toc-text">陣列(Array)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function"><span class="toc-number">3.</span> <span class="toc-text">Function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-定義"><span class="toc-number">3.1.</span> <span class="toc-text">Function 定義</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提升-Hoisting"><span class="toc-number">3.2.</span> <span class="toc-text">提升(Hoisting)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IIFE"><span class="toc-number">3.3.</span> <span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-參考資料"><span class="toc-number">3.4.</span> <span class="toc-text">Function 參考資料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域-Scope"><span class="toc-number">4.</span> <span class="toc-text">作用域(Scope)</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/02/28/basic-javascript/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/02/28/basic-javascript/&text=[JavaScript] - Basic"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/02/28/basic-javascript/&is_video=false&description=[JavaScript] - Basic"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - Basic&body=Check out this article: https://orow.github.io/2019/02/28/basic-javascript/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/02/28/basic-javascript/&title=[JavaScript] - Basic"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/02/28/basic-javascript/&name=[JavaScript] - Basic&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

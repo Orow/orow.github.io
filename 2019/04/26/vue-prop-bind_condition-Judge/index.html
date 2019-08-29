@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 HTML 元素的屬性綁定綁定資料為一個元素的 class綁定 class 後可以回傳字串、物件、陣列。 input+button 的例子：空白沒有輸入就是 submit disabled 的 class 效果（灰色），有輸入就是 submit 效果（綠色）。 用 computed 計算：  if else 判斷後，r">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷">
+<meta property="og:url" content="https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 HTML 元素的屬性綁定綁定資料為一個元素的 class綁定 class 後可以回傳字串、物件、陣列。 input+button 的例子：空白沒有輸入就是 submit disabled 的 class 效果（灰色），有輸入就是 submit 效果（綠色）。 用 computed 計算：  if else 判斷後，r">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/4nYkftA.png">
+<meta property="og:image" content="https://i.imgur.com/0TZE93k.png">
+<meta property="og:image" content="https://i.imgur.com/QPiSxKz.png">
+<meta property="og:image" content="https://i.imgur.com/q1qokot.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 HTML 元素的屬性綁定綁定資料為一個元素的 class綁定 class 後可以回傳字串、物件、陣列。 input+button 的例子：空白沒有輸入就是 submit disabled 的 class 效果（灰色），有輸入就是 submit 效果（綠色）。 用 computed 計算：  if else 判斷後，r">
+<meta name="twitter:image" content="https://i.imgur.com/4nYkftA.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/29/vue-lists-render/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/25/vue-instance/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&text=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&is_video=false&description=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷&body=Check out this article: https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&name=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-元素的屬性綁定"><span class="toc-number">1.</span> <span class="toc-text">HTML 元素的屬性綁定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#綁定資料為一個元素的-class"><span class="toc-number">1.1.</span> <span class="toc-text">綁定資料為一個元素的 class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#綁定資料為一個元素的-style"><span class="toc-number">1.2.</span> <span class="toc-text">綁定資料為一個元素的 style</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#條件判斷"><span class="toc-number">2.</span> <span class="toc-text">條件判斷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-else"><span class="toc-number">2.1.</span> <span class="toc-text">v-if_else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-else-if"><span class="toc-number">2.2.</span> <span class="toc-text">v-else-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-show"><span class="toc-number">2.3.</span> <span class="toc-text">v-show</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-26T07:00:00.000Z" itemprop="datePublished">2019-04-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、<code>w3school</code>及網路上搜尋資源所學習的。</p>
+<h2 id="HTML-元素的屬性綁定"><a href="#HTML-元素的屬性綁定" class="headerlink" title="HTML 元素的屬性綁定"></a>HTML 元素的屬性綁定</h2><h3 id="綁定資料為一個元素的-class"><a href="#綁定資料為一個元素的-class" class="headerlink" title="綁定資料為一個元素的 class"></a>綁定資料為一個元素的 class</h3><p>綁定 class 後可以回傳字串、物件、陣列。</p>
+<p>input+button 的例子：<br>空白沒有輸入就是 submit disabled 的 class 效果（灰色），有輸入就是 submit 效果（綠色）。<br><img src="https://i.imgur.com/4nYkftA.png" alt></p>
+<p>用 computed 計算：</p>
+<ul>
+<li>if else 判斷後，return 字串或是者是物件</li>
+<li>直接回傳物件</li>
+</ul>
+<p>這邊在 data 中直接回傳綁定的 class 陣列，會直接綁定沒有判斷。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.submit</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#28a745</span>;</span></span><br><span class="line">    color: white;</span><br><span class="line">    border-radius: 8px;</span><br><span class="line">    padding: 4px 8px;</span><br><span class="line">    border: none;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.submit</span><span class="selector-class">.disabled</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#aaa</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:class</span>=<span class="string">"btnClass"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      text: <span class="string">""</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//class綁定也可以直接用陣列，不用computed計算</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// btnClass: [</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     'submit',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     'disabled'</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// ],</span></span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// if判斷，return回傳字串或物件</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// btnClass()&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     if(this.text.length === 0)&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         // return 'submit disabled';</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         // 可以return字串也可以是物件</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         return &#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//             submit: true,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//             disabled: true,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         &#125;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     &#125;else&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         // return 'submit';</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         return &#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//             submit:true,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//             disabled:false,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         &#125;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     &#125;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 簡潔做法，直接return物件</span></span></span><br><span class="line">      btnClass() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">          submit: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">          disabled: <span class="keyword">this</span>.text.length === <span class="number">0</span></span></span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="綁定資料為一個元素的-style"><a href="#綁定資料為一個元素的-style" class="headerlink" title="綁定資料為一個元素的 style"></a>綁定資料為一個元素的 style</h3><ul>
+<li>h1 標題 style 透過 Vue 綁定</li>
+</ul>
+<p>在 data 中可以是字串、物件、陣列，陣列中要放的是物件，物件可以在外面宣告。<br>在物件裡面要用駝峰式命名（camel case），用<code>-</code>號程式會以為是相減。</p>
+<ul>
+<li>shrink 點擊縮小字體大小</li>
+</ul>
+<p><img src="https://i.imgur.com/0TZE93k.png" alt></p>
+<p>shrink-1<br>data 中用物件，fontSize:’40px’，methods 中用 parseInt 轉為數字，再用字串模板<code>-1</code>來計算。</p>
+<p>shrink-2<br>data 中直接給 size 數字，computed 中 return fontSize 搭配字串模板的 this.size 大小。<br>methods 中 shrink 就用<code>this.size--</code>來逐一的減一。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-bind:style</span>=<span class="string">"h1Style"</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- shrink縮小 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"shrink"</span>&gt;</span>OK<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> commonHeadStyle = &#123;</span></span><br><span class="line"><span class="javascript">    fontSize: <span class="string">"20px"</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 不能用font-size，-在物件中會被視為減號，所以要用駝峰式(camel case)命名</span></span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> yellowWord = &#123;</span></span><br><span class="line"><span class="javascript">    color: <span class="string">"yellow"</span></span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// 字串</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// h1Style: 'color:red',</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 物件</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// h1Style:&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     color: 'green',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 陣列，裡面要放的是物件，物件可以在外面宣告</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// h1Style: [</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     commonHeadStyle,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     yellowWord,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// ],</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 做一個點擊後會一直縮小字體大小</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// shrink-1</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// h1Style: &#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     fontSize: '40px',</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// shrink-2</span></span></span><br><span class="line">      size: 40</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// shrink-2</span></span></span><br><span class="line">    computed: &#123;</span><br><span class="line">      h1Style() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">          fontSize: <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.size&#125;</span>px`</span></span></span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// shrink-1</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// shrink() &#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     // replace 第二個參數轉為空白可以省略</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     const size = parseInt(this.h1Style.fontSize.replace('px', ""), 10);</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     this.h1Style.fontSize = `$&#123;size-1&#125;px`;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// shrink-2</span></span></span><br><span class="line">      shrink() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.size--;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="條件判斷"><a href="#條件判斷" class="headerlink" title="條件判斷"></a>條件判斷</h2><h3 id="v-if-else"><a href="#v-if-else" class="headerlink" title="v-if_else"></a>v-if_else</h3><p>點擊 checkbox 後顯示文字標題。<br><img src="https://i.imgur.com/QPiSxKz.png" alt></p>
+<p>在 html 中用 template 包住，template 是模板，不是真的元素。<br>v-else 只能接在 v-if 後面，而且要同一層，中間連<code>&lt;/br&gt;</code>都不能插入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;h1 v-if="checked"&gt;跳樓大拍賣&lt;/h1&gt; --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- v-else只能接在v-if正下方且同一層，連插入&lt;/br&gt;都不行 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;h1 v-else&gt;老闆不在家&lt;/h1&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- template不是真的元素，是一個模板用來包住其他元素 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"checked"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>跳樓大拍賣<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>跳樓大拍賣<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>跳樓大拍賣<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>老闆不在家<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      checked: <span class="literal">false</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h3><p>除了二元以外各種選擇。<br><img src="https://i.imgur.com/q1qokot.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked1"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked2"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">"checked1"</span>&gt;</span>跳樓大拍賣<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else-if</span>=<span class="string">"checked2"</span>&gt;</span>夥計隨便賣<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>老闆不在家<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      checked1: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">      checked2: <span class="literal">false</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h3><p>v-show 元素都會存在，差異在顯示與不顯示<code>display:none</code>。<br>v-if, v-else 等等，如果是 false 的話直接不 render 在 html 上。</p>
+<p>v-show 不能搭配 v-else 跟 template，但 template 可搭配 v-if。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- v-show只是顯示與不顯示，元素都存在 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- v-show不能搭配v-else，不能搭配template，但template可搭配v-if --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">"checked"</span>&gt;</span>跳樓大拍賣<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      checked: <span class="literal">false</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-元素的屬性綁定"><span class="toc-number">1.</span> <span class="toc-text">HTML 元素的屬性綁定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#綁定資料為一個元素的-class"><span class="toc-number">1.1.</span> <span class="toc-text">綁定資料為一個元素的 class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#綁定資料為一個元素的-style"><span class="toc-number">1.2.</span> <span class="toc-text">綁定資料為一個元素的 style</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#條件判斷"><span class="toc-number">2.</span> <span class="toc-text">條件判斷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-else"><span class="toc-number">2.1.</span> <span class="toc-text">v-if_else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-else-if"><span class="toc-number">2.2.</span> <span class="toc-text">v-else-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-show"><span class="toc-number">2.3.</span> <span class="toc-text">v-show</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&text=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&is_video=false&description=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷&body=Check out this article: https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&title=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/26/vue-prop-bind_condition-Judge/&name=[Vue] - （三）HTML元素屬性綁定 &amp; 條件判斷&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

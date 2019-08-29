@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="組件 ComponentVue 組件的註冊與使用可以重複使用，開發時可以縮小焦點，容易維護。使用 vue 組件，視覺元素(html)是用 option 中的 template 來表示。 宣告順序：vue component的宣告要在vue instance以前 全域（Global）：Vue.component(‘名稱’, {optiopn，template:’…’等})component 名字最好">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （七）組件">
+<meta property="og:url" content="https://orow.github.io/2019/05/02/vue-component/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="組件 ComponentVue 組件的註冊與使用可以重複使用，開發時可以縮小焦點，容易維護。使用 vue 組件，視覺元素(html)是用 option 中的 template 來表示。 宣告順序：vue component的宣告要在vue instance以前 全域（Global）：Vue.component(‘名稱’, {optiopn，template:’…’等})component 名字最好">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （七）組件">
+<meta name="twitter:description" content="組件 ComponentVue 組件的註冊與使用可以重複使用，開發時可以縮小焦點，容易維護。使用 vue 組件，視覺元素(html)是用 option 中的 template 來表示。 宣告順序：vue component的宣告要在vue instance以前 全域（Global）：Vue.component(‘名稱’, {optiopn，template:’…’等})component 名字最好">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （七）組件</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/05/02/vue-component-sideproject/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/01/vue-form-binding-sideproject/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/02/vue-component/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/02/vue-component/&text=[Vue] - （七）組件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/02/vue-component/&is_video=false&description=[Vue] - （七）組件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （七）組件&body=Check out this article: https://orow.github.io/2019/05/02/vue-component/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/02/vue-component/&name=[Vue] - （七）組件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#組件-Component"><span class="toc-number">1.</span> <span class="toc-text">組件 Component</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-組件的註冊與使用"><span class="toc-number">1.1.</span> <span class="toc-text">Vue 組件的註冊與使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-模板的解析注意事項"><span class="toc-number">1.2.</span> <span class="toc-text">DOM 模板的解析注意事項</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-必須是函數"><span class="toc-number">1.3.</span> <span class="toc-text">data 必須是函數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件組合"><span class="toc-number">1.4.</span> <span class="toc-text">組件組合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態組件"><span class="toc-number">1.5.</span> <span class="toc-text">動態組件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態組件-keep-alive"><span class="toc-number">1.6.</span> <span class="toc-text">動態組件 keep alive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件命名"><span class="toc-number">1.7.</span> <span class="toc-text">組件命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#影音不同步-promise-callback"><span class="toc-number">2.</span> <span class="toc-text">影音不同步-promise_callback</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （七）組件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-05-02T07:00:00.000Z" itemprop="datePublished">2019-05-02</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h2><h3 id="Vue-組件的註冊與使用"><a href="#Vue-組件的註冊與使用" class="headerlink" title="Vue 組件的註冊與使用"></a>Vue 組件的註冊與使用</h3><p>可以重複使用，開發時可以縮小焦點，容易維護。<br>使用 vue 組件，視覺元素(html)是用 option 中的 template 來表示。</p>
+<p>宣告順序：<code>vue component的宣告要在vue instance以前</code></p>
+<p>全域（Global）：Vue.component(‘名稱’, {optiopn，template:’…’等})<br>component 名字最好是全小寫，用 dash 分開。</p>
+<p>Local：在 vue 實例中宣告，只會存在這個實例中。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">local-component</span>&gt;</span><span class="tag">&lt;/<span class="name">local-component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// Global</span></span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"my-component"</span>, &#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// option</span></span></span><br><span class="line"><span class="javascript">    template: <span class="string">"&lt;div&gt;My component&lt;/div&gt;"</span> <span class="comment">// 定義視覺元素(html)</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="javascript">    <span class="comment">// Local</span></span></span><br><span class="line">    components: &#123;</span><br><span class="line"><span class="javascript">      <span class="string">"local-component"</span>: &#123;</span></span><br><span class="line"><span class="xml">        template: "<span class="tag">&lt;<span class="name">div</span>&gt;</span>Local component<span class="tag">&lt;/<span class="name">div</span>&gt;</span>"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="DOM-模板的解析注意事項"><a href="#DOM-模板的解析注意事項" class="headerlink" title="DOM 模板的解析注意事項"></a>DOM 模板的解析注意事項</h3><p>如果在 vue 實例中用掛載 el 的方式來指定綁定的 html 元素，這個元素就會經過 html 瀏覽器的解析再把元素傳給 vue 實例來使用，如果在解析過程中瀏覽器發現不符合格式或不合法的宣告就會把它移除，之後在 vue 實例中就會沒辦法使用。</p>
+<p>select 中不應該有 my-component。</p>
+<p>除了 select 以外，還有 ul、table 中也是（chrome 可以）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul-component</span>&gt;</span><span class="tag">&lt;/<span class="name">ul-component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table-component</span>&gt;</span><span class="tag">&lt;/<span class="name">table-component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"my-component"</span>, &#123;</span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">option</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">option</span>&gt;</span>"</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"ul-component"</span>, &#123;</span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">li</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">li</span>&gt;</span>"</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"table-component"</span>, &#123;</span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>"</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果遇到這個問題，把 el 搭配 template 來使用即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"my-component"</span>, &#123;</span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">option</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">option</span>&gt;</span>"</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    template:</span><br><span class="line"><span class="xml">      '<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;<span class="name">select</span>&gt;</span><span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="data-必須是函數"><a href="#data-必須是函數" class="headerlink" title="data 必須是函數"></a>data 必須是函數</h3><p>組件的 data（函數）與實例的 data（物件）不同</p>
+<p>每次執行 data 都會執行，如果有兩個一樣的組件要重複使用，會是分開的執行，不會互相影響。<br>如果是宣告成物件，一開始就會宣告，但重複使用不會再去宣告。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">    &lt;button @click="count+=1"&gt;+1&lt;/button&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"counter"</span>, &#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 每次執行data都會執行，如果有兩個一樣的組件要重複使用，會是分開的執行，不會互相影響</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 如果是宣告成物件，一開始就會宣告，但重複使用不會再去宣告</span></span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line">        count: 0</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"count+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// data:&#123;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//     count: 0,</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// &#125;,</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="組件組合"><a href="#組件組合" class="headerlink" title="組件組合"></a>組件組合</h3><p>用簡單的 todolist 來記錄說明，這個例子宣告了三個組件 todolist，todo-input，todo-item。</p>
+<p>上層傳到下層：<code>props</code><br>最上層的 todolist，todo-input，todo-item，要把 todolist 中的 todos 陣列顯示在 todo-item 裡面，在上層需要透過<code>屬性綁定</code>的方式，下層則是需要用<code>props</code>來帶入屬性名稱。</p>
+<p>下層傳到上層：<code>$emit</code><br>下層的 todo-input 要傳資料到上層的 todolist，透過 form 綁定 submit 事件來執行發送<code>事件</code>的函式。上層則是需要綁定下層要發送的事件名稱後去執行新增內容的函式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">todolist</span>&gt;</span><span class="tag">&lt;/<span class="name">todolist</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"todo-input"</span>, &#123;</span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">        text: <span class="string">""</span></span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      submit() &#123;</span><br><span class="line"><span class="javascript">        <span class="comment">// 第一個參數：發出input事件，第二個參數：input事件帶的是this.text的值</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.$emit(<span class="string">"input"</span>, <span class="keyword">this</span>.text);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.text = <span class="string">""</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: `</span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">form</span> @<span class="attr">submit.prevent</span>=<span class="string">"submit"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"text"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"todo-item"</span>, &#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 宣告props名稱</span></span></span><br><span class="line"><span class="javascript">    props: [<span class="string">"label"</span>],</span></span><br><span class="line"><span class="xml">    template: `<span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;label&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>`</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"todolist"</span>, &#123;</span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">        todos: [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// 下層input事件emit後，要執行此function</span></span></span><br><span class="line">      addTodo(text) &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.todos.push(text);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">todo-input</span> @<span class="attr">input</span>=<span class="string">"addTodo"</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-input</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="javascript">                &lt;todo-item v-<span class="keyword">for</span>=<span class="string">"todo in todos"</span> :label=<span class="string">"todo"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </span></span><br><span class="line">        `</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="動態組件"><a href="#動態組件" class="headerlink" title="動態組件"></a>動態組件</h3><p>兩個組件可以透過動態的方式來切換，透過<code>:is</code>綁定 is 屬性搭配 data 中相同的key，來給屬性名稱。<br>透過點擊事件綁定不同的名稱來切換不同組件。</p>
+<p>基本 SPA 運用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 點擊會變更data中的content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"content='lessons'"</span>&gt;</span>Lessons<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"content='apply'"</span>&gt;</span>Apply<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- :is 來自data中的content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"apply"</span>, &#123;</span></span><br><span class="line">    template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span>&gt;</span>submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"lessons"</span>, &#123;</span></span><br><span class="line">    template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>Vue tutorial<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>React tutorial<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>Angular tutorial<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      content: <span class="string">"lessons"</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="動態組件-keep-alive"><a href="#動態組件-keep-alive" class="headerlink" title="動態組件 keep alive"></a>動態組件 keep alive</h3><p>延續上面的動態組件</p>
+<p>在切換的時候原本組件輸入的資料會被消滅再重建，如果想要保留，可以使用<code>keep-alive</code>的 tag 包住，即可以保存下來。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- keep-alive 切換組件要保留原本的資料 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="組件命名"><a href="#組件命名" class="headerlink" title="組件命名"></a>組件命名</h3><p>組件中名稱的命名可以使用三種</p>
+<ul>
+<li>kebab-case: <code>my-first-component</code>，dash 隔開</li>
+<li>camel-case: <code>myFirstComponent</code></li>
+<li>pascal-case: <code>MyFirstComponent</code></li>
+</ul>
+<p>但是在 html 中只能用<code>kebab-case</code>，組件三種命名方式，使用的時候都會轉為 kebab-case，在 html 去執行。</p>
+<p>以上限制只有在用 el 綁定元素，如果用 template 模板綁定則沒有限制。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- html中只能用kebab-case --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">my-first-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-first-component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// my first component</span></span></span><br><span class="line"><span class="javascript">  <span class="string">"my-first-component"</span>; <span class="comment">// kebab-case - html中只能用這個</span></span></span><br><span class="line"><span class="javascript">  <span class="string">"myFirstComponent"</span>; <span class="comment">// camel-case - template中皆可</span></span></span><br><span class="line"><span class="javascript">  <span class="string">"MyFirstComponent"</span>; <span class="comment">// Pascal-case</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  Vue.component(<span class="string">"my-first-component"</span>, &#123;</span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>"</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// el 綁定html則在html只能用kebab case</span></span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// template不受限制</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// template:`</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// &lt;div&gt;</span></span></span><br><span class="line"><span class="xml">    //     <span class="tag">&lt;<span class="name">myFirstComponent</span>&gt;</span><span class="tag">&lt;/<span class="name">myFirstComponent</span>&gt;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//     self-closing</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//     &lt;myFirstComponent&gt;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// &lt;/div&gt;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// `,</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="影音不同步-promise-callback"><a href="#影音不同步-promise-callback" class="headerlink" title="影音不同步-promise_callback"></a>影音不同步-promise_callback</h2><p><code>https://randomuser.me/api</code> 使用者的假資料，可以用來 api 測試</p>
+<hr>
+<p><strong>callback</strong></p>
+<p>透過 jQuery 的<code>$.ajax</code>或是<code>$.getJSON</code>，發出 request 到指定的 url 後，都會有 callback 的 function。<br>這是在非同步呼叫完成後，才會去執行。</p>
+<p>ajax 非同步的呼叫，不知道什麼時候才會完成，如果非同步跟同步的呼叫寫在一起，很容易會有獲得 undefined 的結果發生。</p>
+<p>要用 callback function 回傳才能確保值的回傳。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// callback</span></span><br><span class="line"><span class="comment">// jQuery</span></span><br><span class="line"><span class="comment">// function getRandomEmail() &#123;</span></span><br><span class="line"><span class="comment">//     let email;</span></span><br><span class="line"><span class="comment">//     $.getJSON('https://randomuser.me/api', function (data) &#123;</span></span><br><span class="line"><span class="comment">//         email = data.results[0].email;</span></span><br><span class="line"><span class="comment">//     &#125;);</span></span><br><span class="line"><span class="comment">//     return email; // 會比ajax非同步呼叫還早執行</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// const email = getRandomEmail();</span></span><br><span class="line"><span class="comment">// console.log(email); //undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// getRandomEmail函式加上callback，會從ajax完成後的callback傳入</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomEmail</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  $.getJSON(<span class="string">"https://randomuser.me/api"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    callback(data.results[<span class="number">0</span>].email); <span class="comment">// ajax完成後的callback</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">getRandomEmail(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(email);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果要連續獲取多個 email 呢？延續上面例子，就需要用巢狀的方式來呼叫 callback 函式，可讀性就會很低，所謂的 callback hell 回呼地獄。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多個</span></span><br><span class="line"><span class="keyword">const</span> emails = [];</span><br><span class="line">getRandomEmail(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">  emails.push(email);</span><br><span class="line">  getRandomEmail(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">    emails.push(email);</span><br><span class="line">    getRandomEmail(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">      emails.push(email);</span><br><span class="line">      <span class="built_in">console</span>.log(emails);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>這時候就可以使用 promise 的方式。</p>
+<p><strong>promise</strong></p>
+<p>promise 是物件，有很多種狀態，執行中，執行完，執行失敗等等，每一個 promise 間可以用<code>.then()</code>連結起來。</p>
+<p><code>.then()</code>中的 return 是要給接著的.then 使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomEmailPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// new Promise函式括號中兩個參數都是函式</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    $.getJSON(<span class="string">"https://randomuser.me/api"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      resolve(data.results[<span class="number">0</span>].email); <span class="comment">// ajax呼叫成功就會呼叫resolve</span></span><br><span class="line">      <span class="comment">// 失敗就是reject</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> emailsPromise = [];</span><br><span class="line">getRandomEmailPromise()</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">    emailsPromise.push(email);</span><br><span class="line">    <span class="keyword">return</span> getRandomEmailPromise(); <span class="comment">// return後給接下來的.then使用</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">    emailsPromise.push(email);</span><br><span class="line">    <span class="keyword">return</span> getRandomEmailPromise(); <span class="comment">// return後給接下來的.then使用</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">    emailsPromise.push(email);</span><br><span class="line">    <span class="built_in">console</span>.log(emailsPromise);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>async / await<br>在 ES6~ES8 中，promise 可以變成很像同步呼叫一樣去使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomEmailPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// new Promise函式括號中兩個參數都是函式</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    $.getJSON(<span class="string">"https://randomuser.me/api"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      resolve(data.results[<span class="number">0</span>].email); <span class="comment">// ajax呼叫成功就會呼叫resolve</span></span><br><span class="line">      <span class="comment">// 失敗就是reject</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> emailsPromise = [];</span><br><span class="line"></span><br><span class="line"><span class="comment">// async /await ES6~ES8，promise變成很像同步呼叫一樣去使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getEmails</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// let email;</span></span><br><span class="line">  <span class="comment">// email = await getRandomEmailPromise();</span></span><br><span class="line">  <span class="comment">// emailsPromise.push(email);</span></span><br><span class="line">  <span class="comment">// email = await getRandomEmailPromise();</span></span><br><span class="line">  <span class="comment">// emailsPromise.push(email);</span></span><br><span class="line">  <span class="comment">// email = await getRandomEmailPromise();</span></span><br><span class="line">  <span class="comment">// emailsPromise.push(email);</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ES8，瀏覽器支援度目前不夠高</span></span><br><span class="line">  emailsPromise.push(<span class="keyword">await</span> getRandomEmailPromise());</span><br><span class="line">  emailsPromise.push(<span class="keyword">await</span> getRandomEmailPromise());</span><br><span class="line">  emailsPromise.push(<span class="keyword">await</span> getRandomEmailPromise());</span><br><span class="line">  <span class="built_in">console</span>.log(emailsPromise);</span><br><span class="line">&#125;</span><br><span class="line">getEmails();</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#組件-Component"><span class="toc-number">1.</span> <span class="toc-text">組件 Component</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-組件的註冊與使用"><span class="toc-number">1.1.</span> <span class="toc-text">Vue 組件的註冊與使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-模板的解析注意事項"><span class="toc-number">1.2.</span> <span class="toc-text">DOM 模板的解析注意事項</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-必須是函數"><span class="toc-number">1.3.</span> <span class="toc-text">data 必須是函數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件組合"><span class="toc-number">1.4.</span> <span class="toc-text">組件組合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態組件"><span class="toc-number">1.5.</span> <span class="toc-text">動態組件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態組件-keep-alive"><span class="toc-number">1.6.</span> <span class="toc-text">動態組件 keep alive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件命名"><span class="toc-number">1.7.</span> <span class="toc-text">組件命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#影音不同步-promise-callback"><span class="toc-number">2.</span> <span class="toc-text">影音不同步-promise_callback</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/02/vue-component/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/02/vue-component/&text=[Vue] - （七）組件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/02/vue-component/&is_video=false&description=[Vue] - （七）組件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （七）組件&body=Check out this article: https://orow.github.io/2019/05/02/vue-component/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/02/vue-component/&title=[Vue] - （七）組件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/02/vue-component/&name=[Vue] - （七）組件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="DemojQuery 練習-jQuery Content Slider- Demo 1. Introduction 介紹這是在 Udemy 上課程的一個 slider 功能，網路上有很多這個功能的套件與框架，但還是把這個練習記錄下來。用jQuery操作fadeOut、fadeIn等基本方式來完成圖片更換效果。 整個 html 先用 div 包住 header 加上 prev 的圖片，再來是全部的">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[jQuery] - 練習-jQuery Content Slider">
+<meta property="og:url" content="https://orow.github.io/2019/03/14/jQuery-content-slider/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="DemojQuery 練習-jQuery Content Slider- Demo 1. Introduction 介紹這是在 Udemy 上課程的一個 slider 功能，網路上有很多這個功能的套件與框架，但還是把這個練習記錄下來。用jQuery操作fadeOut、fadeIn等基本方式來完成圖片更換效果。 整個 html 先用 div 包住 header 加上 prev 的圖片，再來是全部的">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/IeArKC4.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[jQuery] - 練習-jQuery Content Slider">
+<meta name="twitter:description" content="DemojQuery 練習-jQuery Content Slider- Demo 1. Introduction 介紹這是在 Udemy 上課程的一個 slider 功能，網路上有很多這個功能的套件與框架，但還是把這個練習記錄下來。用jQuery操作fadeOut、fadeIn等基本方式來完成圖片更換效果。 整個 html 先用 div 包住 header 加上 prev 的圖片，再來是全部的">
+<meta name="twitter:image" content="https://i.imgur.com/IeArKC4.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[jQuery] - 練習-jQuery Content Slider</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/16/jQuery-youtube-search/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/14/simple-js-quiz/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/14/jQuery-content-slider/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&text=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&is_video=false&description=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-jQuery Content Slider&body=Check out this article: https://orow.github.io/2019/03/14/jQuery-content-slider/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&name=[jQuery] - 練習-jQuery Content Slider&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [jQuery] - 練習-jQuery Content Slider
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-14T12:18:43.000Z" itemprop="datePublished">2019-03-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>jQuery 練習-jQuery Content Slider- <a href="https://orow.github.io/MyProjects/ProjectsInJS&amp;jQuery/jQueryContentSlider/ContentSlider/index.html">Demo</a></p>
+<h2 id="1-Introduction-介紹"><a href="#1-Introduction-介紹" class="headerlink" title="1. Introduction 介紹"></a>1. Introduction 介紹</h2><p>這是在 Udemy 上課程的一個 slider 功能，網路上有很多這個功能的套件與框架，但還是把這個練習記錄下來。<br>用jQuery操作fadeOut、fadeIn等基本方式來完成圖片更換效果。</p>
+<p>整個 html 先用 div 包住 header 加上 prev 的圖片，再來是全部的 slide 資訊，最後才是 next 的圖片。Slide的圖片則是用了unsplash的隨機圖片，prev 跟 next 會用 float 來排版。<br>主要有 prev、next 還有隔一段時間就執行下一個 slide 的功能。<br><img src="https://i.imgur.com/IeArKC4.png" alt></p>
+<h2 id="2-功能"><a href="#2-功能" class="headerlink" title="2. 功能"></a>2. 功能</h2><p>排版上來說第一個是 prev 圖片，再來是 slider 包住全部 slide 內容，最後是 next 圖片，這邊三個都要用<code>float:left</code>跟<code>position:relative</code>。<br>slider 中的每一個 slide 則是用<code>position:absolute</code>，slide 中的文字敘述區塊也是用 absolute，要貼齊上一層的 slide 的左下方則用<code>left:0</code>,<code>bottom:0</code></p>
+<p>JS部分：<br>宣告速度，自動播放需要設定速度，之後先加上一個active class給第一個slide的區塊（預設顯示）。<br>再讓全部slide區塊隱藏，之後抓取active class的區塊來顯示。<br>設定prev跟next點擊後、自動播放的handler。<br>設定next, prev slide的function。</p>
+<p>宣告速度，還有自動播放，如果之後不想自動播放就改為false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Set Options</span></span><br><span class="line"><span class="keyword">var</span> speed = <span class="number">500</span>;    <span class="comment">// fade spped</span></span><br><span class="line"><span class="keyword">var</span> autoswitch = <span class="literal">true</span>; <span class="comment">//auto slider options</span></span><br><span class="line"><span class="keyword">var</span> autoswitch_speed = <span class="number">4000</span> <span class="comment">// auto slider speed</span></span><br></pre></td></tr></table></figure>
+<p>初始化active class，全部slide區塊隱藏，抓取active class進行顯示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add initial active class</span></span><br><span class="line">$(<span class="string">'.slide'</span>).first().addClass(<span class="string">'active'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Hide all slides</span></span><br><span class="line">$(<span class="string">'.slide'</span>).hide();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Show first slide</span></span><br><span class="line">$(<span class="string">'.active'</span>).show();</span><br></pre></td></tr></table></figure>
+<p>設定prev與next點擊後、自動播放的handler的，每隔4000ms即自動執行nextSlide的function。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Next Handler </span></span><br><span class="line">$(<span class="string">'#next'</span>).on(<span class="string">'click'</span>,nextSlide);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prev Handler</span></span><br><span class="line">$(<span class="string">'#prev'</span>).on(<span class="string">'click'</span>,prevSlide);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Auto Slider Handler</span></span><br><span class="line"><span class="keyword">if</span> (autoswitch == <span class="literal">true</span>)&#123;</span><br><span class="line">    setInterval(nextSlide,autoswitch_speed)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Prev &amp; Next slide function設定：</p>
+<p>Next需要先把正在顯示的slide移除active class並新增一個oldActive，這是用來判定是不是最後一個slide區塊。如果是最後一個，則把active加回第一個區塊，不是最後一個的話則加到下一個slide區塊。<br>判定後並新增active後則要把一開始的oldActive移除，全部slide要fadeOut，active要顯示的則fadeIn。</p>
+<p>Prev則相同，只需要把判定的最後一個子元素改為第一個，next改為prev，first改為last即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Switch to next slide</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextSlide</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'.active'</span>).removeClass(<span class="string">'active'</span>).addClass(<span class="string">'oldActive'</span>);</span><br><span class="line">    <span class="keyword">if</span>($(<span class="string">'.oldActive'</span>).is(<span class="string">':last-child'</span>))&#123;</span><br><span class="line">        $(<span class="string">'.slide'</span>).first().addClass(<span class="string">'active'</span>);</span><br><span class="line">    &#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">        $(<span class="string">'.oldActive'</span>).next().addClass(<span class="string">'active'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $(<span class="string">'.oldActive'</span>).removeClass(<span class="string">'oldActive'</span>);</span><br><span class="line">    $(<span class="string">'.slide'</span>).fadeOut(speed);</span><br><span class="line">    $(<span class="string">'.active'</span>).fadeIn(speed);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Switch to prev slide</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prevSlide</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'.active'</span>).removeClass(<span class="string">'active'</span>).addClass(<span class="string">'oldActive'</span>);</span><br><span class="line">    <span class="keyword">if</span>($(<span class="string">'.oldActive'</span>).is(<span class="string">':first-child'</span>))&#123;</span><br><span class="line">        $(<span class="string">'.slide'</span>).last().addClass(<span class="string">'active'</span>);</span><br><span class="line">    &#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">        $(<span class="string">'.oldActive'</span>).prev().addClass(<span class="string">'active'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $(<span class="string">'.oldActive'</span>).removeClass(<span class="string">'oldActive'</span>);</span><br><span class="line">    $(<span class="string">'.slide'</span>).fadeOut(speed);</span><br><span class="line">    $(<span class="string">'.active'</span>).fadeIn(speed);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>html程式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>jQuery Content Slider<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/arrow-left.png"</span> <span class="attr">alt</span>=<span class="string">"Prev"</span> <span class="attr">id</span>=<span class="string">"prev"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"slider"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide-copy"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Slider One<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam amet</span><br><span class="line">          illo doloribus debitis fuga quo, distinctio ipsam adipisci temporibus</span><br><span class="line">          iste, sint odio saepe explicabo rerum incidunt quos nisi suscipit</span><br><span class="line">          corrupti!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/random/940x350"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide-copy"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Slider Two<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam amet</span><br><span class="line">          illo doloribus debitis fuga quo, distinctio ipsam adipisci temporibus</span><br><span class="line">          iste, sint odio saepe explicabo rerum incidunt quos nisi suscipit</span><br><span class="line">          corrupti!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/random/941x350"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide-copy"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Slider Three<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam amet</span><br><span class="line">          illo doloribus debitis fuga quo, distinctio ipsam adipisci temporibus</span><br><span class="line">          iste, sint odio saepe explicabo rerum incidunt quos nisi suscipit</span><br><span class="line">          corrupti!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/random/940x351"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide-copy"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Slider Four<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam amet</span><br><span class="line">          illo doloribus debitis fuga quo, distinctio ipsam adipisci temporibus</span><br><span class="line">          iste, sint odio saepe explicabo rerum incidunt quos nisi suscipit</span><br><span class="line">          corrupti!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/random/941x351"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide-copy"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Slider Five<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam amet</span><br><span class="line">          illo doloribus debitis fuga quo, distinctio ipsam adipisci temporibus</span><br><span class="line">          iste, sint odio saepe explicabo rerum incidunt quos nisi suscipit</span><br><span class="line">          corrupti!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/random/942x350"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/arrow-right.png"</span> <span class="attr">alt</span>=<span class="string">"Next"</span> <span class="attr">id</span>=<span class="string">"next"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo"><span class="toc-number">1.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction-介紹"><span class="toc-number">2.</span> <span class="toc-text">1. Introduction 介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能"><span class="toc-number">3.</span> <span class="toc-text">2. 功能</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/14/jQuery-content-slider/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&text=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&is_video=false&description=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[jQuery] - 練習-jQuery Content Slider&body=Check out this article: https://orow.github.io/2019/03/14/jQuery-content-slider/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&title=[jQuery] - 練習-jQuery Content Slider"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/14/jQuery-content-slider/&name=[jQuery] - 練習-jQuery Content Slider&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

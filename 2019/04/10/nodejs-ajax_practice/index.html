@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前言這個 AJAX - 註冊與登入驗證的功能在前面的文章已經有練習過先前練習的連結：AJAX-註冊與登入驗證 當時是用網路課程的後端 url，這裡要嘗試自己用 express 的方式架設，達到一樣的功能這裡 express 的架構是參考 Github 上 FaztWeb 的資源：nodejs-ajax-crud Exprees 後端主要目的用express架起這個註冊登入功能的資料庫。分為 sig">
+<meta name="keywords" content="javascript,ajax,node.js,express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Node.js] - Express-註冊與登入驗證">
+<meta property="og:url" content="https://orow.github.io/2019/04/10/nodejs-ajax_practice/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="前言這個 AJAX - 註冊與登入驗證的功能在前面的文章已經有練習過先前練習的連結：AJAX-註冊與登入驗證 當時是用網路課程的後端 url，這裡要嘗試自己用 express 的方式架設，達到一樣的功能這裡 express 的架構是參考 Github 上 FaztWeb 的資源：nodejs-ajax-crud Exprees 後端主要目的用express架起這個註冊登入功能的資料庫。分為 sig">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/hJWuLOG.png">
+<meta property="og:image" content="https://i.imgur.com/pON5SZ5.png">
+<meta property="og:image" content="https://i.imgur.com/nZjT46Y.png">
+<meta property="og:image" content="https://i.imgur.com/7PGKdqM.png">
+<meta property="og:image" content="https://i.imgur.com/MO1TNyI.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Node.js] - Express-註冊與登入驗證">
+<meta name="twitter:description" content="前言這個 AJAX - 註冊與登入驗證的功能在前面的文章已經有練習過先前練習的連結：AJAX-註冊與登入驗證 當時是用網路課程的後端 url，這裡要嘗試自己用 express 的方式架設，達到一樣的功能這裡 express 的架構是參考 Github 上 FaztWeb 的資源：nodejs-ajax-crud Exprees 後端主要目的用express架起這個註冊登入功能的資料庫。分為 sig">
+<meta name="twitter:image" content="https://i.imgur.com/hJWuLOG.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Node.js] - Express-註冊與登入驗證</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/24/javascript-ES6/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/08/nodejs-ajax_faztweb/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/10/nodejs-ajax_practice/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&text=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&is_video=false&description=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Node.js] - Express-註冊與登入驗證&body=Check out this article: https://orow.github.io/2019/04/10/nodejs-ajax_practice/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&name=[Node.js] - Express-註冊與登入驗證&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exprees-後端"><span class="toc-number">2.</span> <span class="toc-text">Exprees 後端</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Node.js] - Express-註冊與登入驗證
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-10T13:50:00.000Z" itemprop="datePublished">2019-04-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ajax/">ajax</a>, <a class="tag-link" href="/tags/express/">express</a>, <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/node-js/">node.js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>這個 AJAX - 註冊與登入驗證的功能在前面的文章已經有練習過<br>先前練習的連結：<a href="https://orow.github.io/2019/03/11/ajax-js-sideproject/">AJAX-註冊與登入驗證</a><br><img src="https://i.imgur.com/hJWuLOG.png" alt></p>
+<p>當時是用網路課程的後端 url，這裡要嘗試自己用 express 的方式架設，達到一樣的功能<br>這裡 express 的架構是參考 Github 上 FaztWeb 的資源：<a href="https://github.com/FaztWeb/nodejs-ajax-crud" target="_blank" rel="noopener">nodejs-ajax-crud</a></p>
+<h2 id="Exprees-後端"><a href="#Exprees-後端" class="headerlink" title="Exprees 後端"></a>Exprees 後端</h2><p>主要目的用express架起這個註冊登入功能的資料庫。<br>分為 signup 註冊與 signin 登入。</p>
+<p>Server 程式碼：<br>修改了參考資源中的 port 與 routes 的根目錄</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">"morgan"</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">// settings</span></span><br><span class="line">app.set(<span class="string">"port"</span>, process.env.PORT || <span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// middlewares</span></span><br><span class="line">app.use(morgan(<span class="string">"dev"</span>));</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(express.json());</span><br><span class="line"></span><br><span class="line"><span class="comment">// routes</span></span><br><span class="line">app.use(<span class="string">"/api"</span>, <span class="built_in">require</span>(<span class="string">"./routes/index"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// static files</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">"public"</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// start the server</span></span><br><span class="line">app.listen(app.get(<span class="string">"port"</span>), () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`server on port <span class="subst">$&#123;app.get(<span class="string">"port"</span>)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Routes 程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> lists = <span class="built_in">require</span>(<span class="string">"../data.json"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Registration</span></span><br><span class="line">router.post(<span class="string">"/signup"</span>, (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> infos = req.body;</span><br><span class="line">  <span class="built_in">console</span>.log(infos);</span><br><span class="line">  <span class="comment">// 比對送過來的mail不是已存在，之後再針對結果去判斷</span></span><br><span class="line">  lists.forEach(<span class="function">(<span class="params">singleList, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (infos.email == lists[i].email) &#123;</span><br><span class="line">      existEmail = lists[i].email;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">//已存在的帳號回傳一個含有message已被使用的物件，不存在就push回原資料中，並回傳註冊成功</span></span><br><span class="line">  <span class="keyword">if</span> (infos.email == existEmail) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(lists);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      success: <span class="literal">false</span>,</span><br><span class="line">      result: &#123;&#125;,</span><br><span class="line">      message: <span class="string">"此帳號已被使用"</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lists.push(&#123;</span><br><span class="line">      id: lists.length + <span class="number">1</span>,</span><br><span class="line">      email: infos.email,</span><br><span class="line">      password: infos.password</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(lists);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      success: <span class="literal">true</span>,</span><br><span class="line">      result: &#123;&#125;,</span><br><span class="line">      message: <span class="string">"帳號註冊成功"</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// Signin</span></span><br><span class="line">router.post(<span class="string">"/signin"</span>, (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> infos = req.body;</span><br><span class="line">  <span class="built_in">console</span>.log(infos);</span><br><span class="line">  <span class="comment">// 比對送過來的mail不是已存在，之後再針對結果去判斷</span></span><br><span class="line">  lists.forEach(<span class="function">(<span class="params">singleList, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (infos.email == lists[i].email) &#123;</span><br><span class="line">      existEmail = lists[i].email;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//已存在的帳號回傳一個含有message已被使用的物件，不存在就push回原資料中，並回傳註冊成功</span></span><br><span class="line">  <span class="keyword">if</span> (infos.email == existEmail) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(lists);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      success: <span class="literal">true</span>,</span><br><span class="line">      result: &#123;&#125;,</span><br><span class="line">      message: <span class="string">"登入成功"</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(lists);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      success: <span class="literal">false</span>,</span><br><span class="line">      result: &#123;&#125;,</span><br><span class="line">      message: <span class="string">"此帳號不存在或帳號密碼錯誤"</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<p>前端 JS 概略流程則與先前課程用的方式相同：</p>
+<ol>
+<li>addEventListener 監聽</li>
+<li>function 中用來取到輸入的帳號密碼的 value，並將取得的帳號密碼的值塞回 object 中。</li>
+<li>var xhr = new XMLHttpRequest()</li>
+<li>xhr.open()</li>
+<li>xhr.setRequestHeader()</li>
+<li>xhr.send() - 內容要轉為字串</li>
+<li>用 xhr.onload function (){} / 確保資料都跑完再執行 function</li>
+<li>因為要判斷資料後再去執行所需的 alert,在獲取資料前要先將 json 內格式從字串轉為陣列</li>
+<li>再利用物件中的”message”來判斷執行哪種 alert</li>
+</ol>
+<p>Server 預設資料：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    id: <span class="number">1</span>,</span><br><span class="line">    email: <span class="string">"11@11.com"</span>,</span><br><span class="line">    password: <span class="string">"11"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id: <span class="number">2</span>,</span><br><span class="line">    email: <span class="string">"11@22.com"</span>,</span><br><span class="line">    password: <span class="string">"22"</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>Signup:<br>Browser 發出 request 後，router 會先判斷輸入的 email 是不是已經存在，再送出對應的JSON資料。</p>
+<pre><code>註冊：
+Success Response:
+{
+    &quot;success&quot;: true,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;帳號註冊成功&quot;
+}
+Error Response:
+{
+    &quot;success&quot;: false,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;此帳號已被使用&quot;
+}
+</code></pre><p>註冊成功<br><img src="https://i.imgur.com/pON5SZ5.png" alt></p>
+<p>註冊失敗<br><img src="https://i.imgur.com/nZjT46Y.png" alt></p>
+<p>Signin:<br>發出 request 後，router 會先判斷輸入的 email 是不是已經存在，再送出對應的JSON資料。</p>
+<pre><code>登入：
+Success Response:
+{
+    &quot;success&quot;: true,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;登入成功&quot;
+}
+Error Response:
+{
+    &quot;success&quot;: false,
+    &quot;result&quot;: {},
+    &quot;message&quot;: &quot;此帳號不存在或帳號密碼錯誤&quot;
+}
+</code></pre><p>登入成功<br><img src="https://i.imgur.com/7PGKdqM.png" alt></p>
+<p>登入失敗<br><img src="https://i.imgur.com/MO1TNyI.png" alt></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exprees-後端"><span class="toc-number">2.</span> <span class="toc-text">Exprees 後端</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/10/nodejs-ajax_practice/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&text=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&is_video=false&description=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Node.js] - Express-註冊與登入驗證&body=Check out this article: https://orow.github.io/2019/04/10/nodejs-ajax_practice/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&title=[Node.js] - Express-註冊與登入驗證"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/10/nodejs-ajax_practice/&name=[Node.js] - Express-註冊與登入驗證&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

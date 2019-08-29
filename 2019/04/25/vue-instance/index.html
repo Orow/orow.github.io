@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 實例 Instance 元素掛載（$mount）、模板（template） 狀態（data） 方法（method） 計算屬性（computed） 偵聽（watch） 生命週期（life cycle hooks）  元素掛載、模板宣告 vue 實例（new Vue）後要連結 html 元素，el 是元素 element">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （二）實例 Instance">
+<meta property="og:url" content="https://orow.github.io/2019/04/25/vue-instance/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 實例 Instance 元素掛載（$mount）、模板（template） 狀態（data） 方法（method） 計算屬性（computed） 偵聽（watch） 生命週期（life cycle hooks）  元素掛載、模板宣告 vue 實例（new Vue）後要連結 html 元素，el 是元素 element">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/NOZCVEb.png">
+<meta property="og:image" content="https://i.imgur.com/2D6SMYQ.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （二）實例 Instance">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、w3school及網路上搜尋資源所學習的。 實例 Instance 元素掛載（$mount）、模板（template） 狀態（data） 方法（method） 計算屬性（computed） 偵聽（watch） 生命週期（life cycle hooks）  元素掛載、模板宣告 vue 實例（new Vue）後要連結 html 元素，el 是元素 element">
+<meta name="twitter:image" content="https://i.imgur.com/NOZCVEb.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （二）實例 Instance</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/26/vue-prop-bind_condition-Judge/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/24/vue-concept_template/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/25/vue-instance/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/25/vue-instance/&text=[Vue] - （二）實例 Instance"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/25/vue-instance/&is_video=false&description=[Vue] - （二）實例 Instance"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （二）實例 Instance&body=Check out this article: https://orow.github.io/2019/04/25/vue-instance/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/25/vue-instance/&name=[Vue] - （二）實例 Instance&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#實例-Instance"><span class="toc-number">1.</span> <span class="toc-text">實例 Instance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#元素掛載、模板"><span class="toc-number">1.1.</span> <span class="toc-text">元素掛載、模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#狀態-data"><span class="toc-number">1.2.</span> <span class="toc-text">狀態-data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法-methods"><span class="toc-number">1.3.</span> <span class="toc-text">方法-methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#計算屬性-computed"><span class="toc-number">1.4.</span> <span class="toc-text">計算屬性-computed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#偵聽-watch"><span class="toc-number">1.5.</span> <span class="toc-text">偵聽-watch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命週期"><span class="toc-number">1.6.</span> <span class="toc-text">生命週期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實作-密碼強度檢查"><span class="toc-number">2.</span> <span class="toc-text">實作-密碼強度檢查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補充"><span class="toc-number">3.</span> <span class="toc-text">補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-source-of-truth"><span class="toc-number">3.1.</span> <span class="toc-text">Single source of truth</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （二）實例 Instance
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-25T07:00:00.000Z" itemprop="datePublished">2019-04-25</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、<code>w3school</code>及網路上搜尋資源所學習的。</p>
+<h2 id="實例-Instance"><a href="#實例-Instance" class="headerlink" title="實例 Instance"></a>實例 Instance</h2><ul>
+<li>元素掛載（$mount）、模板（template）</li>
+<li>狀態（data）</li>
+<li>方法（method）</li>
+<li>計算屬性（computed）</li>
+<li>偵聽（watch）</li>
+<li>生命週期（life cycle hooks）</li>
+</ul>
+<h3 id="元素掛載、模板"><a href="#元素掛載、模板" class="headerlink" title="元素掛載、模板"></a>元素掛載、模板</h3><p>宣告 vue 實例（new Vue）後要連結 html 元素，el 是元素 element 的縮寫，可以使用 CSS selector 的方式也可以用 JS 獲取名稱，要注意不能同時掛載多個相同的元素，只會掛載第一個符合的元素。</p>
+<p>元素掛載的部分也可以在宣告實例後，有需要用到再去掛載。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// const vm可以省略</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// const vm =  new Vue(&#123;</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// &#125;);</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>, <span class="comment">// mount，CSS selector</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// el: document.getElementById('app'),</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// template是字串，掛載後會取代html中元素裡面的內容</span></span></span><br><span class="line"><span class="xml">    template: "<span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;msg&#125;&#125;&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>",</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      msg: <span class="string">"Hello!!"</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="comment">// 宣告實例後，需要再去掛載</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// vm.$mount('#app');</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// vm.$mount(document.getElementById('app'));</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="狀態-data"><a href="#狀態-data" class="headerlink" title="狀態-data"></a>狀態-data</h3><p>vue 實例的狀態，或者是說資料，本身是物件。<br>data 的宣告也可以在實例外面，在實例中再去取用該名稱，也可以重新給值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;a+b&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> data = &#123;</span></span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="javascript">    <span class="comment">// data:&#123;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//     a:1,</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//     b:2,</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="javascript">    data <span class="comment">// data: data,</span></span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="comment">// console.log(vm.a) // 1</span></span></span><br><span class="line">  vm.a = 3;</span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(data.a); <span class="comment">// 3</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(vm.$data === data); <span class="comment">// true</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法-methods"><a href="#方法-methods" class="headerlink" title="方法-methods"></a>方法-methods</h3><p>methods 也是物件，要宣告實例中會用到的 function，在 html 則是要用 v-on:來綁定事件。</p>
+<p>也可以在 methods 的其中一個函式用 this.函式名稱去執行另一個 methods 中的函式，但要注意 data 的屬性名稱跟 methods 中函式名稱不能一樣。</p>
+<p>在 methods 中不要去使用到箭頭函式，在 methods 中的 this 是指導 vue 實例本身，如果用箭頭函式 this 則會指到 window。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"add1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"add2"</span>&gt;</span>+&#123;&#123;step&#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"add3"</span>&gt;</span>+&#123;&#123;step&#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="javascript">    <span class="comment">// data中的屬性跟methods中的函式不能一樣</span></span></span><br><span class="line">    data: &#123;</span><br><span class="line">      count: 0,</span><br><span class="line">      step: 1</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// methods中函式不能用箭頭函式，this不會指到實例會指到window</span></span></span><br><span class="line">    methods: &#123;</span><br><span class="line">      add1() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.count += <span class="number">1</span>;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      add2() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.count += <span class="keyword">this</span>.step;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.step += <span class="number">1</span>;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      add3() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.add2();</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="計算屬性-computed"><a href="#計算屬性-computed" class="headerlink" title="計算屬性-computed"></a>計算屬性-computed</h3><p>computed 也是物件，裡面可以宣告成函式，也可以宣告為物件。<br>物件中可以宣告 get、set 函式，在取用這個物件的時候，程式就會直接執行 get 這個函式。當要改變物件名稱的值的時候就會去執行 set 函式。<br>宣告函式與宣告物件中的 get 都需要 return。</p>
+<p>用 input 相加的結果來記錄說明<br><img src="https://i.imgur.com/NOZCVEb.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model</span>=<span class="string">"a"</span> /&gt;</span></span><br><span class="line">  +</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model</span>=<span class="string">"b"</span> /&gt;</span></span><br><span class="line">  =</span><br><span class="line">  <span class="comment">&lt;!-- &lt;span&gt;&#123;&#123;answer&#125;&#125;&lt;/span&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model</span>=<span class="string">"answer"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  &#123;&#123;a&#125;&#125;+&#123;&#123;b&#125;&#125;=&#123;&#123;answer&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      a: 0,</span><br><span class="line">      b: 0</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// computed裡可以宣告成函式，也可以宣告為物件</span></span></span><br><span class="line">    computed: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// answer()&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     return parseInt(this.a) + parseInt(this.b);</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 物件中可以宣告get, set函式，要取用answer值就會呼叫get函式，要設定時就呼叫set函式</span></span></span><br><span class="line">      answer: &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">get</span>() &#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.b);</span></span><br><span class="line">        &#125;,</span><br><span class="line"><span class="javascript">        <span class="comment">// set 不需要return，val參數就是去設定的值</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">set</span>(val) &#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.b = <span class="built_in">parseInt</span>(val) - <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a);</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="偵聽-watch"><a href="#偵聽-watch" class="headerlink" title="偵聽-watch"></a>偵聽-watch</h3><p>watch 顧名思義就是要監聽，型態同樣是物件，裡面可以宣告函式，也可以宣告成物件。<br>宣告的名稱需要跟 data 或是 computed 裡面的屬性名稱是相同的。</p>
+<p>宣告為函式時，()中第一個參數是現在的值，第二個參數是上一個舊的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"value"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;valuex2&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      value: 0</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      valuex2() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.value) * <span class="number">2</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// 物件，宣告成函式，命名要跟data一樣，會偵聽data, methods(不會變), computed中該屬性的值</span></span></span><br><span class="line">    watch: &#123;</span><br><span class="line">      value(val, oldVal) &#123;</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span> -&gt; <span class="subst">$&#123;val&#125;</span>`</span>);</span></span><br><span class="line">      &#125;,</span><br><span class="line">      valuex2(val, oldVal) &#123;</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span> -&gt; <span class="subst">$&#123;val&#125;</span>`</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>宣告為物件時，裡面要有一個 handler 函式，還有兩個屬性</p>
+<ul>
+<li>immediate: ture or false</li>
+<li>deep: ture or false</li>
+</ul>
+<p><code>immediate</code>為一初始化就跑一次 watch<br><code>deep</code>偵聽對象只能是「屬性的內容」為陣列或是物件</p>
+<p>不能濫用 watch</p>
+<p>像這個案例 input - a+b=c<br>a 與 b 在 watch 要分開偵聽，實效能差，且不符合聲明，實務上用 computed 直接偵聽 c 即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- deep --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;input type="text" v-model="input.a"&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- watch 命令式 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"a"</span> /&gt;</span>+ <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"b"</span> /&gt;</span>=</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"c"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// input:&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     a:"",</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line">      a: 0,</span><br><span class="line">      b: 0,</span><br><span class="line">      c: 0</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// 用computed較簡潔，效能較好</span></span></span><br><span class="line">      c() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.b);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// value:&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     handler(val, oldVal)&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         console.log(`$&#123;oldVal&#125; -&gt; $&#123;val&#125;`);</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     &#125;,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// input:&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     handler(val, oldVal)&#123;</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         console.log(val === oldVal);</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//         console.log(`$&#123;oldVal&#125; -&gt; $&#123;val&#125;`);</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     &#125;,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     // true, 初始化就會跑一次watch</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     // immediate: true,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">//     // deep只能用來偵聽「屬性的內容」是陣列或是物件</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//     deep: true,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="comment">// 不符合聲明式且效能差，直接用computed，比較簡潔也符合聲明式，效能也比較好</span></span></span><br><span class="line">      a(val) &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.c = <span class="built_in">parseInt</span>(val) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.b);</span></span><br><span class="line">      &#125;,</span><br><span class="line">      b(val) &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.c = <span class="built_in">parseInt</span>(val) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a);</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h3><ul>
+<li><p>beforeCreate<br>server side rendering<br>創立實例，一開始初始化後就執行</p>
+</li>
+<li><p>created<br>server side rendering<br>data、computed 等屬性放到實例裡面</p>
+</li>
+</ul>
+<p>以下六種都在 client side rendering</p>
+<ul>
+<li><p>beforeMount<br>當決定 render 的時候會執行，掛載修改的內容（模板）</p>
+</li>
+<li><p>Mounted<br>掛載後才執行這個函式<br>最常用的，ajax 或偵聽事件元素或 window 等等</p>
+</li>
+<li><p>beforeUpdate<br>資料變更先跑這個</p>
+</li>
+<li><p>updated<br>資料變更後會跑 updated 函式</p>
+</li>
+<li><p>beforeDestroy<br>呼叫 vm.$destroy 摧毀前會先執行</p>
+</li>
+<li><p>destroyed<br>呼叫 vm.$destroy，全部 vue 摧毀<br>取消偵聽等等</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/2D6SMYQ.png" alt></p>
+<h2 id="實作-密碼強度檢查"><a href="#實作-密碼強度檢查" class="headerlink" title="實作-密碼強度檢查"></a>實作-密碼強度檢查</h2><p>會員註冊時，即時的檢查，如密碼太短，只用數字不夠強等等。</p>
+<ul>
+<li>v-model雙向綁定data</li>
+<li>computed計算密碼強度（長度），包含用正規表達式判斷大小寫數字等等。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">v-model</span>=<span class="string">"password"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;strength&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      password: <span class="string">""</span></span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      strength() &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> score = <span class="keyword">this</span>.password.length;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// regular expression</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="regexp">/[A-Z]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="regexp">/[a-z]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="regexp">/[0-9]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="regexp">/[^A-Za-z0-9]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (score &gt; <span class="number">40</span>) <span class="keyword">return</span> <span class="string">"Perfect"</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (score &gt; <span class="number">20</span>) <span class="keyword">return</span> <span class="string">"Great"</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (score &gt; <span class="number">10</span>) <span class="keyword">return</span> <span class="string">"Good"</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="string">"Weak"</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="Single-source-of-truth"><a href="#Single-source-of-truth" class="headerlink" title="Single source of truth"></a>Single source of truth</h3><p>資料來源只能有一個</p>
+<ol>
+<li><p>html中用<code>:checked</code>跟<code>@change</code>測試，vue中的data中包含selected:空陣列<code>[]</code>，搭配methods:select()來判斷index後，進行push或是splice</p>
+</li>
+<li><p>延續第一點，data中seleted空陣列改在computed中，methods中則以簡單一行處理</p>
+</li>
+<li><p>實務上html中會用v-model，computed中用簡短一行，filter處裡，methods則全部不用</p>
+</li>
+</ol>
+<p>附上程式碼：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;label&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="checkbox" :checked="a" @change="select('a')"&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;a&lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;/label&gt;</span></span><br><span class="line"><span class="comment">    &lt;label&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="checkbox" :checked="b" @change="select('b')"&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;b&lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;/label&gt;</span></span><br><span class="line"><span class="comment">    &lt;label&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type="checkbox" :checked="c" @change="select('c')"&gt;</span></span><br><span class="line"><span class="comment">        &lt;span&gt;c&lt;/span&gt;</span></span><br><span class="line"><span class="comment">    &lt;/label&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 土法2、實務 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"a"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>a<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"b"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>b<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"c"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>c<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;selected&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">"#app"</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line"><span class="javascript">            a:<span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            b:<span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            c:<span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// selected: [], // 土法 1 用computed來達成single source of truth</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line"><span class="javascript">            <span class="comment">// 土法 2</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// selected()&#123;</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//     const result = [];</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//     if(this.a) result.push('a');</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//     if(this.b) result.push('b');</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//     if(this.c) result.push('c');</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//     return result;</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// &#125;,</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="comment">// 實務上用法 v-model</span></span></span><br><span class="line">            selected()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>].filter(<span class="function"><span class="params">item</span> =&gt;</span> <span class="keyword">this</span>[item]);</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line"><span class="javascript">        <span class="comment">// methods:&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // 土法 1</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // select(item)&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     const idx = this.selected.indexOf(item);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     // 找不到就會回傳index = -1</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     if(idx === -1)&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //         this.selected.push(item);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //         // this[item]=true; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     &#125; else &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //         this.selected.splice(idx, 1);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //         // this[item]=false; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     &#125;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // &#125;,</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // 土法 2</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // select(item)&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     //     this[item] = !this[item];</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     // &#125;,</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// &#125;,</span></span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#實例-Instance"><span class="toc-number">1.</span> <span class="toc-text">實例 Instance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#元素掛載、模板"><span class="toc-number">1.1.</span> <span class="toc-text">元素掛載、模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#狀態-data"><span class="toc-number">1.2.</span> <span class="toc-text">狀態-data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法-methods"><span class="toc-number">1.3.</span> <span class="toc-text">方法-methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#計算屬性-computed"><span class="toc-number">1.4.</span> <span class="toc-text">計算屬性-computed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#偵聽-watch"><span class="toc-number">1.5.</span> <span class="toc-text">偵聽-watch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命週期"><span class="toc-number">1.6.</span> <span class="toc-text">生命週期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實作-密碼強度檢查"><span class="toc-number">2.</span> <span class="toc-text">實作-密碼強度檢查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補充"><span class="toc-number">3.</span> <span class="toc-text">補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-source-of-truth"><span class="toc-number">3.1.</span> <span class="toc-text">Single source of truth</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/04/25/vue-instance/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/04/25/vue-instance/&text=[Vue] - （二）實例 Instance"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/04/25/vue-instance/&is_video=false&description=[Vue] - （二）實例 Instance"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （二）實例 Instance&body=Check out this article: https://orow.github.io/2019/04/25/vue-instance/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/04/25/vue-instance/&title=[Vue] - （二）實例 Instance"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/04/25/vue-instance/&name=[Vue] - （二）實例 Instance&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

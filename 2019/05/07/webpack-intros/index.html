@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Webpack官網 下面圖示就說明了webpack在做什麼的，左邊是各種工具、第三方前處理等等的方式，透過webpack轉譯成瀏覽器能夠支援、讀得懂的內容。 為什麼要用webpack參考來源 - 為什麼我們需要webpack 因為現在前端有很多新的技術，但是瀏覽器並沒有完全支援，這時候就可以透過webpack來編譯成瀏覽器所看的懂的html、css、javascript等等。 這樣就可以學習、使用">
+<meta name="keywords" content="webpack,babel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Webpack] - 認識 webpack &amp; babel">
+<meta property="og:url" content="https://orow.github.io/2019/05/07/webpack-intros/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="Webpack官網 下面圖示就說明了webpack在做什麼的，左邊是各種工具、第三方前處理等等的方式，透過webpack轉譯成瀏覽器能夠支援、讀得懂的內容。 為什麼要用webpack參考來源 - 為什麼我們需要webpack 因為現在前端有很多新的技術，但是瀏覽器並沒有完全支援，這時候就可以透過webpack來編譯成瀏覽器所看的懂的html、css、javascript等等。 這樣就可以學習、使用">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/F50uEw5.png">
+<meta property="og:image" content="https://i.imgur.com/AsBlugf.png">
+<meta property="og:image" content="https://i.imgur.com/b24L1Or.png">
+<meta property="og:image" content="https://i.imgur.com/0fg1UGB.png">
+<meta property="og:image" content="https://i.imgur.com/xOv6DXE.png">
+<meta property="og:image" content="https://i.imgur.com/gI7qrXW.png">
+<meta property="og:image" content="https://i.imgur.com/aSIWszm.png">
+<meta property="og:image" content="https://i.imgur.com/OQCmpWv.png">
+<meta property="og:image" content="https://i.imgur.com/b24L1Or.png">
+<meta property="og:image" content="https://i.imgur.com/ZN62GVr.png">
+<meta property="og:image" content="https://i.imgur.com/qjGjiCS.png">
+<meta property="og:image" content="https://i.imgur.com/w4gClzv.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Webpack] - 認識 webpack &amp; babel">
+<meta name="twitter:description" content="Webpack官網 下面圖示就說明了webpack在做什麼的，左邊是各種工具、第三方前處理等等的方式，透過webpack轉譯成瀏覽器能夠支援、讀得懂的內容。 為什麼要用webpack參考來源 - 為什麼我們需要webpack 因為現在前端有很多新的技術，但是瀏覽器並沒有完全支援，這時候就可以透過webpack來編譯成瀏覽器所看的懂的html、css、javascript等等。 這樣就可以學習、使用">
+<meta name="twitter:image" content="https://i.imgur.com/F50uEw5.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Webpack] - 認識 webpack &amp; babel</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/08/29/vue-prop/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/06/vue-todoMVC/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/07/webpack-intros/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/07/webpack-intros/&text=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/07/webpack-intros/&is_video=false&description=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Webpack] - 認識 webpack &amp; babel&body=Check out this article: https://orow.github.io/2019/05/07/webpack-intros/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/07/webpack-intros/&name=[Webpack] - 認識 webpack &amp; babel&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack"><span class="toc-number">1.</span> <span class="toc-text">Webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#為什麼要用webpack"><span class="toc-number">1.1.</span> <span class="toc-text">為什麼要用webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">1.2.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack超入門"><span class="toc-number">1.3.</span> <span class="toc-text">webpack超入門</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack-Babel"><span class="toc-number">2.</span> <span class="toc-text">Webpack + Babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Babel-loader"><span class="toc-number">2.1.</span> <span class="toc-text">Babel-loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mike補充"><span class="toc-number">2.2.</span> <span class="toc-text">Mike補充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模組化"><span class="toc-number">3.</span> <span class="toc-text">模組化</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Webpack] - 認識 webpack &amp; babel
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-05-07T14:00:00.000Z" itemprop="datePublished">2019-05-07</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/webpack/">webpack</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/babel/">babel</a>, <a class="tag-link" href="/tags/webpack/">webpack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p><a href="https://webpack.js.org/" target="_blank" rel="noopener">官網</a></p>
+<p>下面圖示就說明了webpack在做什麼的，左邊是各種工具、第三方前處理等等的方式，透過webpack轉譯成瀏覽器能夠支援、讀得懂的內容。<br><img src="https://i.imgur.com/F50uEw5.png" alt></p>
+<h3 id="為什麼要用webpack"><a href="#為什麼要用webpack" class="headerlink" title="為什麼要用webpack"></a>為什麼要用webpack</h3><p>參考來源 - <a href="https://www.youtube.com/watch?v=OLPuNJwKTsA" target="_blank" rel="noopener">為什麼我們需要webpack</a></p>
+<p>因為現在前端有很多新的技術，但是瀏覽器並沒有完全支援，這時候就可以透過webpack來編譯成瀏覽器所看的懂的html、css、javascript等等。<br><img src="https://i.imgur.com/AsBlugf.png" alt></p>
+<p>這樣就可以學習、使用新技術，來用更方便，有效的方式來開發。</p>
+<ol>
+<li>編譯新技術來讓瀏覽器可以支援</li>
+<li>webpack也可編譯sass、壓縮圖片等等。</li>
+<li>可以統一多人的開發環境，這樣在該專案中，引入哪些套件、用哪些方法、版本號等等，都可以用webpack來維持。</li>
+</ol>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>多個js檔案，透過webpack來轉成一個js檔。</p>
+<p>以前，js拆開、一次一次引入<br><img src="https://i.imgur.com/b24L1Or.png" alt></p>
+<p>但在script載入的時候是非同步的載入，沒辦法確定哪一隻js先引入</p>
+<p>現在<br><img src="https://i.imgur.com/0fg1UGB.png" alt></p>
+<p>webpack把所有plugin（bootstrap, jQuery等）編成vendor.js的檔案，然後所寫的內容只會有index.js檔案，確保document.reday只會有一個等等。<br>這樣可以確保程式的進入點只會一個，確保程式的flow正確性，以減少程式開發的錯誤跟問題的發生。</p>
+<p>webpack是建立在node.js的開發環境上。<br><img src="https://i.imgur.com/xOv6DXE.png" alt></p>
+<ul>
+<li>安裝node.js前要先安裝nvm，node版本管裡</li>
+<li>安裝node後也會安裝npm，node套件管理</li>
+</ul>
+<h3 id="webpack超入門"><a href="#webpack超入門" class="headerlink" title="webpack超入門"></a>webpack超入門</h3><p>參考來源 - <a href="https://www.youtube.com/watch?v=vyI-Ko6fvKU" target="_blank" rel="noopener">Webpack 前端自動化開發超入門</a></p>
+<p>sass, pug , gulp第三方的前處理工具，或是react框架等，這些可以用不一樣的工具來編譯，但用webpack可以統一編譯轉換。</p>
+<h2 id="Webpack-Babel"><a href="#Webpack-Babel" class="headerlink" title="Webpack + Babel"></a>Webpack + Babel</h2><p>使用webpack前要先有<code>webpack.config.js</code><br><img src="https://i.imgur.com/gI7qrXW.png" alt></p>
+<p><a href="https://webpack.js.org/guides/getting-started/" target="_blank" rel="noopener">官網說明</a>：安裝順序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack-demo</span><br><span class="line">cd webpack-demo</span><br><span class="line">npm init -y</span><br><span class="line">npm install webpack --save-dev</span><br><span class="line">npm install webpack-cli --save-dev</span><br></pre></td></tr></table></figure>
+<p><code>npm init-y</code>初始化會產生<code>package.json</code>檔案，裡面包含了使用到的工具版本、指令等等。</p>
+<p><code>npm install webpack --save-dev</code>跟<code>npm install webpack-cli --save-dev</code>後會產生<code>package-lock.json</code>跟<code>node_modules</code>。</p>
+<p>node_modules內容就是使用到的第三方套件，如果要專案複製的話，通常不會放這個資料夾，因為可以透過npm install裝回來。</p>
+<p>npm install後面的<code>--save-dev</code>會把安裝的版本寫進<code>package.json</code><br><img src="https://i.imgur.com/aSIWszm.png" alt></p>
+<p>webpack一開始最重要的就是<code>entry</code>跟<code>output</code>，entry就是自己寫的js內容，output就是轉譯後丟出去的路徑跟名稱。</p>
+<p>webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>require是node.js語法，上面寫法是從node.js把path這個模組抓進webpack來使用。<br><code>path: path.resolve(__dirname, &#39;dist&#39;)</code>中的resolve就是把相對路徑轉換為絕對路徑。影片中在terminal中輸入<del>webpack</del>就會在同一層路徑產生dist資料夾，裡面有bundle.js檔案。</p>
+<pre><code>目前官網上說明指令為npx webpack
+</code></pre><h3 id="Babel-loader"><a href="#Babel-loader" class="headerlink" title="Babel-loader"></a>Babel-loader</h3><p>但是如果要轉換高版本javascript語法到ES5的話，就需要掛載babel來轉。</p>
+<p><a href="https://webpack.js.org/loaders/babel-loader/" target="_blank" rel="noopener">Babel官網</a><br><a href="https://github.com/babel/babel-loader" target="_blank" rel="noopener">Babel-Github</a></p>
+<ul>
+<li><p>babel-loader</p>
+<p>  要透過webpack轉譯前，要先讓webpack可以讀懂ES6或是更高版本的語法，babel-loader的作用就是在此。</p>
+<p>  安裝指令 <code>npm install -D babel-loader @babel/core @babel/preset-env webpack</code><br>  這邊沒有加上<code>--save-dev</code>，是因為用了<code>-D</code>這個縮寫，結果是相同的，會把版本存進package.json</p>
+</li>
+</ul>
+<p>安裝babel-loader後要對loader設定進行設定。<br>要在webpack.config.js中加入module。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">'@babel/preset-env'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在安裝完babel-loader跟加入module後，再執行一次<code>npx webpack</code>就會轉為ES5語法了。</p>
+<h3 id="Mike補充"><a href="#Mike補充" class="headerlink" title="Mike補充"></a>Mike補充</h3><p>在webpack中可以設定npm script</p>
+<p>mike文章中有例子<br>在package.json設定新增script，像下面例子這樣就可以透過npm指令來執行webpack</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">   "watch": "webpack --mode development --watch",</span><br><span class="line">   "start": "webpack --mode development",</span><br><span class="line">   "deploy": "webpack --mode production"</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+<p>指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$npm run watch</span><br><span class="line">$npm run start</span><br><span class="line">$npm run deploy</span><br></pre></td></tr></table></figure>
+<p>在一開始的例子沒有使用這個script前，在執行npx webpack會出現警告<br><img src="https://i.imgur.com/OQCmpWv.png" alt></p>
+<p>意思是沒有設定mode，代表每一次都是production</p>
+<ul>
+<li>development: 不壓縮，可讀性較高</li>
+<li>production: 檔案內容都會壓縮成一行，減少內容，提高執行效率</li>
+</ul>
+<p>如果想要持續執行，就可以加上 –watch指令，只要修改entry的js來源的內容，一存檔就會自動執行webpack。</p>
+<h2 id="模組化"><a href="#模組化" class="headerlink" title="模組化"></a>模組化</h2><p>用一開始提到的例子當範例<br><img src="https://i.imgur.com/b24L1Or.png" alt></p>
+<p>共有三個檔案index.js、login.js、menu.js。</p>
+<p>官網上也有說明<br><img src="https://i.imgur.com/ZN62GVr.png" alt></p>
+<p>在menu.js檔案中寫</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">menu</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"menu"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>html檔案會引用的index.js中寫</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import menu.js</span></span><br><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'./menu.js'</span>;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣在網頁一直行完就會去執行menu.js檔案裡面的menu函式，就會得到console.log(‘menu’)的結果<br><img src="https://i.imgur.com/qjGjiCS.png" alt></p>
+<p>login也是一樣的做法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Login</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'login'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>html檔案會引用的index.js中寫</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import menu.js &amp; login.js，.js省略可運作</span></span><br><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'./menu.js'</span>;</span><br><span class="line"><span class="keyword">import</span> testLogin <span class="keyword">from</span> <span class="string">'./login.js'</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    test();</span><br><span class="line">    testLogin();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得到<br><img src="https://i.imgur.com/w4gClzv.png" alt></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack"><span class="toc-number">1.</span> <span class="toc-text">Webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#為什麼要用webpack"><span class="toc-number">1.1.</span> <span class="toc-text">為什麼要用webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">1.2.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack超入門"><span class="toc-number">1.3.</span> <span class="toc-text">webpack超入門</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack-Babel"><span class="toc-number">2.</span> <span class="toc-text">Webpack + Babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Babel-loader"><span class="toc-number">2.1.</span> <span class="toc-text">Babel-loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mike補充"><span class="toc-number">2.2.</span> <span class="toc-text">Mike補充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模組化"><span class="toc-number">3.</span> <span class="toc-text">模組化</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/05/07/webpack-intros/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/05/07/webpack-intros/&text=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/05/07/webpack-intros/&is_video=false&description=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Webpack] - 認識 webpack &amp; babel&body=Check out this article: https://orow.github.io/2019/05/07/webpack-intros/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/05/07/webpack-intros/&title=[Webpack] - 認識 webpack &amp; babel"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/05/07/webpack-intros/&name=[Webpack] - 認識 webpack &amp; babel&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

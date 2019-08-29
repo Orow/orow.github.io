@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：udemy、w3school及網路上搜尋資源所學習的。 event bubbling &amp;amp; capturing事件傳遞順序為：先捕獲，再冒泡。但是當事件傳到 target 本身後，是沒有分捕獲跟冒泡的。事件捕獲：在網頁上點擊到一個元素，這個點擊的事件會先從window開始往下傳，一直傳到點擊到的元素。這個階段稱作捕獲階段。事件冒泡：在事件捕獲到後，會一路傳回去wind">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)">
+<meta property="og:url" content="https://orow.github.io/2019/03/10/event-bubbling/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：udemy、w3school及網路上搜尋資源所學習的。 event bubbling &amp;amp; capturing事件傳遞順序為：先捕獲，再冒泡。但是當事件傳到 target 本身後，是沒有分捕獲跟冒泡的。事件捕獲：在網頁上點擊到一個元素，這個點擊的事件會先從window開始往下傳，一直傳到點擊到的元素。這個階段稱作捕獲階段。事件冒泡：在事件捕獲到後，會一路傳回去wind">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)">
+<meta name="twitter:description" content="本篇主要是透過線上課程：udemy、w3school及網路上搜尋資源所學習的。 event bubbling &amp;amp; capturing事件傳遞順序為：先捕獲，再冒泡。但是當事件傳到 target 本身後，是沒有分捕獲跟冒泡的。事件捕獲：在網頁上點擊到一個元素，這個點擊的事件會先從window開始往下傳，一直傳到點擊到的元素。這個階段稱作捕獲階段。事件冒泡：在事件捕獲到後，會一路傳回去wind">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/10/localstorage/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/10/addEventListener/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/10/event-bubbling/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/10/event-bubbling/&text=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/10/event-bubbling/&is_video=false&description=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)&body=Check out this article: https://orow.github.io/2019/03/10/event-bubbling/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/10/event-bubbling/&name=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#event-bubbling-amp-capturing"><span class="toc-number">1.</span> <span class="toc-text">event bubbling &amp; capturing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#event-bubbling"><span class="toc-number">1.1.</span> <span class="toc-text">event bubbling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-capturing"><span class="toc-number">1.2.</span> <span class="toc-text">event capturing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stop-propagation"><span class="toc-number">1.3.</span> <span class="toc-text">stop propagation</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-10T13:00:00.000Z" itemprop="datePublished">2019-03-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/javascript/">javascript</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>udemy</code>、<code>w3school</code>及網路上搜尋資源所學習的。</p>
+<h2 id="event-bubbling-amp-capturing"><a href="#event-bubbling-amp-capturing" class="headerlink" title="event bubbling &amp; capturing"></a>event bubbling &amp; capturing</h2><p>事件傳遞順序為：先捕獲，再冒泡。但是當事件傳到 target 本身後，是沒有分捕獲跟冒泡的。<br>事件捕獲：在網頁上點擊到一個元素，這個點擊的事件會先從<code>window</code>開始往下傳，一直傳到點擊到的元素。這個階段稱作捕獲階段。<br>事件冒泡：在事件捕獲到後，會一路傳回去<code>window</code>，這個時候稱作冒泡階段。</p>
+<p>在上一篇所提到到 addEventListener 的事件監聽可以決定用事件冒泡或是事件捕獲來監聽這個 event。<br><code>addEventListenter(‘click’,function(){...},false)</code>第三個欄位參數可以為 <code>true</code>，<code>false</code>。</p>
+<ul>
+<li>true: event capturing</li>
+<li>false: event bubbling</li>
+</ul>
+<h3 id="event-bubbling"><a href="#event-bubbling" class="headerlink" title="event bubbling"></a>event bubbling</h3><p>下面的例子是用 body 去包住一個 box<br>設定為 false 後，點擊 box，事件會監聽按照從點擊位置往外傳到 window 的順序。<br>看起來只有點擊 box，但是因為監聽事件冒泡，所以會先 alert(“hello box”)然後再 alert(“hello body”)。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"body"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elbox = <span class="built_in">document</span>.querySelector(<span class="string">".box"</span>);</span><br><span class="line">elbox.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello box"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"box"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// event capturing</span></span><br><span class="line"><span class="keyword">var</span> elbody = <span class="built_in">document</span>.querySelector(<span class="string">".body"</span>);</span><br><span class="line">elbody.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello body"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"body"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>如果第三個欄位不輸入，也是 false，是 default 的設定值。</p>
+<h3 id="event-capturing"><a href="#event-capturing" class="headerlink" title="event capturing"></a>event capturing</h3><p>用跟 bubbling 一樣的例子，但是事件監聽將第三個欄位參數改為 true。<br>設定為 ture 後，點擊 box，事件只會監聽按照從 window 往內傳到點擊位置的順序。<br>點擊 box，因為監聽事件捕獲，所以會先 alert(“hello body”)然後再 alert(“hello box”)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elbox = <span class="built_in">document</span>.querySelector(<span class="string">".box"</span>);</span><br><span class="line">elbox.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello box"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"box"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// event capturing</span></span><br><span class="line"><span class="keyword">var</span> elbody = <span class="built_in">document</span>.querySelector(<span class="string">".body"</span>);</span><br><span class="line">elbody.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello body"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"body"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="stop-propagation"><a href="#stop-propagation" class="headerlink" title="stop propagation"></a>stop propagation</h3><p>上述例子如果不想兩個都被點擊觸發到，只想單純執行自己就好，這時候就可以使用<code>stop propagation</code>來停止事件的傳遞。<br>依照<code>stop propagation</code>加在哪一階段，事件傳遞就會終止在該階段，不繼續傳遞下去。</p>
+<p>這邊用 event bubbling 事件冒泡的例子。<br>box的操作中，在alert前就加上<code>e.stopPropagation()</code>來停止傳遞，所以這一段只會alert(“hello box”)，click的事件不會再往上傳到body去執行click事件了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elbox = <span class="built_in">document</span>.querySelector(<span class="string">".box"</span>);</span><br><span class="line">elbox.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//需要要給值代元素資訊</span></span><br><span class="line">    e.stopPropagation(); <span class="comment">//再去執行停止傳遞</span></span><br><span class="line">    alert(<span class="string">"hello box"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"box"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> elbody = <span class="built_in">document</span>.querySelector(<span class="string">".body"</span>);</span><br><span class="line">elbody.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"hello body"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"body"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/" target="_blank" rel="noopener">其他參考來源</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#event-bubbling-amp-capturing"><span class="toc-number">1.</span> <span class="toc-text">event bubbling &amp; capturing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#event-bubbling"><span class="toc-number">1.1.</span> <span class="toc-text">event bubbling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-capturing"><span class="toc-number">1.2.</span> <span class="toc-text">event capturing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stop-propagation"><span class="toc-number">1.3.</span> <span class="toc-text">stop propagation</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/03/10/event-bubbling/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/03/10/event-bubbling/&text=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/03/10/event-bubbling/&is_video=false&description=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)&body=Check out this article: https://orow.github.io/2019/03/10/event-bubbling/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/03/10/event-bubbling/&title=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/03/10/event-bubbling/&name=[JavaScript] - Event bubbling &amp; capturing(事件冒泡與捕獲)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

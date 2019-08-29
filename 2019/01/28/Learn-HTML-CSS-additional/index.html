@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="HTMLTable網頁中也可以顯示表格&amp;lt;table&amp;gt;代表表格&amp;lt;tr&amp;gt;為 row 是橫列的意思。&amp;lt;th&amp;gt;代表表格的標題，會有粗體font-weight:bold的效果&amp;lt;td&amp;gt;為 data 是直行的意思，多少個&amp;lt;td&amp;gt;就有多少行。框線則可以透過 CSS 中的 border 進行修飾，例子用上了border: 1px solid #000; 如">
+<meta name="keywords" content="html,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn HTML &amp; CSS(補充)">
+<meta property="og:url" content="https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="HTMLTable網頁中也可以顯示表格&amp;lt;table&amp;gt;代表表格&amp;lt;tr&amp;gt;為 row 是橫列的意思。&amp;lt;th&amp;gt;代表表格的標題，會有粗體font-weight:bold的效果&amp;lt;td&amp;gt;為 data 是直行的意思，多少個&amp;lt;td&amp;gt;就有多少行。框線則可以透過 CSS 中的 border 進行修飾，例子用上了border: 1px solid #000; 如">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/DKyx0wP.png">
+<meta property="og:image" content="https://i.imgur.com/e17lGhu.png">
+<meta property="og:image" content="https://i.imgur.com/HkxixzR.png">
+<meta property="og:image" content="https://i.imgur.com/xZbWreq.png">
+<meta property="og:image" content="https://i.imgur.com/stk8aMe.png">
+<meta property="og:image" content="https://i.imgur.com/bmaeJ4K.png">
+<meta property="og:image" content="https://i.imgur.com/kn6agpY.png">
+<meta property="og:image" content="https://i.imgur.com/8ga1jGq.png">
+<meta property="og:image" content="https://i.imgur.com/wfaaZIw.png">
+<meta property="og:image" content="https://i.imgur.com/bz1ltpO.png">
+<meta property="og:image" content="https://i.imgur.com/tfXGdc1.png">
+<meta property="og:image" content="https://i.imgur.com/92MLHSS.png">
+<meta property="og:image" content="https://i.imgur.com/LStlb9s.png">
+<meta property="og:image" content="https://i.imgur.com/ynwXXOt.png">
+<meta property="og:updated_time" content="2019-08-29T06:12:32.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn HTML &amp; CSS(補充)">
+<meta name="twitter:description" content="HTMLTable網頁中也可以顯示表格&amp;lt;table&amp;gt;代表表格&amp;lt;tr&amp;gt;為 row 是橫列的意思。&amp;lt;th&amp;gt;代表表格的標題，會有粗體font-weight:bold的效果&amp;lt;td&amp;gt;為 data 是直行的意思，多少個&amp;lt;td&amp;gt;就有多少行。框線則可以透過 CSS 中的 border 進行修飾，例子用上了border: 1px solid #000; 如">
+<meta name="twitter:image" content="https://i.imgur.com/DKyx0wP.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Learn HTML &amp; CSS(補充)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/29/Note-HotelBT/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/21/surveyform/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&text=Learn HTML &amp; CSS(補充)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&is_video=false&description=Learn HTML &amp; CSS(補充)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Learn HTML &amp; CSS(補充)&body=Check out this article: https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&name=Learn HTML &amp; CSS(補充)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">1.</span> <span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Table"><span class="toc-number">1.1.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Label-與-Input-搭配"><span class="toc-number">1.2.</span> <span class="toc-text">Label 與 Input 搭配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">2.</span> <span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pseudo-Class-amp-Element-偽類別與偽元素"><span class="toc-number">2.1.</span> <span class="toc-text">Pseudo Class &amp; Element 偽類別與偽元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Background-image"><span class="toc-number">2.2.</span> <span class="toc-text">Background-image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Em-amp-Rem-相對數值單位"><span class="toc-number">2.3.</span> <span class="toc-text">Em &amp; Rem 相對數值單位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vh-amp-Vw-螢幕可視範圍的百分比"><span class="toc-number">2.4.</span> <span class="toc-text">Vh &amp; Vw 螢幕可視範圍的百分比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相容性確認"><span class="toc-number">3.</span> <span class="toc-text">相容性確認</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Learn HTML &amp; CSS(補充)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-28T06:18:43.000Z" itemprop="datePublished">2019-01-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/css/">css</a>, <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h3><p>網頁中也可以顯示表格<br><code>&lt;table&gt;</code>代表表格<br><code>&lt;tr&gt;</code>為 row 是橫列的意思。<br><code>&lt;th&gt;</code>代表表格的標題，會有粗體<code>font-weight:bold</code>的效果<br><code>&lt;td&gt;</code>為 data 是直行的意思，多少個<code>&lt;td&gt;</code>就有多少行。<br>框線則可以透過 CSS 中的 border 進行修飾，例子用上了<code>border: 1px solid #000;</code><br><img src="https://i.imgur.com/DKyx0wP.png" alt></p>
+<p>如果要像一般表格不要有間隔，則在 CSS 對 table 加入以下兩個參數：<br><code>border-collapse:collapse</code>，這會讓彼此之間框線可以合併。<br><code>border-spacing:0;</code>讓距離變成 0px。<br><img src="https://i.imgur.com/e17lGhu.png" alt></p>
+<p>html code:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>#<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>Category<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>Date<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Post One<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Web Development<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Jan 28 2019<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Post Two<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Tech Gadgets<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>Jan 28 2019<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Label-與-Input-搭配"><a href="#Label-與-Input-搭配" class="headerlink" title="Label 與 Input 搭配"></a>Label 與 Input 搭配</h3><p>在點擊 label 後可以讓游標跳到後面則欄位上直接輸入，提升使用者體驗<br>在<code>label for=&quot;mail&quot;</code>for 中為 mail。<br>input 元素的 id 就取名相同的名稱為 mail，<code>input id=&quot;mail&quot;</code>即可以達到該效果。<br><img src="https://i.imgur.com/HkxixzR.png" alt></p>
+<p>html code:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"mail"</span>&gt;</span>Email: <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"mail"</span> <span class="attr">placeholder</span>=<span class="string">"Your mail"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="Pseudo-Class-amp-Element-偽類別與偽元素"><a href="#Pseudo-Class-amp-Element-偽類別與偽元素" class="headerlink" title="Pseudo Class &amp; Element 偽類別與偽元素"></a>Pseudo Class &amp; Element 偽類別與偽元素</h3><p>偽類(pseudo class)：在選擇已經存在的東西，如 a:hover 是選擇<code>&lt;a&gt;</code>的某種狀態<br>偽元素(pseudo elemnet)：創造一個新的假元素，沒有被任何 tag 包住的內容<br>單冒號 (:) 是用在偽類<br>雙冒號 (::) 則是用在偽元素</p>
+<p>pseudo-class 的<br>在某些狀態被選取的話，會被加進 selector 中，如<code>:hover</code>是滑鼠停在某個元素時就會套用指定選擇器的效果，<code>a:hover</code>default 的效果就是有下底線。<br><img src="https://i.imgur.com/xZbWreq.png" alt></p>
+<p>pseudo-element<br>::first-line：<code>div::first-line {color:red;}</code>選取第一行，在沒有任何 tag 包住的情況下創造新的假元素<br>下面例子就會產生第一行為紅色的結果<br><img src="https://i.imgur.com/stk8aMe.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  Hello Everyone!! My Name is Candy</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>參考資料</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes" target="_blank" rel="noopener">MDN web docs</a></li>
+<li><a href="https://stringpiggy.hpd.io/pseudo-element-pseudo-class-difference/" target="_blank" rel="noopener">【CSS FAQ】偽元素 (PSEUDO ELEMENT) 和偽類 (PSEUDO CLASS) 差在哪？</a></li>
+</ul>
+<h3 id="Background-image"><a href="#Background-image" class="headerlink" title="Background-image"></a>Background-image</h3><p>透過 CSS 直接插入背景圖片，設定好寬度與高度後，系統預設是 x，y 方向都會 repeat。<br><img src="https://i.imgur.com/bmaeJ4K.png" alt></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"../img/large-3-11.jpg"</span>);</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1800px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">2700px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>透過在 background 後加上<code>no-repeat</code>, <code>repeat-x</code>, <code>repeat-y</code>可以自己控制背景圖。<br><code>repeat-x</code><br><img src="https://i.imgur.com/kn6agpY.png" alt><br><code>repeat-y</code><br><img src="https://i.imgur.com/8ga1jGq.png" alt><br><code>no-repeat</code>,加上<code>center</code>即可置中<br><img src="https://i.imgur.com/wfaaZIw.png" alt><br>如果加上<code>center/cover</code>，置中並延伸到所設定的寬度與高度充滿整個容器。<br>當背景圖片通常都會加上<code>center/cover</code>。<br><img src="https://i.imgur.com/bz1ltpO.png" alt></p>
+<h3 id="Em-amp-Rem-相對數值單位"><a href="#Em-amp-Rem-相對數值單位" class="headerlink" title="Em &amp; Rem 相對數值單位"></a>Em &amp; Rem 相對數值單位</h3><p>em 是相對的單位，文字大小是相對於上一層的父元素(parent element)。<br>rem 是相對的單位，文字大小是相對於最外圍的根元素(root element)，也就是<code>&lt;html&gt;</code>標籤。</p>
+<p>em 因為是相對上一層父元素的倍數，如果包很多層會被影響。<br>ex.外層的文字是 1.4em，內層的 1em 文字大小等於外層 1.4em，隨後的逐漸放大。<br>如果再加入一層在內部，文字就會是上一層的大小再乘上設定的 em 再放大。<br><img src="https://i.imgur.com/tfXGdc1.png" alt><br>rem 只要不改到網站 root 層的文字大小，就可以清楚的計算需要大小多少的文字，是 root 的倍數。<br>ex.網站文字大小 16px，1rem ＝ 16px;最上跟最下面用 em 來比較<br><img src="https://i.imgur.com/92MLHSS.png" alt></p>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://www.hexschool.com/2016/01/02/2016-08-08-em-vs-rem/" target="_blank" rel="noopener">https://www.hexschool.com/2016/01/02/2016-08-08-em-vs-rem/</a></li>
+</ul>
+<h3 id="Vh-amp-Vw-螢幕可視範圍的百分比"><a href="#Vh-amp-Vw-螢幕可視範圍的百分比" class="headerlink" title="Vh &amp; Vw 螢幕可視範圍的百分比"></a>Vh &amp; Vw 螢幕可視範圍的百分比</h3><p>Vh 是螢幕可視範圍高度的百分比，Vw 是螢幕可視範圍寬度的百分比。<br>會隨著視窗大小來變動，適合用在landing page跟RWD的網頁。</p>
+<p>一般設定<br><img src="https://i.imgur.com/LStlb9s.png" alt></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Vh &amp; Vw<br>將height改為<code>height:100vh</code>，<code>width:50vh</code><br><img src="https://i.imgur.com/ynwXXOt.png" alt></p>
+<h2 id="相容性確認"><a href="#相容性確認" class="headerlink" title="相容性確認"></a>相容性確認</h2><p>有些語法是在新的CSS3中才有，可以透過這個網站來確認語法在哪些瀏覽器可以使用。<br><a href="https://caniuse.com/" target="_blank" rel="noopener">Can I Use</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">1.</span> <span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Table"><span class="toc-number">1.1.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Label-與-Input-搭配"><span class="toc-number">1.2.</span> <span class="toc-text">Label 與 Input 搭配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">2.</span> <span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pseudo-Class-amp-Element-偽類別與偽元素"><span class="toc-number">2.1.</span> <span class="toc-text">Pseudo Class &amp; Element 偽類別與偽元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Background-image"><span class="toc-number">2.2.</span> <span class="toc-text">Background-image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Em-amp-Rem-相對數值單位"><span class="toc-number">2.3.</span> <span class="toc-text">Em &amp; Rem 相對數值單位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vh-amp-Vw-螢幕可視範圍的百分比"><span class="toc-number">2.4.</span> <span class="toc-text">Vh &amp; Vw 螢幕可視範圍的百分比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相容性確認"><span class="toc-number">3.</span> <span class="toc-text">相容性確認</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&text=Learn HTML &amp; CSS(補充)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&is_video=false&description=Learn HTML &amp; CSS(補充)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Learn HTML &amp; CSS(補充)&body=Check out this article: https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&title=Learn HTML &amp; CSS(補充)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/01/28/Learn-HTML-CSS-additional/&name=Learn HTML &amp; CSS(補充)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
