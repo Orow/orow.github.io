@@ -13,7 +13,7 @@ categories:
 
 ## jQuery 基礎概念
 
-jQuery 是 JavaScript 的函式庫(library)，用來快速的選取元素並執行一些行為，還有加強了 AJAX 以及 Event 的功能，也可以故過外掛程式來擴充功能，簡單來說就是讓開法者更輕鬆方便的去製作網站。
+jQuery 是 JavaScript 的函式庫(library)，用來快速的選取元素並執行一些行為，還有加強了 AJAX 以及 Event 的功能，也可以透過外掛程式來擴充功能，簡單來說就是讓開法者更輕鬆方便的去製作網站。
 
 ### 概論
 
