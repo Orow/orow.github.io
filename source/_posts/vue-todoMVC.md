@@ -1,5 +1,5 @@
 ---
-title: "[Vue] - todoMVC-待辦事項功能實作"
+title: "[Vue] - todoMVC-待辦事項功能-實作"
 date: 2019-05-06 18:00:00
 tags:
   - Vue
