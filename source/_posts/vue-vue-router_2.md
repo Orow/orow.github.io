@@ -419,3 +419,20 @@ props: (route)=> {
     };
 },
 ```
+
+### History模式
+
+預設是 hash 模式，就是在跑 npm run dev 的時候，路徑後面會有一個`#`，這就是預設 hash 模式。
+
+![](https://i.imgur.com/PI8CJy9.png)
+
+改為 history 就會沒有 # 井字號
+![](https://i.imgur.com/NjKVJHZ.png)
+
+![](https://i.imgur.com/Chzow8e.png)
+
+但如果用 history 模式，跑 npm run build 去打包的話，會把產生的檔案放在 dist 資料夾裡，如果用 history 模式後，這時候路徑就會找不到，這邊可以用 browser-sync 的npm package 來執行  browser-sync start -s 這是開啟虛擬伺服器來模擬情況。
+
+如果需要乾淨的網址，又要可以找到相對的路徑，伺服器需要設定 URL Rewrite ，這是後端需要去處理的。
+
+井字好 # 後面的東西不會經過伺服器，完全透過 browser 前端處理，history 模式就是模擬好 URL Rewrite 的環境，但僅限於 npm run dev 。
