@@ -1,11 +1,13 @@
 ---
-title: "[Vue] - （七）組件"
+title: "[Vue] - （七）組件 Components"
 date: 2019-05-02 15:00:00
 tags:
   - Vue
 categories:
   - Vue
 ---
+
+本篇主要是透過線上課程：`HiSKIO`、[官方文件](https://vuejs.org/v2/guide/single-file-components.html)及網路上搜尋資源所學習的。
 
 ## 組件 Component
 

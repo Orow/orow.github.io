@@ -1,11 +1,13 @@
 ---
-title: "[Vue] - （四）列表渲染"
+title: "[Vue] - （四）列表渲染 List rendering"
 date: 2019-04-29 15:00:00
 tags:
   - Vue
 categories:
   - Vue
 ---
+
+本篇主要是透過線上課程：`HiSKIO`、[官方文件](https://vuejs.org/v2/guide/single-file-components.html)及網路上搜尋資源所學習的。
 
 ## 列表渲染 Lists render
 

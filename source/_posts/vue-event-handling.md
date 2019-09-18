@@ -1,11 +1,13 @@
 ---
-title: "[Vue] - （五）事件處理"
+title: "[Vue] - （五）事件處理 Event handling"
 date: 2019-04-30 15:00:00
 tags:
   - Vue
 categories:
   - Vue
 ---
+
+本篇主要是透過線上課程：`HiSKIO`、[官方文件](https://vuejs.org/v2/guide/single-file-components.html)及網路上搜尋資源所學習的。
 
 ## 事件處理 Event handling
 

@@ -1,11 +1,13 @@
 ---
-title: "[Vue] - （六）表單綁定"
+title: "[Vue] - （六）表單綁定 Form binding"
 date: 2019-05-01 15:00:00
 tags:
   - Vue
 categories:
   - Vue
 ---
+
+本篇主要是透過線上課程：`HiSKIO`、[官方文件](https://vuejs.org/v2/guide/single-file-components.html)及網路上搜尋資源所學習的。
 
 ## 表單綁定 Event handling
 
