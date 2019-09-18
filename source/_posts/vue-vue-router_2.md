@@ -435,4 +435,4 @@ props: (route)=> {
 
 如果需要乾淨的網址，又要可以找到相對的路徑，伺服器需要設定 URL Rewrite ，這是後端需要去處理的。
 
-井字好 # 後面的東西不會經過伺服器，完全透過 browser 前端處理，history 模式就是模擬好 URL Rewrite 的環境，但僅限於 npm run dev 。
+井字號 # 後面的東西不會經過伺服器，完全透過 browser 前端處理，history 模式就是模擬好 URL Rewrite 的環境，但僅限於 npm run dev 。
