@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 單一檔案組件（single file components）在許多 Vue 項目中，使用Vue.component定義全域組件，然後再用new Vue({ el: &amp;#39;#app&amp;#39; })，在要使用的頁面中去指定到該容器元素。這樣的方式在一些中小型專案沒有什麼大問題，這些專案中 JavaScript 被用來加強特定">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （十）單一檔案組件 &amp; Vue-cli">
+<meta property="og:url" content="https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 單一檔案組件（single file components）在許多 Vue 項目中，使用Vue.component定義全域組件，然後再用new Vue({ el: &amp;#39;#app&amp;#39; })，在要使用的頁面中去指定到該容器元素。這樣的方式在一些中小型專案沒有什麼大問題，這些專案中 JavaScript 被用來加強特定">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/kgR8Zw3.png">
+<meta property="og:image" content="https://i.imgur.com/6WoVwoF.png">
+<meta property="og:image" content="https://i.imgur.com/Mjp9VIk.png">
+<meta property="og:image" content="https://i.imgur.com/PdXOqKQ.png">
+<meta property="og:image" content="https://i.imgur.com/h49NOIW.png">
+<meta property="og:image" content="https://i.imgur.com/7OZwksY.png">
+<meta property="og:updated_time" content="2019-08-30T07:37:23.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （十）單一檔案組件 &amp; Vue-cli">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 單一檔案組件（single file components）在許多 Vue 項目中，使用Vue.component定義全域組件，然後再用new Vue({ el: &amp;#39;#app&amp;#39; })，在要使用的頁面中去指定到該容器元素。這樣的方式在一些中小型專案沒有什麼大問題，這些專案中 JavaScript 被用來加強特定">
+<meta name="twitter:image" content="https://i.imgur.com/kgR8Zw3.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （十）單一檔案組件 &amp; Vue-cli</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/08/30/vue-single-file-component_vue-cli-sideproject/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/08/30/vue-custom-event-sideproject/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&text=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&is_video=false&description=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （十）單一檔案組件 &amp; Vue-cli&body=Check out this article: https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&name=[Vue] - （十）單一檔案組件 &amp; Vue-cli&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#單一檔案組件（single-file-components）"><span class="toc-number">1.</span> <span class="toc-text">單一檔案組件（single file components）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import-amp-export"><span class="toc-number">1.1.</span> <span class="toc-text">import &amp; export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-cli-建立模板"><span class="toc-number">1.2.</span> <span class="toc-text">Vue-cli 建立模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#單一檔案組件"><span class="toc-number">1.3.</span> <span class="toc-text">單一檔案組件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解決-CSS-困境的-scoped-style"><span class="toc-number">1.4.</span> <span class="toc-text">解決 CSS 困境的 scoped style</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （十）單一檔案組件 &amp; Vue-cli
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-30T07:00:00.000Z" itemprop="datePublished">2019-08-30</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、<a href="https://vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">官方文件</a>及網路上搜尋資源所學習的。</p>
+<h2 id="單一檔案組件（single-file-components）"><a href="#單一檔案組件（single-file-components）" class="headerlink" title="單一檔案組件（single file components）"></a>單一檔案組件（single file components）</h2><p>在許多 Vue 項目中，使用<code>Vue.component</code>定義全域組件，然後再用<code>new Vue({ el: &#39;#app&#39; })</code>，在要使用的頁面中去指定到該容器元素。<br>這樣的方式在一些中小型專案沒有什麼大問題，這些專案中 JavaScript 被用來加強特定的 views ，但在更複雜的大型專案，或是前端都用 JavaScript 來驅動的時候，就會把一些缺點放大。</p>
+<ul>
+<li>全域定義(Global definitions)：強制每個組件 component 的命名不能重複。</li>
+<li>字串模板(String templates)：元件中的 template 屬性只能用字串，在編輯器中編寫內容時，無法有效地以顏色區分，而且只能用<code>\</code>反斜線的方式來進行斷行。</li>
+<li>不支援CSS(No CSS support)：在組件化時，元件只能提供 HTML 及 JavaScript，無法支援 CSS 。</li>
+<li>沒有前置處理(No build step)：不能使用預處理工具，ex: Babel，預設限制只能使用 HTML 及 ES5 。</li>
+</ul>
+<p>用<code>單一檔案元件(single file components)</code>來開發 vue ，包含 HTML、Script、CSS 等等都會放在同一個檔案，一個檔案就代表一個組件，為了這個方式來開發，需要用工具來轉換打包。<br>需要先安裝 node.js ， npm 安裝套件等等，其中用來打包轉換的 webpack 的工具。</p>
+<p>Webpack 在自己建置時相對會比較複雜， vue-cli 則是可以比較簡單的建立一個模板來直接使用，簡單的說就是 vue-cli 讓使用者用更簡易的方式來建立模板。</p>
+<p><strong>單一檔案組件實例</strong></p>
+<p><img src="https://i.imgur.com/kgR8Zw3.png" alt></p>
+<h3 id="import-amp-export"><a href="#import-amp-export" class="headerlink" title="import &amp; export"></a>import &amp; export</h3><p>大型專案或開發到後來，用一個檔案很難維護，現代的前端開發習慣拆成很多個檔案， vue 的開發一個檔案就會代表一個組件，透過 export 跟 import 來使用。</p>
+<p>export - Counter.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Counter = Vue.component(<span class="string">'counter'</span>,&#123;</span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
+
+<p>import - App.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Counter <span class="keyword">from</span> <span class="string">'./Counter'</span> <span class="comment">// 如果檔名是.js可以省略</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    components: &#123;</span><br><span class="line">        Counter,</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;Counter/&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-cli-建立模板"><a href="#Vue-cli-建立模板" class="headerlink" title="Vue-cli 建立模板"></a>Vue-cli 建立模板</h3><ul>
+<li>在 terminal 輸入<code>vue init webpack-simple 專案資料夾名稱</code></li>
+<li>接著會有專案名稱、描述、作者等等選項</li>
+<li>完成後需要按照步驟來 npm install，npm run dev 等</li>
+</ul>
+<p><img src="https://i.imgur.com/6WoVwoF.png" alt></p>
+<p>npm run dev 後瀏覽器則會自己開啟<code>http://localhost:8080/</code>的位址<br><img src="https://i.imgur.com/Mjp9VIk.png" alt></p>
+<p>回到專案資料夾中 src 裡面的 main.js </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>定義 vue 實例在畫面上呈現什麼東西，第一個是透過 html 直接定義模板，然後把 el 指向該元素，第二個則是 vue 實例中用<code>template</code>，第三個也是在 vue 實例中用<code>render</code>。</p>
+<p>原本的 render 寫法，本身是函式，會傳入一個 createElement 的函式，是用來輸入一個組件來回傳一個要輸出的元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params">createElement</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(App);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊透過 Vue-cli 建立出來的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br></pre></td></tr></table></figure>
+
+<p>則是用箭頭函式又因為是只有一行又用 return ，所以把 return 省略，參數把小括號去掉，參數習慣用h取代。</p>
+<h3 id="單一檔案組件"><a href="#單一檔案組件" class="headerlink" title="單一檔案組件"></a>單一檔案組件</h3><p>把 javascript、html 模板、css 樣式都寫在同一檔案裡面。</p>
+<p>如下面 App.vue 檔案中內容，名稱 App 就是在上面 Vue-cli 建立後 render: h =&gt; h(App) 帶入的檔案。</p>
+<p>這邊 template 不是真的 html ，所以組件命名不一定要用 kebab case 方式命名。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/logo.png"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Hello - vue-cli created<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://vuejs.org"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Core Docs<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://forum.vuejs.org"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Forum<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://chat.vuejs.org"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Community Chat<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://twitter.com/vuejs"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Twitter<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Ecosystem<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://router.vuejs.org/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>vue-router<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://vuex.vuejs.org/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>vuex<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://vue-loader.vuejs.org/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>vue-loader<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://github.com/vuejs/awesome-vue"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>awesome-vue<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">'app'</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">'Welcome to Your Vue.js App - test'</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: 'Avenir', Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1, h2 &#123;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul &#123;</span><br><span class="line">  list-style-type: none;</span><br><span class="line">  padding: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  margin: 0 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a &#123;</span><br><span class="line">  color: #42b983;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/PdXOqKQ.png" alt></p>
+<h3 id="解決-CSS-困境的-scoped-style"><a href="#解決-CSS-困境的-scoped-style" class="headerlink" title="解決 CSS 困境的 scoped style"></a>解決 CSS 困境的 scoped style</h3><ul>
+<li>CSS 的選擇器是全域有效（global scope），沒辦法只在某些區域裡面運行</li>
+<li>撞名- collision</li>
+<li>加上前綴- specificity ，用槽狀方式一層一層選擇來增加權重</li>
+</ul>
+<p>這些可以透過 vue 的單一檔案組件來解決。</p>
+<p>外層 Outer.vue ， import Inner.vue 後有兩個 h1 ，要分別對這兩個 h1 做 style 設定的時候，在個別 vue 檔案組件中的 style 加上 scoped 後，在其中的 CSS 效果只會作用在剛檔案之中。<br>意思就是在不同組件中定義自己的 CSS 。</p>
+<p><img src="https://i.imgur.com/h49NOIW.png" alt></p>
+<p>Outer.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Outer<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Inner</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Inner <span class="keyword">from</span> <span class="string">"./Inner.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    Inner</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line">h1 &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Inner.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"area"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Inner<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line">h1 &#123;</span><br><span class="line">  color: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果是在外層 Outer.vue 針對 div 來做 CSS 效果，內層雖然是個別組件都用上<code>style scoped</code>，因為 import Inner.vue 中的 div 也包含在外層 Outer.vue 的 div 中，所以也會一起影響到。<br><img src="https://i.imgur.com/7OZwksY.png" alt></p>
+<p>Outer.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"area"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Outer<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Inner</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Inner <span class="keyword">from</span> <span class="string">"./Inner.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    Inner</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scope</span>&gt;</span></span><br><span class="line">h1 &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">.area &#123;</span><br><span class="line">  border: 2px blue solid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Inner.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"area"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Inner<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line">h1 &#123;</span><br><span class="line">  color: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#單一檔案組件（single-file-components）"><span class="toc-number">1.</span> <span class="toc-text">單一檔案組件（single file components）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import-amp-export"><span class="toc-number">1.1.</span> <span class="toc-text">import &amp; export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-cli-建立模板"><span class="toc-number">1.2.</span> <span class="toc-text">Vue-cli 建立模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#單一檔案組件"><span class="toc-number">1.3.</span> <span class="toc-text">單一檔案組件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解決-CSS-困境的-scoped-style"><span class="toc-number">1.4.</span> <span class="toc-text">解決 CSS 困境的 scoped style</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&text=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&is_video=false&description=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （十）單一檔案組件 &amp; Vue-cli&body=Check out this article: https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&title=[Vue] - （十）單一檔案組件 &amp; Vue-cli"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/30/vue-single-file-component_vue-cli/&name=[Vue] - （十）單一檔案組件 &amp; Vue-cli&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

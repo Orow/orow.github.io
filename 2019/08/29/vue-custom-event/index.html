@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 自訂事件 Custom eventsv-on 綁定自訂事件在組件中發出自訂事件。 例子1在組件中寫了一個 my-button ，渲染出來後是一個 button ，偵聽了 click 事件，執行 click 後就會用this.$emit發出my-click事件，就會被上層的 v-on 的 my-click 捕捉到，就會執行 click">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （九）自訂事件 Custom Events">
+<meta property="og:url" content="https://orow.github.io/2019/08/29/vue-custom-event/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 自訂事件 Custom eventsv-on 綁定自訂事件在組件中發出自訂事件。 例子1在組件中寫了一個 my-button ，渲染出來後是一個 button ，偵聽了 click 事件，執行 click 後就會用this.$emit發出my-click事件，就會被上層的 v-on 的 my-click 捕捉到，就會執行 click">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/9dHuCdB.png">
+<meta property="og:image" content="https://i.imgur.com/0BlfsL6.png">
+<meta property="og:image" content="https://i.imgur.com/fDcH22E.png">
+<meta property="og:image" content="https://i.imgur.com/rTuKCf1.png">
+<meta property="og:image" content="https://i.imgur.com/nXPYDA3.png">
+<meta property="og:image" content="https://i.imgur.com/VriItPf.png">
+<meta property="og:updated_time" content="2019-08-30T03:01:17.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （九）自訂事件 Custom Events">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 自訂事件 Custom eventsv-on 綁定自訂事件在組件中發出自訂事件。 例子1在組件中寫了一個 my-button ，渲染出來後是一個 button ，偵聽了 click 事件，執行 click 後就會用this.$emit發出my-click事件，就會被上層的 v-on 的 my-click 捕捉到，就會執行 click">
+<meta name="twitter:image" content="https://i.imgur.com/9dHuCdB.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （九）自訂事件 Custom Events</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/08/30/vue-custom-event-sideproject/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/08/29/vue-prop/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/29/vue-custom-event/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/29/vue-custom-event/&text=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/29/vue-custom-event/&is_video=false&description=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （九）自訂事件 Custom Events&body=Check out this article: https://orow.github.io/2019/08/29/vue-custom-event/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/29/vue-custom-event/&name=[Vue] - （九）自訂事件 Custom Events&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自訂事件-Custom-events"><span class="toc-number">1.</span> <span class="toc-text">自訂事件 Custom events</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-on-綁定自訂事件"><span class="toc-number">1.1.</span> <span class="toc-text">v-on 綁定自訂事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件綁定原生事件"><span class="toc-number">1.2.</span> <span class="toc-text">組件綁定原生事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync修飾符"><span class="toc-number">1.3.</span> <span class="toc-text">.sync修飾符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自訂組件的v-model"><span class="toc-number">1.4.</span> <span class="toc-text">自訂組件的v-model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跨組件的溝通"><span class="toc-number">1.5.</span> <span class="toc-text">跨組件的溝通</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （九）自訂事件 Custom Events
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-29T14:00:00.000Z" itemprop="datePublished">2019-08-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、及網路上搜尋資源所學習的。</p>
+<h2 id="自訂事件-Custom-events"><a href="#自訂事件-Custom-events" class="headerlink" title="自訂事件 Custom events"></a>自訂事件 Custom events</h2><h3 id="v-on-綁定自訂事件"><a href="#v-on-綁定自訂事件" class="headerlink" title="v-on 綁定自訂事件"></a>v-on 綁定自訂事件</h3><p>在組件中發出自訂事件。</p>
+<p>例子1<br>在組件中寫了一個 my-button ，渲染出來後是一個 button ，偵聽了 click 事件，執行 click 後就會用<code>this.$emit</code>發出<code>my-click</code>事件，就會被上層的 v-on 的 my-click 捕捉到，就會執行 clicked 函式。</p>
+<p>$emit的第二個之後的參數是資料<br><img src="https://i.imgur.com/9dHuCdB.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-button</span> <span class="attr">v-on:my-click</span>=<span class="string">"clicked"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-button'</span>,&#123;</span></span><br><span class="line"><span class="xml">        template:`<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"myClick"</span>&gt;</span>my-button<span class="tag">&lt;/<span class="name">button</span>&gt;</span>`,</span></span><br><span class="line">        methods:&#123;</span><br><span class="line">            myClick()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'my-click'</span>, <span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>); <span class="comment">//第一個參數是事件，第二個之後的參數是資料</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">'#app'</span>,</span></span><br><span class="line">        methods:&#123;</span><br><span class="line">            clicked(x,y,z)&#123;</span><br><span class="line"><span class="javascript">                alert(<span class="string">'clicked'</span> + <span class="string">`<span class="subst">$&#123;x&#125;</span>,<span class="subst">$&#123;y&#125;</span>,<span class="subst">$&#123;z&#125;</span>`</span>);</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>例子2</p>
+<p>內容有一個 +1 的 button 的 counter ，另一個 button 則是點擊後會執行 emit 函式。<br>在上層綁定下層傳來的<code>count-emit</code>事件，如果接收到事件後則執行 countEmit 函式。<br><img src="https://i.imgur.com/0BlfsL6.png" alt></p>
+<p>emit 函式執行時，會用 $emit 傳送事件到上層，綁定上層事件後執行 count 給值。<br><img src="https://i.imgur.com/fDcH22E.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> @<span class="attr">count-emit</span>=<span class="string">"countEmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-counter'</span>, &#123;</span></span><br><span class="line">            template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"count+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"emit"</span>&gt;</span>emit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `,</span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line">                    count: 0,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                emit() &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.$emit(<span class="string">'count-emit'</span>, <span class="keyword">this</span>.count);</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line">                count: 0,</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                countEmit(count) &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.count = count;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="組件綁定原生事件"><a href="#組件綁定原生事件" class="headerlink" title="組件綁定原生事件"></a>組件綁定原生事件</h3><p>要偵聽原生事件的時候，一般的偵聽是不會有效果的，需要在事件後面加上<code>native</code>這個修飾符。<br><img src="https://i.imgur.com/rTuKCf1.png" alt></p>
+<p>ex. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">my-button</span> @<span class="attr">click</span>=<span class="string">"btnClicked"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-button</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">my-button</span> @<span class="attr">click.native</span>=<span class="string">"btnClicked"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-button'</span>,&#123;</span></span><br><span class="line">        template:`</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>My Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">    &#125;),</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">'#app'</span>,</span></span><br><span class="line">        methods:&#123;</span><br><span class="line">            btnClicked()&#123;</span><br><span class="line"><span class="javascript">                alert(<span class="string">'clicked'</span>);</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sync修飾符"><a href="#sync修飾符" class="headerlink" title=".sync修飾符"></a>.sync修飾符</h3><p>例子說明</p>
+<p>第一個功能<br><img src="https://i.imgur.com/nXPYDA3.png" alt></p>
+<p>下方計數數值為上層的 outerCount ，預設值為 10 。<br>上方計數數值為下層的 innerCount ，預設值想要綁定跟 outerCount 一樣的預設值 10 ，讓 +1 從 10 開始計算。<br>這邊需要用 props 上層傳到下層來綁定，需要注意命名， html 中只能用 kebab case 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> <span class="attr">:outer-count</span>=<span class="string">"outerCount"</span> @<span class="attr">update</span>=<span class="string">"setOuterCount"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;outerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-counter'</span>,&#123;</span></span><br><span class="line"><span class="javascript">        props:[<span class="string">'outerCount'</span>], <span class="comment">// html中要轉成kebab case</span></span></span><br><span class="line">        data()&#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// innerCount:0,</span></span></span><br><span class="line"><span class="javascript">                innerCount: <span class="keyword">this</span>.outerCount,</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;innerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"innerCount+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"sync"</span>&gt;</span>sync<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            sync()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'update'</span>, <span class="keyword">this</span>.innerCount)</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">'#app'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line">            outerCount: 10,</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            setOuterCount(count)&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.outerCount = count;</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二個功能<br> <img src="https://i.imgur.com/VriItPf.png" alt></p>
+<p>把下層的 innerCount 數值設定到上層的 outerCount 。<br>一般的作法則是用 this.$emit 把事件傳到上層，並偵聽更新的函式來將 outerCount 的數值更新即可。</p>
+<p>在這邊則會用<code>.sync</code>，不需要偵聽update函式的方式來簡單的實現。</p>
+<p>把上層的<code>@update=&quot;setOuterCount&quot;</code>、<code>setOuterCount</code>的 method 拿掉， this.$emit 發送的事件改為<code>:update:outerCount</code>，原本綁定的 outer-count 加上 .sync 修飾符。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> <span class="attr">:outer-count.sync</span>=<span class="string">"outerCount"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;my-counter :outer-count="outerCount" @update="setOuterCount"&gt;&lt;/my-counter&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;outerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-counter'</span>,&#123;</span></span><br><span class="line"><span class="javascript">        props:[<span class="string">'outerCount'</span>], <span class="comment">// html中要轉成kebab case</span></span></span><br><span class="line">        data()&#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// innerCount:0,</span></span></span><br><span class="line"><span class="javascript">                innerCount: <span class="keyword">this</span>.outerCount,</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;innerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"innerCount+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"sync"</span>&gt;</span>sync<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            sync()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'update:outerCount'</span>, <span class="keyword">this</span>.innerCount)</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">'#app'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line">            outerCount: 10,</span><br><span class="line">        &#125;,</span><br><span class="line"><span class="javascript">        <span class="comment">// methods:&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     setOuterCount(count)&#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//         this.outerCount = count;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     &#125;,</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// &#125;,</span></span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>.sync</code>做的事情就是綁定 update 事件，把值回傳</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;my-counter :outer-count="outerCount" @update="setOuterCount"&gt;&lt;/my-counter&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> <span class="attr">:outer-count.sync</span>=<span class="string">"outerCount"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;outerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-counter'</span>,&#123;</span></span><br><span class="line"><span class="javascript">        props:[<span class="string">'outerCount'</span>], <span class="comment">// html中要轉成kebab case</span></span></span><br><span class="line">        data()&#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="javascript">                innerCount: <span class="keyword">this</span>.outerCount,</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;innerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"innerCount+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"sync"</span>&gt;</span>sync<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            sync()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'update:outerCount'</span>, <span class="keyword">this</span>.innerCount)</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">'#app'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line">            outerCount: 10,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自訂組件的v-model"><a href="#自訂組件的v-model" class="headerlink" title="自訂組件的v-model"></a>自訂組件的v-model</h3><p>v-model 可以做到與 .sync 修飾符相似的效果。<br>v-model 就是用 v-bind 綁定 value 加上 v-on 綁定 input。</p>
+<p>所以在組件中要針對 value 的屬性設定跟 $emit 一個 input 事件。<br>但 v-model 也可以在組件中指定一個 model 的屬性，裡面可以有兩個屬性 prop 跟 event ，兩者都是字串。<br>指定後，綁定的屬性(預設是 value )與事件名稱(預設是 input )就需要與指定後的名稱相同。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> <span class="attr">v-model</span>=<span class="string">"outerCount"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-counter</span> <span class="attr">:count</span>=<span class="string">"outerCount"</span> @<span class="attr">update:count</span>=<span class="string">"val =&gt; outerCount = val"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-counter</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 等同v-model --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;my-counter :value="outerCount" @input="val =&gt; outerCount = val"&gt;&lt;/my-counter&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;outerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-counter'</span>, &#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// v-model綁定value與input以外還可以在組件中用model來指定prop跟event名稱</span></span></span><br><span class="line">        model: &#123;</span><br><span class="line"><span class="javascript">            prop: <span class="string">'count'</span>,</span></span><br><span class="line"><span class="javascript">            event: <span class="string">'update:count'</span>,</span></span><br><span class="line">        &#125;,</span><br><span class="line"><span class="javascript">        <span class="comment">// props:['value'],</span></span></span><br><span class="line"><span class="javascript">        props: [<span class="string">'count'</span>],</span></span><br><span class="line">        data() &#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// innerCount: this.value,</span></span></span><br><span class="line"><span class="javascript">                innerCount: <span class="keyword">this</span>.count,</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        template: `</span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;innerCount&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"innerCount+=1"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"sync"</span>&gt;</span>sync<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">                `,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            sync() &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// this.$emit('input', this.innerCount)</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'update:count'</span>, <span class="keyword">this</span>.innerCount)</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line">            outerCount: 10,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="跨組件的溝通"><a href="#跨組件的溝通" class="headerlink" title="跨組件的溝通"></a>跨組件的溝通</h3><p>兩個組件不是上下層，不是用 $emit 、 props 傳遞等等。如果兩個組件是同一層，沒有上下關係的話，則要用別的方式。</p>
+<p>方式1</p>
+<ul>
+<li>把 data 的 count 初始值設定移動到上層</li>
+<li>偵聽 button 原生事件</li>
+<li>綁定 count 屬性帶回 count 值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-count</span> <span class="attr">:count</span>=<span class="string">"count"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-count</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-button</span> @<span class="attr">click.native</span>=<span class="string">"count+=1"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-count'</span>, &#123;</span></span><br><span class="line"><span class="javascript">            props:[<span class="string">'count'</span>],</span></span><br><span class="line">            template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        Vue.component(<span class="string">'my-button'</span>, &#123;</span></span><br><span class="line">            template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data:&#123;</span><br><span class="line">                count:0,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>方式2- vuex（後面單獨篇章）</p>
+<p>方式1是比較簡單的方式，要注意的是，如果是要把 data 中的設定值保留在原本 component 裡面，或是很多個組件時就需要用 vuex 的方式來實現。<br>vuex會有統一的資料，會對每一個組件去做溝通，雙向綁定，是集中管理的概念。</p>
+<p>方式3- event bus</p>
+<p>先在最外層宣告共用的 event bus ，之後可以用這個 bus 來 $emit 發出事件， $on 偵聽事件等等。<br>$on 用來偵聽， $on 與 $emit 都是 vue 實例的一個方法。</p>
+<p>偵聽 $on 需要在生命週期 mounted 的時期去偵聽，需要用到箭頭函式，因為箭頭函式的 this 是繼承而來，指的就是這個組件，如果不是用箭頭函式， this 則會指到 bus 這個 Vue 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-count</span>&gt;</span><span class="tag">&lt;/<span class="name">my-count</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-button</span>&gt;</span><span class="tag">&lt;/<span class="name">my-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> bus = <span class="keyword">new</span> Vue();</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'my-count'</span>, &#123;</span></span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line">                    count: 0,</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted() &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 偵聽外層的'add'事件</span></span></span><br><span class="line"><span class="javascript">                bus.$on(<span class="string">'add'</span>,() =&gt; &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="comment">// 用箭頭函式的this是繼承而來，指的就是這個組件，如果不是用箭頭函式，this則會指到bus這個Vue</span></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.count += <span class="number">1</span>;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="xml">            template: `<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>`,</span></span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        Vue.component(<span class="string">'my-button'</span>, &#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// event bus</span></span></span><br><span class="line"><span class="xml">            template: `<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"click"</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span>`,</span></span><br><span class="line">            methods: &#123;</span><br><span class="line">                click() &#123;</span><br><span class="line"><span class="javascript">                    <span class="comment">// 外層宣告的bus發出'add'事件</span></span></span><br><span class="line"><span class="javascript">                    bus.$emit(<span class="string">'add'</span>)</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">        &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自訂事件-Custom-events"><span class="toc-number">1.</span> <span class="toc-text">自訂事件 Custom events</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-on-綁定自訂事件"><span class="toc-number">1.1.</span> <span class="toc-text">v-on 綁定自訂事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#組件綁定原生事件"><span class="toc-number">1.2.</span> <span class="toc-text">組件綁定原生事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync修飾符"><span class="toc-number">1.3.</span> <span class="toc-text">.sync修飾符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自訂組件的v-model"><span class="toc-number">1.4.</span> <span class="toc-text">自訂組件的v-model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跨組件的溝通"><span class="toc-number">1.5.</span> <span class="toc-text">跨組件的溝通</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/29/vue-custom-event/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/29/vue-custom-event/&text=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/29/vue-custom-event/&is_video=false&description=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （九）自訂事件 Custom Events&body=Check out this article: https://orow.github.io/2019/08/29/vue-custom-event/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/29/vue-custom-event/&title=[Vue] - （九）自訂事件 Custom Events"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/29/vue-custom-event/&name=[Vue] - （九）自訂事件 Custom Events&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

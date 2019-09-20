@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 路由配置（Vue-Router）建立各種組件後（檔案），切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。  不同頁面就會是不同網址 從不同網址進來也會進到相對應的頁面  基本設置開始前先用 v">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （十一）路由配置 Vue-Router（上）">
+<meta property="og:url" content="https://orow.github.io/2019/09/18/vue-vue-router_1/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 路由配置（Vue-Router）建立各種組件後（檔案），切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。  不同頁面就會是不同網址 從不同網址進來也會進到相對應的頁面  基本設置開始前先用 v">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/XXtgZqa.png">
+<meta property="og:image" content="https://i.imgur.com/0bJkPu4.png">
+<meta property="og:image" content="https://i.imgur.com/ZHyPi1J.png">
+<meta property="og:image" content="https://i.imgur.com/34kdFsI.png">
+<meta property="og:image" content="https://i.imgur.com/ISdig0B.png">
+<meta property="og:image" content="https://i.imgur.com/XtNOUd0.png">
+<meta property="og:image" content="https://i.imgur.com/zL2Ehqu.png">
+<meta property="og:image" content="https://i.imgur.com/8QAZCMx.png">
+<meta property="og:updated_time" content="2019-09-20T06:22:40.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （十一）路由配置 Vue-Router（上）">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、官方文件及網路上搜尋資源所學習的。 路由配置（Vue-Router）建立各種組件後（檔案），切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。  不同頁面就會是不同網址 從不同網址進來也會進到相對應的頁面  基本設置開始前先用 v">
+<meta name="twitter:image" content="https://i.imgur.com/XXtgZqa.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （十一）路由配置 Vue-Router（上）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/09/18/vue-vue-router_2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/08/30/vue-single-file-component_vue-cli-sideproject/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/09/18/vue-vue-router_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&text=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&is_video=false&description=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （十一）路由配置 Vue-Router（上）&body=Check out this article: https://orow.github.io/2019/09/18/vue-vue-router_1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&name=[Vue] - （十一）路由配置 Vue-Router（上）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由配置（Vue-Router）"><span class="toc-number">1.</span> <span class="toc-text">路由配置（Vue-Router）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本設置"><span class="toc-number">1.1.</span> <span class="toc-text">基本設置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態比對"><span class="toc-number">1.2.</span> <span class="toc-text">動態比對</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#巢狀結構-Nested-routes"><span class="toc-number">1.3.</span> <span class="toc-text">巢狀結構 Nested routes</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （十一）路由配置 Vue-Router（上）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-18T08:00:00.000Z" itemprop="datePublished">2019-09-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、<a href="https://vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">官方文件</a>及網路上搜尋資源所學習的。</p>
+<h2 id="路由配置（Vue-Router）"><a href="#路由配置（Vue-Router）" class="headerlink" title="路由配置（Vue-Router）"></a>路由配置（Vue-Router）</h2><p>建立各種組件後（檔案），切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。</p>
+<ul>
+<li>不同頁面就會是不同網址</li>
+<li>從不同網址進來也會進到相對應的頁面</li>
+</ul>
+<h3 id="基本設置"><a href="#基本設置" class="headerlink" title="基本設置"></a>基本設置</h3><p>開始前先用 vue-cli 建立 webpack-simple 的模板，再來也需要安裝 vue-router。<br>在 terminal 中輸入<code>npm i -S vue-router</code></p>
+<p>在 src 中的 main.js 中需要 import VueRouter，<code>import VueRouter from &#39;vue-router&#39;</code>，然後呼叫<code>Vue.use(&#39;VueRouter&#39;)</code>。</p>
+<p>建立 About.vue 跟 Products.vue，兩個檔案裡各包含一個 h1。<br>在原本 的 App.vue 則 import 上面這兩個組件，export default 則需要訂一個新屬性<br><code>router: new Router({...})</code>，因此也需要<code>import VueRouter from &#39;vue-router&#39;</code>。</p>
+<p>新屬性 router，需要路徑與 component 名稱。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router: <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">"/about"</span>, <span class="attr">component</span>: About &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">"/products"</span>, <span class="attr">component</span>: Products &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>最後要 render 出的部分，要在模板中用<code>router-view</code>，連結的部分則要用<br><code>&lt;router-link to=&quot;/about&quot;&gt;</code>等等。</p>
+<p>router-view 跟 router-link 是因為有用了 Vue.use(‘VueRouter’)才能使用。</p>
+<p>About.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>About<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Products.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>App.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/products"</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Products <span class="keyword">from</span> <span class="string">"./Products.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">"./About.vue"</span>;</span></span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  router: <span class="keyword">new</span> VueRouter(&#123;</span></span><br><span class="line">    routes: [</span><br><span class="line"><span class="javascript">      &#123; <span class="attr">path</span>: <span class="string">"/about"</span>, <span class="attr">component</span>: About &#125;,</span></span><br><span class="line"><span class="javascript">      &#123; <span class="attr">path</span>: <span class="string">"/products"</span>, <span class="attr">component</span>: Products &#125;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span>; <span class="comment">// 只用在這無效</span></span><br><span class="line"></span><br><span class="line">Vue.use(<span class="string">'VueRouter'</span>); <span class="comment">// 只用在這無效</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/XXtgZqa.png" alt></p>
+<h3 id="動態比對"><a href="#動態比對" class="headerlink" title="動態比對"></a>動態比對</h3><p>剛剛的範例中是固定的路徑來顯示不同頁面，但如果要在 products 頁面去顯示不同內容的時候就會用到動態比對 dynamic route matching。</p>
+<p>在使用 Vue.use(VueRouter) 的檔案中需要設定動態路徑，在 product 下一層路徑加上<code>:</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  router: <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">      <span class="comment">// dynamic route matching</span></span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">"/about"</span>, <span class="attr">component</span>: About &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">"/products/:id"</span>, <span class="attr">component</span>: Products &#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在要渲染的組件中用<code>$route.params.id</code>渲染出來，這邊也把 id 用 computed 的函式來計算，直接帶出<code>:</code>後面的內容。<br>或者也可以用 api 或者固定的列表為內容來顯示。</p>
+<p><img src="https://i.imgur.com/0bJkPu4.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- dynamic route matching --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;id&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="comment">// dynamic route matching</span></span></span><br><span class="line"><span class="javascript"><span class="comment">// products對應的內容</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> products = &#123;</span></span><br><span class="line"><span class="javascript">  <span class="number">7</span>: <span class="string">"Snorkel"</span>,</span></span><br><span class="line"><span class="javascript">  <span class="number">10</span>: <span class="string">"Mask"</span>,</span></span><br><span class="line"><span class="javascript">  <span class="number">15</span>: <span class="string">"Fins"</span></span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  computed: &#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// 帶出:後面的內容</span></span></span><br><span class="line">    id() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="keyword">this</span>.$route.params.id;</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    <span class="comment">// products對應的內容</span></span></span><br><span class="line">    id() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> products[<span class="keyword">this</span>.$route.params.id];</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊如果不用 params，是用 query，就是在路徑上輸入<code>/products/?id=15</code>，就把抓取 id 的 $route.params.id 的 params 改為 query 即可。</p>
+<p><img src="https://i.imgur.com/ZHyPi1J.png" alt></p>
+<p>這樣寫完後，如果路徑是輸入原本的 products 則不會顯示任何文字，因為已經設定路徑需要是在<code>/products/:id</code>，如果還是要顯示原本 products 頁面， id 是可有可無的話，可以在 id 後面加個問號即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line"><span class="keyword">import</span> Products <span class="keyword">from</span> <span class="string">"./Products.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">"./About.vue"</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  router: <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">      <span class="comment">// dynamic route matching</span></span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">'/about'</span>, <span class="attr">component</span>: About &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">"/products/:id?"</span>, <span class="attr">component</span>: Products &#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>另外要注意的事，如果設定的路徑與輸入的路徑同時符合，會先渲染出第一個符合條件的組件。<br>所以需要設定更複雜的路徑，可以參考<code>path to regexp</code><br><a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="noopener">path to regexp</a></p>
+<h3 id="巢狀結構-Nested-routes"><a href="#巢狀結構-Nested-routes" class="headerlink" title="巢狀結構 Nested routes"></a>巢狀結構 Nested routes</h3><p>在 router: new VueRouter 中的 routes 裡面，除了 path、component、還有一個 children， children也是陣列，陣列中內容也是一樣。</p>
+<p>要注意 children 中的 path 不能用斜線（根目錄），如果路徑是從根目錄出發，不是要在 about 之後的路徑才可以加上斜線。<br><img src="https://i.imgur.com/34kdFsI.png" alt></p>
+<p><img src="https://i.imgur.com/ISdig0B.png" alt></p>
+<p>加上斜線，會變成根目錄<br><img src="https://i.imgur.com/XtNOUd0.png" alt></p>
+<p><img src="https://i.imgur.com/zL2Ehqu.png" alt></p>
+<p>如果在路徑只有about的時候（後面沒有其他子組件），也想要顯示另一組件頁面的話，在相同位置新增一個組件位置，並把path設定為空字串即可</p>
+<p><img src="https://i.imgur.com/8QAZCMx.png" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/products"</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Products <span class="keyword">from</span> <span class="string">"./Products.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">"./About.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> AboutAllOfUs <span class="keyword">from</span> <span class="string">"./AboutAllOfUs.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> AboutUs <span class="keyword">from</span> <span class="string">"./AboutUs.vue"</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> AboutFamily <span class="keyword">from</span> <span class="string">"./AboutFamily.vue"</span>;</span></span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  router: <span class="keyword">new</span> VueRouter(&#123;</span></span><br><span class="line">    routes: [</span><br><span class="line"><span class="javascript">      <span class="comment">// nested routes</span></span></span><br><span class="line"><span class="javascript">      &#123; <span class="attr">path</span>: <span class="string">"/about"</span>, <span class="attr">component</span>: About, <span class="attr">children</span>:[</span></span><br><span class="line"><span class="javascript">        &#123; <span class="attr">path</span>: <span class="string">''</span>, <span class="attr">component</span>: AboutAllOfUs&#125;,</span></span><br><span class="line"><span class="javascript">        &#123; <span class="attr">path</span>: <span class="string">"us"</span>, <span class="attr">component</span>: AboutUs &#125;,</span></span><br><span class="line"><span class="javascript">        &#123; <span class="attr">path</span>: <span class="string">"family"</span>, <span class="attr">component</span>: AboutFamily &#125;,</span></span><br><span class="line">      ]&#125;,</span><br><span class="line"><span class="javascript">      &#123; <span class="attr">path</span>: <span class="string">"/products/:id?"</span>, <span class="attr">component</span>: Products&#125;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>巢狀路徑-可以在外層直接新增一個router.js檔案來管理全部的路徑。</p>
+<p>把原本用來render的App.vue也import進來，App.vue則是最外層。</p>
+<p>route.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Products <span class="keyword">from</span> <span class="string">"./Products.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">"./About.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> AboutAllOfUs <span class="keyword">from</span> <span class="string">"./AboutAllOfUs.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> AboutUs <span class="keyword">from</span> <span class="string">"./AboutUs.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> AboutFamily <span class="keyword">from</span> <span class="string">"./AboutFamily.vue"</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,</span><br><span class="line">      component: App,</span><br><span class="line">      children: [</span><br><span class="line">        <span class="comment">// nested routes</span></span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">"about"</span>,</span><br><span class="line">          component: About,</span><br><span class="line">          children: [</span><br><span class="line">            &#123; <span class="attr">path</span>: <span class="string">""</span>, <span class="attr">component</span>: AboutAllOfUs &#125;,</span><br><span class="line">            &#123; <span class="attr">path</span>: <span class="string">"us"</span>, <span class="attr">component</span>: AboutUs &#125;,</span><br><span class="line">            &#123; <span class="attr">path</span>: <span class="string">"family"</span>, <span class="attr">component</span>: AboutFamily &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123; <span class="attr">path</span>: <span class="string">"/products/:id?"</span>, <span class="attr">component</span>: Products &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>App.vue 就只需要留下template</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/products"</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要的main.js則不用import App.vue改為import router.js</p>
+<p>main.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="comment">// import App from './App.vue' // 透過router.js管理就不需要import App.vue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  <span class="comment">// render: h =&gt; h(App) // 用router.js管理就不用createElement的函式來render</span></span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;router-view/&gt;'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由配置（Vue-Router）"><span class="toc-number">1.</span> <span class="toc-text">路由配置（Vue-Router）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本設置"><span class="toc-number">1.1.</span> <span class="toc-text">基本設置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#動態比對"><span class="toc-number">1.2.</span> <span class="toc-text">動態比對</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#巢狀結構-Nested-routes"><span class="toc-number">1.3.</span> <span class="toc-text">巢狀結構 Nested routes</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/09/18/vue-vue-router_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&text=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&is_video=false&description=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （十一）路由配置 Vue-Router（上）&body=Check out this article: https://orow.github.io/2019/09/18/vue-vue-router_1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&title=[Vue] - （十一）路由配置 Vue-Router（上）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/09/18/vue-vue-router_1/&name=[Vue] - （十一）路由配置 Vue-Router（上）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 實作－鄉鎮市區下拉選單分為兩個下拉選單，第一個下拉選單是選擇縣市，第二個選單則是區域。選擇後要顯示選擇到的縣市跟區域並帶有郵遞區號。  組件命名，如果是用 template ，不是用 html 的話，是不限於大小寫限制的。 用 select 來選擇，Vue 實例中的 template 模板直接用大寫組件名稱Select。V-mode">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue] - （九）自訂事件 Custom Events-實作">
+<meta property="og:url" content="https://orow.github.io/2019/08/30/vue-custom-event-sideproject/index.html">
+<meta property="og:site_name" content="Orow&#39;s Blog">
+<meta property="og:description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 實作－鄉鎮市區下拉選單分為兩個下拉選單，第一個下拉選單是選擇縣市，第二個選單則是區域。選擇後要顯示選擇到的縣市跟區域並帶有郵遞區號。  組件命名，如果是用 template ，不是用 html 的話，是不限於大小寫限制的。 用 select 來選擇，Vue 實例中的 template 模板直接用大寫組件名稱Select。V-mode">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/SbbV1w0.png">
+<meta property="og:updated_time" content="2019-08-30T07:37:23.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Vue] - （九）自訂事件 Custom Events-實作">
+<meta name="twitter:description" content="本篇主要是透過線上課程：HiSKIO、及網路上搜尋資源所學習的。 實作－鄉鎮市區下拉選單分為兩個下拉選單，第一個下拉選單是選擇縣市，第二個選單則是區域。選擇後要顯示選擇到的縣市跟區域並帶有郵遞區號。  組件命名，如果是用 template ，不是用 html 的話，是不限於大小寫限制的。 用 select 來選擇，Vue 實例中的 template 模板直接用大寫組件名稱Select。V-mode">
+<meta name="twitter:image" content="https://i.imgur.com/SbbV1w0.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[Vue] - （九）自訂事件 Custom Events-實作</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/08/30/vue-single-file-component_vue-cli/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/08/29/vue-custom-event/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&text=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&is_video=false&description=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （九）自訂事件 Custom Events-實作&body=Check out this article: https://orow.github.io/2019/08/30/vue-custom-event-sideproject/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&name=[Vue] - （九）自訂事件 Custom Events-實作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#實作－鄉鎮市區下拉選單"><span class="toc-number">1.</span> <span class="toc-text">實作－鄉鎮市區下拉選單</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Vue] - （九）自訂事件 Custom Events-實作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Orow's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-30T03:30:00.000Z" itemprop="datePublished">2019-08-30</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/project/">project</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue/">Vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇主要是透過線上課程：<code>HiSKIO</code>、及網路上搜尋資源所學習的。</p>
+<h2 id="實作－鄉鎮市區下拉選單"><a href="#實作－鄉鎮市區下拉選單" class="headerlink" title="實作－鄉鎮市區下拉選單"></a>實作－鄉鎮市區下拉選單</h2><p>分為兩個下拉選單，第一個下拉選單是選擇縣市，第二個選單則是區域。<br>選擇後要顯示選擇到的縣市跟區域並帶有郵遞區號。</p>
+<p><img src="https://i.imgur.com/SbbV1w0.png" alt></p>
+<p>組件命名，如果是用 template ，不是用 html 的話，是不限於大小寫限制的。</p>
+<p>用 select 來選擇，Vue 實例中的 template 模板直接用大寫組件名稱<code>Select</code>。<br>V-model 綁定 cityIndex （等於 select 中的 value ，所以在下層<code>Select</code>組件中 props 有一個 value 以已經綁定這個值）， v-bind 綁定 options=”cities”，這裡的 cities 是 data 中的 cities ，這邊用 computed 來計算並回傳宣告的 cities 物件。</p>
+<p>下層 Select 組件中，要有 props 的屬性 value 跟 options 以外， template 中 select v-model 這邊如果是綁定 value 的話，是無法透過 select 後把 value 傳到上層，需要透過 computed 來計算 並用 set 來發出 $emit 事件。</p>
+<ul>
+<li>組件的 v-model 不能修改 this 的 props （但可以透過 computed 來計算）<br>computed 用物件表達並用 index 命名後，用 get 取得目前 value ， set 則把目前值用 $emit(‘input’) 的上層去。<br>上層則是 v-model 的 cityIndex 接收到值。</li>
+</ul>
+<p>再來在上層 template 新增一組區域的 Select ，並在 computed 中去執行 areas 的計算獲取宣告的陣列中的區域， zip 則是獲取郵遞區號。<br>這邊會遇到如果切換的時候，不同 city 在切換時，會因為有不同 index 的 area 導致可能會顯示異常，這邊會用 watch 來偵聽，一旦 cityIndex 切換的時候就把 areaIndex 歸零。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> cities = [&#123;</span></span><br><span class="line"><span class="javascript">            name: <span class="string">'台北市'</span>,</span></span><br><span class="line">            areas: [&#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'中正區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'100'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'大同區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'103'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'中山區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'104'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'松山區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'105'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'信義區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'110'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'南港區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'115'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="javascript">            name: <span class="string">'新北市'</span>,</span></span><br><span class="line">            areas: [&#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'板橋區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'220'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'三重區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'241'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'永和區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'234'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'中和區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'235'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'新店區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'231'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'新莊區'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'242'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="javascript">            name: <span class="string">'新竹市'</span>,</span></span><br><span class="line">            areas: [&#123;</span><br><span class="line"><span class="javascript">                name: <span class="string">'新竹市'</span>,</span></span><br><span class="line"><span class="javascript">                zip: <span class="string">'300'</span>,</span></span><br><span class="line">            &#125;],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="javascript">            name: <span class="string">'彰化縣'</span>,</span></span><br><span class="line">            areas: [&#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'彰化市'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'500'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'秀水鄉'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'504'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'花壇鄉'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'503'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'鹿港鎮'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'505'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'員林鎮'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'510'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="javascript">                    name: <span class="string">'溪湖鎮'</span>,</span></span><br><span class="line"><span class="javascript">                    zip: <span class="string">'514'</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    ];</span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'Select'</span>, &#123;</span></span><br><span class="line"><span class="javascript">            props: [<span class="string">'value'</span>, <span class="string">'options'</span>],</span></span><br><span class="line">            computed: &#123;</span><br><span class="line">                index: &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">get</span>() &#123;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">return</span> <span class="keyword">this</span>.value;</span></span><br><span class="line">                    &#125;,</span><br><span class="line"><span class="javascript">                    <span class="keyword">set</span>(val) &#123;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, val);</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// select v-model 不能直接綁定上層傳來的 value ，因為無法改動上層的index，可以用 computed set 來發送事件達成</span></span></span><br><span class="line">            template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">"index"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in options"</span> <span class="attr">:value</span>=<span class="string">"index"</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">        &#125;),</span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line">                cityIndex: 0,</span><br><span class="line">                areaIndex: 0,</span><br><span class="line">            &#125;,</span><br><span class="line">            computed: &#123;</span><br><span class="line">                cities() &#123;</span><br><span class="line"><span class="javascript">                    <span class="comment">// return 外層宣告的 cities</span></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> cities;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                areas() &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> cities[<span class="keyword">this</span>.cityIndex].areas;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                zip() &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="keyword">this</span>.areas[<span class="keyword">this</span>.areaIndex].zip;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            watch: &#123;</span><br><span class="line">                cityIndex() &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.areaIndex = <span class="number">0</span>;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            template: `</span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>County<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">            &#123;&#123;cityIndex&#125;&#125;</span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">Select</span> <span class="attr">v-model</span>=<span class="string">"cityIndex"</span> <span class="attr">:options</span>=<span class="string">"cities"</span>&gt;</span><span class="tag">&lt;/<span class="name">Select</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">Select</span> <span class="attr">v-model</span>=<span class="string">"areaIndex"</span> <span class="attr">:options</span>=<span class="string">"areas"</span>&gt;</span><span class="tag">&lt;/<span class="name">Select</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span></span><br><span class="line">            &#123;&#123;cityIndex&#125;&#125; - &#123;&#123;areaIndex&#125;&#125; - &#123;&#123;zip&#125;&#125;</span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        `</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#實作－鄉鎮市區下拉選單"><span class="toc-number">1.</span> <span class="toc-text">實作－鄉鎮市區下拉選單</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&text=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&is_video=false&description=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Vue] - （九）自訂事件 Custom Events-實作&body=Check out this article: https://orow.github.io/2019/08/30/vue-custom-event-sideproject/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&title=[Vue] - （九）自訂事件 Custom Events-實作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://orow.github.io/2019/08/30/vue-custom-event-sideproject/&name=[Vue] - （九）自訂事件 Custom Events-實作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Orow Chou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/project">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
