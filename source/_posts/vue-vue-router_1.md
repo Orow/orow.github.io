@@ -11,8 +11,7 @@ categories:
 
 ## 路由配置（Vue-Router）
 
-建立各種組件後（檔案），
-切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。
+建立各種組件後（檔案），切換要顯示的組件，簡單的會用 v-if，v-else，那要切換不同組件來顯示不同頁面，稱作 SPA，single page application，則需要用到 vue-router。
 
 - 不同頁面就會是不同網址
 - 從不同網址進來也會進到相對應的頁面
@@ -22,7 +21,7 @@ categories:
 開始前先用 vue-cli 建立 webpack-simple 的模板，再來也需要安裝 vue-router。
 在 terminal 中輸入`npm i -S vue-router`
 
-在 src 中的 main.js 中需要 import VueRouter，`import VueRouter from 'vue-router'`，然後呼叫`Vue.use(VueRouter')`。
+在 src 中的 main.js 中需要 import VueRouter，`import VueRouter from 'vue-router'`，然後呼叫`Vue.use('VueRouter')`。
 
 建立 About.vue 跟 Products.vue，兩個檔案裡各包含一個 h1。
 在原本 的 App.vue 則 import 上面這兩個組件，export default 則需要訂一個新屬性
@@ -130,11 +129,10 @@ export default {
 };
 ```
 
-在要渲染的組件中用`$route.params.id`渲染出來，這邊也把 id 用 computed 的函式來計算。
+在要渲染的組件中用`$route.params.id`渲染出來，這邊也把 id 用 computed 的函式來計算，直接帶出`:`後面的內容。
+或者也可以用 api 或者固定的列表為內容來顯示。
 
-也可以用 api 或者固定的列表為內容來顯示。
 ![](https://i.imgur.com/0bJkPu4.png)
-
 
 ```html
 <template>
@@ -148,7 +146,7 @@ export default {
 
 <script>
 // dynamic route matching
-// products帶內容
+// products對應的內容
 const products = {
   7: "Snorkel",
   10: "Mask",
@@ -157,10 +155,11 @@ const products = {
 
 export default {
   computed: {
+    // 帶出:後面的內容
     id() {
       return this.$route.params.id;
     },
-    // products帶內容
+    // products對應的內容
     id() {
       return products[this.$route.params.id];
     },
@@ -169,7 +168,8 @@ export default {
 </script>
 ```
 
-這邊如果不用 params，是用 query，就是在路徑上輸入`/products/?id=26`，就把抓取 id 的 $route.params.id 的 params 改為 query 即可。
+這邊如果不用 params，是用 query，就是在路徑上輸入`/products/?id=15`，就把抓取 id 的 $route.params.id 的 params 改為 query 即可。
+
 ![](https://i.imgur.com/ZHyPi1J.png)
 
 
@@ -214,7 +214,7 @@ export default {
 
 ![](https://i.imgur.com/zL2Ehqu.png)
 
-如果在路徑只有about的時候，也想要顯示另一組件頁面的話，在相同位置新增一個組件位置，並把path設定為空字串即可
+如果在路徑只有about的時候（後面沒有其他子組件），也想要顯示另一組件頁面的話，在相同位置新增一個組件位置，並把path設定為空字串即可
 
 ![](https://i.imgur.com/8QAZCMx.png)
 

@@ -25,7 +25,7 @@ About.vue
     <!-- <router-link to="/about/us">AboutUs</router-link> -->
 
     <!-- 具名路由 Named Routes -->
-    <router-link :to="{name:'us'}">AUs</router-link>
+    <router-link :to="{name:'us'}">Us</router-link>
     <router-link to="/about/family">AboutFamily</router-link>
     <router-view/>
   </div>
@@ -76,8 +76,8 @@ rotuer.js
 
 
 同時顯示一個以上的組件的話也可以達到。
-![](https://i.imgur.com/UggmYiq.png)
 
+![](https://i.imgur.com/UggmYiq.png)
 
 在 router.js 中要新增路徑，並把 component 改為複數 components 。
 
@@ -306,11 +306,12 @@ export default new VueRouter({
 
 ![](https://i.imgur.com/PjEDV0o.png)
 
-### 組件的props Passing Props to Route Components
+### 組件的props
 
+Passing Props to Route Components
 在 path 中用`:`加上名字來指定 params 的時候，在對應的組件中可以用`this.$route.params.id`來存取。這個`this.$params`是在使用 vue-router 的時候，如果在 route 中指定該 component，render 出來後，實例就會帶有`$route`的屬性，是透過 vue-router 注入到到組件中的，所以運作時要透過`this.$route`。
 
-但如果在一般不是透過 router render 出來的組件想要使用，就要透過一些 props 設定來使用。
+但如果在一般不是透過 router render 出來的組件想要使用的話，就要透過一些 props 設定來使用。
 
 props 可以是三種
 - booleans
@@ -431,7 +432,7 @@ props: (route)=> {
 
 ![](https://i.imgur.com/Chzow8e.png)
 
-但如果用 history 模式，跑 npm run build 去打包的話，會把產生的檔案放在 dist 資料夾裡，如果用 history 模式後，這時候路徑就會找不到，這邊可以用 browser-sync 的npm package 來執行  browser-sync start -s 這是開啟虛擬伺服器來模擬情況。
+但如果用 history 模式，跑 npm run build 去打包的話，會把產生的檔案放在 dist 資料夾裡，用 history 模式後，這時候路徑就會找不到，這邊可以用 browser-sync 的npm package 來執行  browser-sync start -s 這是開啟虛擬伺服器來模擬情況。
 
 如果需要乾淨的網址，又要可以找到相對的路徑，伺服器需要設定 URL Rewrite ，這是後端需要去處理的。
 
